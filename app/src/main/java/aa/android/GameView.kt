@@ -1,5 +1,6 @@
 package aa.android
 
+import aa.android.elements.AndroidLine
 import aa.android.elements.AndroidMainCircle
 import aa.android.elements.AndroidSmallBall
 import aa.android.receiver.ReRenderReceiver
@@ -19,7 +20,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 public class GameView(context: Context, attrs: AttributeSet) :
     View(context, attrs) {
     private val mainCircle: AndroidMainCircle;
-    private var smallBalls = ArrayList<AndroidSmallBall>();
+    private val smallBalls = ArrayList<AndroidSmallBall>();
+    private val line = AndroidLine();
     private var index = 0;
     private val engine: Engine;
 
@@ -37,8 +39,8 @@ public class GameView(context: Context, attrs: AttributeSet) :
             }
         }
 
-        val width = resources.displayMetrics.widthPixels
-        val height = resources.displayMetrics.heightPixels
+        val width = resources.displayMetrics.widthPixels.toFloat()
+        val height = resources.displayMetrics.heightPixels.toFloat()
 
         //TODO: for test, should be moved in future
         this.mainCircle = AndroidMainCircle(width, height);
@@ -59,19 +61,22 @@ public class GameView(context: Context, attrs: AttributeSet) :
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        val mainCirclePosition = mainCircle.getPosition();
+        for (smallBall in this.smallBalls) {
+            val smallBallPosition = smallBall.getPosition()
+            smallBall.calculateNewRectF()
+
+            if (smallBall.getStatus() == SmallBallStatus.SPINNING) {
+                this.line.draw(canvas, mainCirclePosition, smallBallPosition)
+            }
+
+            canvas.drawOval(smallBall.getRectF(), smallBall.getPaint())
+        }
 
         canvas.drawOval(
             this.mainCircle.getRectF(),
             this.mainCircle.getPaint()
         )
-
-
-        for (smallBall in this.smallBalls) {
-
-            smallBall.calculateNewRectF()
-
-            canvas.drawOval(smallBall.getRectF(), smallBall.getPaint())
-        }
 
     }
 

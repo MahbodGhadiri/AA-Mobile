@@ -4,18 +4,18 @@ import aa.engine.helpers.Position
 
 open class MainCircle constructor(
     private val position: Position,
-    private var radius: Int,
-    private var orbit: Int
+    private var radius: Float,
+    private var orbit: Float
 ) {
-    fun setPosition(x: Int, y: Int) {
+    fun setPosition(x: Float, y: Float) {
         this.position.setPosition(x, y);
     }
 
-    fun setRadius(radius: Int) {
+    fun setRadius(radius: Float) {
         this.radius = radius;
     }
 
-    fun setOrbit(orbit: Int) {
+    fun setOrbit(orbit: Float) {
         this.orbit = orbit;
     }
 
@@ -23,11 +23,11 @@ open class MainCircle constructor(
         return this.position;
     }
 
-    fun getRadius(): Int {
+    fun getRadius(): Float {
         return this.radius;
     }
 
-    fun getOrbit(): Int {
+    fun getOrbit(): Float {
         return this.orbit;
     }
 

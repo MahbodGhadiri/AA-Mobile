@@ -15,15 +15,15 @@ open class SmallBall constructor(
     //TODO: better way of keeping main circle orbit is needed!
     private val mainCircle: MainCircle,
     private val position: Position,
-    private var radius: Int,
+    private var radius: Float,
     private var status: SmallBallStatus = SmallBallStatus.HIDDEN,
-    private var theta: Int = 90
+    private var theta: Float = 90F
 ) {
-    fun setPosition(x: Int, y: Int) {
+    fun setPosition(x: Float, y: Float) {
         this.position.setPosition(x, y);
     }
 
-    fun setRadius(radius: Int) {
+    fun setRadius(radius: Float) {
         this.radius = radius;
     }
 
@@ -31,7 +31,7 @@ open class SmallBall constructor(
         this.status = status;
     }
 
-    fun setTheta(theta: Int) {
+    fun setTheta(theta: Float) {
         this.theta = theta;
 
         // calculate new position
@@ -43,7 +43,7 @@ open class SmallBall constructor(
             Math.toRadians(theta.toDouble())
         ))
 
-        this.setPosition(x.toInt(), y.toInt())
+        this.setPosition(x.toFloat(), y.toFloat())
     }
 
 
@@ -51,7 +51,7 @@ open class SmallBall constructor(
         return this.position;
     }
 
-    fun getRadius(): Int {
+    fun getRadius(): Float {
         return this.radius;
     }
 
@@ -59,7 +59,7 @@ open class SmallBall constructor(
         return this.status;
     }
 
-    fun getTheta(): Int {
+    fun getTheta(): Float {
         return this.theta;
     }
 }

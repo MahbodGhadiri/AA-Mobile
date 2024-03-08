@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-public class AndroidMainCircle(width: Int, height: Int) : MainCircle(
+public class AndroidMainCircle(width: Float, height: Float) : MainCircle(
     Position(
         width / 2,
         height / 3
@@ -29,10 +29,10 @@ public class AndroidMainCircle(width: Int, height: Int) : MainCircle(
             this.getPosition().getY() + this.getRadius();
 
         this.rectF = RectF(
-            left.toFloat(),
-            top.toFloat(),
-            right.toFloat(),
-            bottom.toFloat()
+            left,
+            top,
+            right,
+            bottom
         )
     }
 

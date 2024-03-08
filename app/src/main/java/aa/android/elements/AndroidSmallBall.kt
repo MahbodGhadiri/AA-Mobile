@@ -8,8 +8,8 @@ import android.graphics.Paint
 import android.graphics.RectF
 
 class AndroidSmallBall(
-    private val width: Int,
-    private val height: Int,
+    private val width: Float,
+    private val height: Float,
     private val mainCircle: MainCircle
 ) : SmallBall(
     mainCircle,
@@ -35,13 +35,13 @@ class AndroidSmallBall(
 
     public fun calculateNewRectF() {
         this.left =
-            (this.getPosition().getX() - this.getRadius()).toFloat();
+            (this.getPosition().getX() - this.getRadius());
         this.top =
-            (this.getPosition().getY() - this.getRadius()).toFloat();
+            (this.getPosition().getY() - this.getRadius());
         this.right =
-            (this.getPosition().getX() + this.getRadius()).toFloat();
+            (this.getPosition().getX() + this.getRadius());
         this.bottom =
-            (this.getPosition().getY() + this.getRadius()).toFloat();
+            (this.getPosition().getY() + this.getRadius());
 
         rectF.top = top;
         rectF.left = left;
