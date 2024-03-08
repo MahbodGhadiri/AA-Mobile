@@ -1,5 +1,6 @@
 package aa.android.elements
 
+import aa.engine.elements.MainCircle
 import aa.engine.elements.SmallBall
 import aa.engine.helpers.Position
 import android.graphics.Color
@@ -8,8 +9,15 @@ import android.graphics.RectF
 
 class AndroidSmallBall(
     private val width: Int,
-    private val height: Int
-) : SmallBall(Position(width / 2, height - height / 10), width / 24) {
+    private val height: Int,
+    private val mainCircle: MainCircle
+) : SmallBall(
+    mainCircle,
+    Position(
+        width / 2, height - height / 10
+    ),
+    width / 24,
+) {
 
     private var left: Float = 0F;
     private var top: Float = 0F;

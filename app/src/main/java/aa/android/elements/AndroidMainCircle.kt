@@ -10,7 +10,7 @@ public class AndroidMainCircle(width: Int, height: Int) : MainCircle(
     Position(
         width / 2,
         height / 3
-    ), width / 6, width / 6
+    ), width / 6, width / 3
 ) {
     private var rectF: RectF;
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
