@@ -22,7 +22,6 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private val mainCircle: AndroidMainCircle;
     private val smallBalls = ArrayList<AndroidSmallBall>();
     private val line = AndroidLine();
-    private var index = 0;
     private val engine: Engine;
 
     init {
@@ -39,14 +38,14 @@ public class GameView(context: Context, attrs: AttributeSet) :
         this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
         this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
         this.smallBalls[0].setStatus(SmallBallStatus.SPINNING);
-        index++;
+        this.smallBalls[1].setStatus(SmallBallStatus.SPAWNED);
         //TODO: -----------------------------
 
         this.engine = Engine(mainCircle, smallBalls as ArrayList<SmallBall>);
         engine.play {
             lbm.sendBroadcast(intent);
         }
-
+        
         this.setOnClickListener {
             val executionContext = engine.getContext();
             val ball = executionContext.getSpawnedBall();
