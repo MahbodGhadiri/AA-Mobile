@@ -2,6 +2,7 @@ package aa.android.elements
 
 import aa.engine.elements.MainCircle
 import aa.engine.helpers.Position
+import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
@@ -42,5 +43,9 @@ public class AndroidMainCircle(width: Float, height: Float) : MainCircle(
 
     public fun getPaint(): Paint {
         return this.paint;
+    }
+
+    public fun draw(canvas: Canvas) {
+        canvas.drawOval(rectF, paint);
     }
 }

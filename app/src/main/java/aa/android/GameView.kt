@@ -64,19 +64,14 @@ public class GameView(context: Context, attrs: AttributeSet) :
         val mainCirclePosition = mainCircle.getPosition();
         for (smallBall in this.smallBalls) {
             val smallBallPosition = smallBall.getPosition()
-            smallBall.calculateNewRectF()
 
             if (smallBall.getStatus() == SmallBallStatus.SPINNING) {
                 this.line.draw(canvas, mainCirclePosition, smallBallPosition)
             }
-
-            canvas.drawOval(smallBall.getRectF(), smallBall.getPaint())
+            smallBall.draw(canvas);
         }
 
-        canvas.drawOval(
-            this.mainCircle.getRectF(),
-            this.mainCircle.getPaint()
-        )
+        mainCircle.draw(canvas);
 
     }
 

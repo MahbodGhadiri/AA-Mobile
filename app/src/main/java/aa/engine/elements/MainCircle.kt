@@ -30,6 +30,4 @@ open class MainCircle constructor(
     fun getOrbit(): Float {
         return this.orbit;
     }
-
-
 }
