@@ -12,9 +12,9 @@ import kotlin.concurrent.timerTask
 
 class Engine(mainCircle: MainCircle, smallBalls: ArrayList<SmallBall>) {
     val jobManager: JobManager;
+    private val context = ExecutionContext(mainCircle, smallBalls);
 
     init {
-        val context = ExecutionContext(mainCircle, smallBalls);
         context.setRotationSpeed(2);
         context.setApproachingSpeed(10);
         this.jobManager = JobManager(context);
@@ -32,5 +32,9 @@ class Engine(mainCircle: MainCircle, smallBalls: ArrayList<SmallBall>) {
             10
         );
         return timer;
+    }
+
+    public fun getContext(): ExecutionContext {
+        return this.context;
     }
 }

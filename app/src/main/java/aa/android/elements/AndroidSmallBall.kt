@@ -3,6 +3,7 @@ package aa.android.elements
 import aa.engine.elements.MainCircle
 import aa.engine.elements.SmallBall
 import aa.engine.helpers.Position
+import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
@@ -55,5 +56,10 @@ class AndroidSmallBall(
 
     public fun getPaint(): Paint {
         return this.paint;
+    }
+
+    public fun draw(canvas: Canvas) {
+        this.calculateNewRectF();
+        canvas.drawOval(rectF, paint);
     }
 }
