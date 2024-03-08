@@ -31,14 +31,6 @@ public class GameView(context: Context, attrs: AttributeSet) :
         val receiver = ReRenderReceiver { invalidate(); requestLayout() }
         lbm.registerReceiver(receiver, IntentFilter("reRender"))
 
-        this.setOnClickListener {
-            if (this.smallBalls.size > index) {
-                smallBalls[index].setStatus(SmallBallStatus.APPROACHING);
-                index++;
-                System.out.println("clicked")
-            }
-        }
-
         val width = resources.displayMetrics.widthPixels.toFloat()
         val height = resources.displayMetrics.heightPixels.toFloat()
 
@@ -53,6 +45,16 @@ public class GameView(context: Context, attrs: AttributeSet) :
         this.engine = Engine(mainCircle, smallBalls as ArrayList<SmallBall>);
         engine.play {
             lbm.sendBroadcast(intent);
+        }
+
+        this.setOnClickListener {
+            val executionContext = engine.getContext();
+            val ball = executionContext.getSpawnedBall();
+            if (ball != null) {
+                executionContext.addApproachingBall(ball);
+                executionContext.setSpawnedBall(null);
+                System.out.println("clicked")
+            }
         }
 
     }

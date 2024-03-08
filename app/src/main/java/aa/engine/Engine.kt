@@ -4,7 +4,6 @@ import aa.engine.elements.MainCircle
 import aa.engine.elements.SmallBall
 import aa.engine.helpers.ExecutionContext
 import aa.engine.jobs.JobManager
-import aa.engine.jobs.critical.MoveUpJob
 import aa.engine.jobs.critical.OrbitDetectionJob
 import aa.engine.jobs.critical.OrbitingJob
 import java.util.Timer
@@ -12,9 +11,9 @@ import kotlin.concurrent.timerTask
 
 class Engine(mainCircle: MainCircle, smallBalls: ArrayList<SmallBall>) {
     val jobManager: JobManager;
+    private val context = ExecutionContext(mainCircle, smallBalls);
 
     init {
-        val context = ExecutionContext(mainCircle, smallBalls);
         context.setRotationSpeed(2);
         context.setApproachingSpeed(10);
         this.jobManager = JobManager(context);
@@ -31,5 +30,9 @@ class Engine(mainCircle: MainCircle, smallBalls: ArrayList<SmallBall>) {
             10
         );
         return timer;
+    }
+
+    public fun getContext(): ExecutionContext {
+        return this.context;
     }
 }
