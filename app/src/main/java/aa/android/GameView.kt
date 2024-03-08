@@ -33,6 +33,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
             if (this.smallBalls.size > index) {
                 smallBalls[index].setStatus(SmallBallStatus.APPROACHING);
                 index++;
+                System.out.println("clicked")
             }
         }
 
@@ -66,9 +67,9 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
 
         for (smallBall in this.smallBalls) {
-            if (smallBall.getStatus() == SmallBallStatus.SPINNING) {
-                smallBall.calculateNewRectF()
-            }
+
+            smallBall.calculateNewRectF()
+
             canvas.drawOval(smallBall.getRectF(), smallBall.getPaint())
         }
 

@@ -10,6 +10,7 @@ class ExecutionContext(
     private val mainCircle: MainCircle;
     private val smallBalls: ArrayList<SmallBall>;
     private var rotationSpeed: Int = 0;
+    private var approachingSpeed: Int = 0;
 
     init {
         this.mainCircle = mainCircle;
@@ -30,5 +31,13 @@ class ExecutionContext(
 
     fun setRotationSpeed(speed: Int) {
         this.rotationSpeed = speed;
+    }
+
+    fun getApproachingSpeed(): Int {
+        return approachingSpeed;
+    }
+
+    fun setApproachingSpeed(speed: Int) {
+        this.approachingSpeed = speed;
     }
 }
