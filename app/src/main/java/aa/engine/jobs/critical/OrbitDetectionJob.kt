@@ -12,7 +12,7 @@ class OrbitDetectionJob() : Job() {
             if (smallBall.getStatus() == SmallBallStatus.APPROACHING) {
                 if (smallBall.getPosition().getY() <= y + orbit) {
                     smallBall.setStatus(SmallBallStatus.SPINNING);
-                    smallBall.setTheta(0);
+                    smallBall.setTheta(0F);
                 }
             }
         }
