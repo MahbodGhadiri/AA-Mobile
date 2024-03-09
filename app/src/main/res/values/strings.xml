@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">aa-android</string>
+    <string name="credits">credits</string>
+    <string name="levels">levels</string>
+    <string name="settings">settings</string>
+    <string name="play">play</string>
 </resources>
