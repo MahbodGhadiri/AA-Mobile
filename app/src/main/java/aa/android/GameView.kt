@@ -1,11 +1,11 @@
 package aa.android
 
-import AppConfig
 import aa.android.elements.AndroidLine
 import aa.android.elements.AndroidMainCircle
 import aa.android.elements.AndroidSmallBall
 import aa.android.receiver.ReRenderReceiver
 import aa.engine.Engine
+import aa.engine.config.AppConfig
 import aa.engine.elements.SmallBall
 import aa.engine.elements.SmallBallStatus
 import android.annotation.SuppressLint
@@ -37,15 +37,12 @@ public class GameView(context: Context, attrs: AttributeSet) :
         val height = resources.displayMetrics.heightPixels.toFloat()
 
         //TODO: for test, should be moved in future
-        this.mainCircle = AndroidMainCircle(width, height);
-        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
-        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
-        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
-        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
-        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
-        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
-        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
-        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
+        this.mainCircle = AndroidMainCircle();
+
+        for (i in 1..10) {
+            this.smallBalls.add(AndroidSmallBall());
+        }
+
         this.smallBalls[0].setStatus(SmallBallStatus.SPINNING);
         this.smallBalls[1].setStatus(SmallBallStatus.SPAWNED);
         //TODO: -----------------------------
@@ -59,7 +56,6 @@ public class GameView(context: Context, attrs: AttributeSet) :
             val executionContext = engine.getContext();
             val ball = executionContext.getSpawnedBall();
             if (ball != null) {
-                println("called, approaching:: " + executionContext.getApproachingBalls());
                 executionContext.addApproachingBall(ball);
                 executionContext.setSpawnedBall(null);
 
