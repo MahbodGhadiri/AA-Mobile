@@ -6,6 +6,7 @@ import kotlin.math.sin
 
 enum class SmallBallStatus {
     HIDDEN,
+    SPAWNING,
     SPAWNED,
     APPROACHING,
     SPINNING

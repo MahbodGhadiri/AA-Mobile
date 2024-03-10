@@ -1,5 +1,6 @@
 package aa.android
 
+import AppConfig
 import aa.android.elements.AndroidLine
 import aa.android.elements.AndroidMainCircle
 import aa.android.elements.AndroidSmallBall
@@ -24,7 +25,9 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private val line = AndroidLine();
     private val engine: Engine;
 
+
     init {
+        AppConfig.initialize(context);
         val lbm = LocalBroadcastManager.getInstance(this.context);
         val intent = Intent().setAction("reRender");
         val receiver = ReRenderReceiver { invalidate(); requestLayout() }
@@ -37,8 +40,16 @@ public class GameView(context: Context, attrs: AttributeSet) :
         this.mainCircle = AndroidMainCircle(width, height);
         this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
         this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
+        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
+        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
+        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
+        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
+        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
+        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
         this.smallBalls[0].setStatus(SmallBallStatus.SPINNING);
         this.smallBalls[1].setStatus(SmallBallStatus.SPAWNED);
+        index++;
+
         //TODO: -----------------------------
 
         this.engine = Engine(mainCircle, smallBalls as ArrayList<SmallBall>);
@@ -50,9 +61,17 @@ public class GameView(context: Context, attrs: AttributeSet) :
             val executionContext = engine.getContext();
             val ball = executionContext.getSpawnedBall();
             if (ball != null) {
+                println("called, approaching:: " + executionContext.getApproachingBalls());
                 executionContext.addApproachingBall(ball);
                 executionContext.setSpawnedBall(null);
-                System.out.println("clicked")
+
+                val hiddenBall = executionContext.getAndPopHiddenBall();
+                if (hiddenBall != null) executionContext.setSpawningBall(
+                    hiddenBall
+                ) else {
+                    executionContext.setSpawningBall(null);
+                }
+
             }
         }
 
@@ -65,7 +84,14 @@ public class GameView(context: Context, attrs: AttributeSet) :
         val mainCirclePosition = mainCircle.getPosition();
         for (smallBall in this.smallBalls) {
             val smallBallPosition = smallBall.getPosition()
+            smallBall.calculateNewRectF();
 
+            if (smallBall.getStatus() == SmallBallStatus.HIDDEN) {
+                smallBall.setPosition(
+                    AppConfig.getScrWidth() / 2,
+                    AppConfig.getScrHeight()
+                );
+            }
             if (smallBall.getStatus() == SmallBallStatus.SPINNING) {
                 this.line.draw(canvas, mainCirclePosition, smallBallPosition)
             }

@@ -15,6 +15,7 @@ class ExecutionContext(
     private var spawnedBall: SmallBall? = null;
     private val spinningBalls = ArrayList<SmallBall>();
     private val approachingBalls = ArrayList<SmallBall>();
+    private var spawningBall: SmallBall? = null;
 
     init {
         for (smallBall in smallBalls) {
@@ -23,6 +24,7 @@ class ExecutionContext(
                 SmallBallStatus.SPAWNED -> spawnedBall = smallBall;
                 SmallBallStatus.APPROACHING -> approachingBalls.add(smallBall)
                 SmallBallStatus.SPINNING -> spinningBalls.add(smallBall);
+                SmallBallStatus.SPAWNING -> spawningBall = smallBall;
             }
         }
     }
@@ -47,8 +49,21 @@ class ExecutionContext(
         this.approachingSpeed = speed;
     }
 
+    fun setSpawningBall(ball: SmallBall?) {
+        ball?.setStatus(SmallBallStatus.SPAWNING);
+        this.spawningBall = ball;
+    }
+
     fun getHiddenBalls(): ArrayList<SmallBall> {
         return this.hiddenBalls;
+    }
+
+    fun getAndPopHiddenBall(): SmallBall? {
+        return if (this.hiddenBalls.size > 0) {
+            this.hiddenBalls.removeLast();
+        } else {
+            null;
+        }
     }
 
     fun getSpawnedBall(): SmallBall? {
@@ -61,6 +76,10 @@ class ExecutionContext(
 
     fun getSpinningBalls(): ArrayList<SmallBall> {
         return this.spinningBalls;
+    }
+
+    fun getSpawningBall(): SmallBall? {
+        return this.spawningBall;
     }
 
     fun addHiddenBall(ball: SmallBall) {

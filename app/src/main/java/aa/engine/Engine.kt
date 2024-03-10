@@ -6,6 +6,7 @@ import aa.engine.helpers.ExecutionContext
 import aa.engine.jobs.JobManager
 import aa.engine.jobs.critical.OrbitDetectionJob
 import aa.engine.jobs.critical.OrbitingJob
+import aa.engine.jobs.critical.SpawnJob
 import java.util.Timer
 import kotlin.concurrent.timerTask
 
@@ -18,8 +19,9 @@ class Engine(mainCircle: MainCircle, smallBalls: ArrayList<SmallBall>) {
         context.setApproachingSpeed(10);
         this.jobManager = JobManager(context);
         jobManager.addJobToMovingPeriod(OrbitingJob())
-        //jobManager.addJobToMovingPeriod(MoveUpJob())
+//        jobManager.addJobToMovingPeriod(MoveUpJob())
         jobManager.addJobToDetectionPeriod(OrbitDetectionJob())
+        jobManager.addJobToTweakingPeriod(SpawnJob());
     }
 
     public fun play(callback: () -> Unit): Timer {
