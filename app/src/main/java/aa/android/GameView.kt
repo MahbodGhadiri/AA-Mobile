@@ -3,6 +3,7 @@ package aa.android
 import aa.android.elements.AndroidLine
 import aa.android.elements.AndroidMainCircle
 import aa.android.elements.AndroidSmallBall
+import aa.android.receiver.ChangeActivityReceiver
 import aa.android.receiver.ReRenderReceiver
 import aa.engine.Engine
 import aa.engine.config.AppConfig
@@ -31,6 +32,13 @@ public class GameView(context: Context, attrs: AttributeSet) :
         val lbm = LocalBroadcastManager.getInstance(this.context);
         val intent = Intent().setAction("reRender");
         val receiver = ReRenderReceiver { invalidate(); requestLayout() }
+        val changeActivityReceiver: ChangeActivityReceiver =
+            ChangeActivityReceiver();
+
+        lbm.registerReceiver(
+            changeActivityReceiver,
+            IntentFilter("changeActivity")
+        );
         lbm.registerReceiver(receiver, IntentFilter("reRender"))
 
         val width = resources.displayMetrics.widthPixels.toFloat()

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Android"
         tools:targetApi="31">
         <activity
-            android:name=".GameActivity"
+            android:name=".activities.GameActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait">

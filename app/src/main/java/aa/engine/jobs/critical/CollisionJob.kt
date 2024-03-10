@@ -5,6 +5,7 @@ import aa.engine.elements.SmallBall
 import aa.engine.helpers.ExecutionContext
 import aa.engine.helpers.Position
 import aa.engine.jobs.Job
+import android.content.Intent
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -45,7 +46,10 @@ class CollisionJob() : Job() {
                     closestBallToMainCircle.getPosition()
                 ) < smallBallCriticalDistance
             ) {
-                // collision.
+                // to change activity
+                val intent = Intent("changeActivity");
+                intent.putExtra("activity", "win");
+                // I need context here.
             }
         }
     }
