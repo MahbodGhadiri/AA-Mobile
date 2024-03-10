@@ -1,12 +1,21 @@
 package aa.engine.elements
 
+import aa.engine.config.AppConfig
 import aa.engine.helpers.Position
 
-open class MainCircle constructor(
-    private val position: Position,
-    private var radius: Float,
-    private var orbit: Float
-) {
+open class MainCircle constructor() {
+
+    private val position: Position;
+    private var radius: Float;
+    private var orbit: Float;
+
+
+    init {
+        position = AppConfig.getMainCirclePos();
+        radius = AppConfig.getMainCircleRadius();
+        orbit = AppConfig.getMainCircleOrbit();
+    }
+
     fun setPosition(x: Float, y: Float) {
         this.position.setPosition(x, y);
     }

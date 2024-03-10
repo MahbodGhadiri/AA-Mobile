@@ -1,5 +1,6 @@
 package aa.engine.elements
 
+import aa.engine.config.AppConfig
 import aa.engine.helpers.Position
 import kotlin.math.cos
 import kotlin.math.sin
@@ -13,10 +14,11 @@ enum class SmallBallStatus {
 }
 
 open class SmallBall constructor(
-    //TODO: better way of keeping main circle orbit is needed!
-    private val mainCircle: MainCircle,
-    private val position: Position,
-    private var radius: Float,
+    private val position: Position = Position(
+        AppConfig.getScrWidth() / 2,
+        AppConfig.getScrHeight() - AppConfig.getScrHeight() / 10
+    ),
+    private var radius: Float = AppConfig.getScrWidth() / 24,
     private var status: SmallBallStatus = SmallBallStatus.HIDDEN,
     private var theta: Float = 90F
 ) {
@@ -37,10 +39,15 @@ open class SmallBall constructor(
 
         // calculate new position
         val x =
-            mainCircle.getPosition()
-                .getX() + (mainCircle.getOrbit() * sin(Math.toRadians(theta.toDouble())))
+            AppConfig.getMainCirclePos()
+                .getX() + (AppConfig.getMainCircleOrbit() * sin(
+                Math.toRadians(
+                    theta.toDouble()
+                )
+            ))
 
-        val y = mainCircle.getPosition().getY() + (mainCircle.getOrbit() * cos(
+        val y = AppConfig.getMainCirclePos()
+            .getY() + (AppConfig.getMainCircleOrbit() * cos(
             Math.toRadians(theta.toDouble())
         ))
 

@@ -16,7 +16,7 @@ class Engine(mainCircle: MainCircle, smallBalls: ArrayList<SmallBall>) {
 
     init {
         context.setRotationSpeed(2);
-        context.setApproachingSpeed(10);
+        context.setApproachingSpeed(25);
         this.jobManager = JobManager(context);
         jobManager.addJobToMovingPeriod(OrbitingJob())
 //        jobManager.addJobToMovingPeriod(MoveUpJob())

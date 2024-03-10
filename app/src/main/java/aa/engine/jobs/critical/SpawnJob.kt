@@ -1,6 +1,6 @@
 package aa.engine.jobs.critical
 
-import AppConfig
+import aa.engine.config.AppConfig
 import aa.engine.helpers.ExecutionContext
 import aa.engine.jobs.Job
 
@@ -12,7 +12,7 @@ class SpawnJob() : Job() {
             if (y > AppConfig.getSpawnBallPos().getY()) {
                 smallBall.setPosition(
                     smallBall.getPosition().getX(),
-                    y - context.getRotationSpeed() * (y - AppConfig.getSpawnBallPos()
+                    y - AppConfig.getSpawningSpeed() * (y - AppConfig.getSpawnBallPos()
                         .getY()) / 25
                 );
             }
