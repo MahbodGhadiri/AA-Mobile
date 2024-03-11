@@ -14,6 +14,8 @@ object AppConfig {
     private var mainCircleRadius: Float = 0F;
     private var mainCircleOrbit: Float = 0F;
 
+    private var smallBallRadius: Float = 0F;
+
     fun initialize(context: Context) {
         screenWidth =
             context.resources.displayMetrics.widthPixels.toFloat();
@@ -27,6 +29,8 @@ object AppConfig {
         );
         mainCircleRadius = screenWidth / 6;
         mainCircleOrbit = screenWidth / 3;
+
+        smallBallRadius = screenWidth / 24;
     }
 
 
@@ -37,5 +41,6 @@ object AppConfig {
     fun getMainCirclePos(): Position = mainCirclePos;
     fun getMainCircleRadius(): Float = mainCircleRadius;
     fun getMainCircleOrbit(): Float = mainCircleOrbit;
+    fun getSmallBallRadius(): Float = smallBallRadius;
 }
 
