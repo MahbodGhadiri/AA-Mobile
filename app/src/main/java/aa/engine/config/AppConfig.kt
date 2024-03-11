@@ -3,6 +3,11 @@ package aa.engine.config
 import aa.engine.helpers.Position
 import android.content.Context
 
+enum class EngineStatus {
+    RUNNING,
+    STOPPED
+}
+
 object AppConfig {
     private var screenWidth: Float = 0.0f;
     private var screenHeight: Float = 0.0f;
@@ -15,6 +20,8 @@ object AppConfig {
     private var mainCircleOrbit: Float = 0F;
 
     private var smallBallRadius: Float = 0F;
+
+    private var engineStatus: EngineStatus = EngineStatus.RUNNING;
 
     fun initialize(context: Context) {
         screenWidth =
@@ -34,6 +41,7 @@ object AppConfig {
     }
 
 
+    // getters
     fun getScrWidth(): Float = screenWidth;
     fun getScrHeight(): Float = screenHeight;
     fun getSpawnBallPos(): Position = spawnBallPos;
@@ -42,5 +50,12 @@ object AppConfig {
     fun getMainCircleRadius(): Float = mainCircleRadius;
     fun getMainCircleOrbit(): Float = mainCircleOrbit;
     fun getSmallBallRadius(): Float = smallBallRadius;
+    fun getEngineStatus(): EngineStatus = engineStatus;
+
+
+    // setters
+    fun setEngineStatus(status: EngineStatus) {
+        engineStatus = status;
+    }
 }
 

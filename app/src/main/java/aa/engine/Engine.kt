@@ -13,8 +13,10 @@ import java.util.Timer
 import kotlin.concurrent.timerTask
 
 class Engine(mainCircle: MainCircle, smallBalls: ArrayList<SmallBall>) {
-    val jobManager: JobManager;
+    private val jobManager: JobManager;
     private val context = ExecutionContext(mainCircle, smallBalls);
+    private var timer: Timer? = null;
+
 
     init {
         context.setRotationSpeed(2);
@@ -29,12 +31,17 @@ class Engine(mainCircle: MainCircle, smallBalls: ArrayList<SmallBall>) {
 
     public fun play(callback: () -> Unit): Timer {
         val timer = Timer();
+        this.timer = timer;
         timer.scheduleAtFixedRate(
             timerTask { jobManager.tick(); callback(); },
             0,
             10
         );
         return timer;
+    }
+
+    fun stop() {
+        this.timer?.cancel();
     }
 
     public fun getContext(): ExecutionContext {

@@ -1,5 +1,6 @@
 package aa.android
 
+import aa.android.activities.GameOverActivity
 import aa.android.elements.AndroidLine
 import aa.android.elements.AndroidMainCircle
 import aa.android.elements.AndroidSmallBall
@@ -7,6 +8,7 @@ import aa.android.receiver.ChangeActivityReceiver
 import aa.android.receiver.ReRenderReceiver
 import aa.engine.Engine
 import aa.engine.config.AppConfig
+import aa.engine.config.EngineStatus
 import aa.engine.elements.SmallBall
 import aa.engine.elements.SmallBallStatus
 import android.annotation.SuppressLint
@@ -79,10 +81,23 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
     }
 
+    private fun handleGameOver() {
+        // to stop the engine
+        this.engine.stop();
+
+        // going to GameOver activity
+        val intent = Intent(context, GameOverActivity::class.java);
+        context.startActivity(intent);
+    }
+
 
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
+        super.onDraw(canvas);
+
+        // checking if the app should stop or not
+        if (AppConfig.getEngineStatus() == EngineStatus.STOPPED) this.handleGameOver();
+
         val mainCirclePosition = mainCircle.getPosition();
         for (smallBall in this.smallBalls) {
             val smallBallPosition = smallBall.getPosition()
