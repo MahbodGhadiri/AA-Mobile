@@ -4,6 +4,8 @@ import aa.engine.elements.MainCircle
 import aa.engine.elements.SmallBall
 import aa.engine.helpers.ExecutionContext
 import aa.engine.jobs.JobManager
+import aa.engine.jobs.critical.CollisionJob
+//import aa.engine.jobs.critical.MoveUpJob
 import aa.engine.jobs.critical.OrbitDetectionJob
 import aa.engine.jobs.critical.OrbitingJob
 import aa.engine.jobs.critical.SpawnJob
@@ -22,6 +24,7 @@ class Engine(mainCircle: MainCircle, smallBalls: ArrayList<SmallBall>) {
 //        jobManager.addJobToMovingPeriod(MoveUpJob())
         jobManager.addJobToDetectionPeriod(OrbitDetectionJob())
         jobManager.addJobToTweakingPeriod(SpawnJob());
+        jobManager.addJobToDetectionPeriod(CollisionJob())
     }
 
     public fun play(callback: () -> Unit): Timer {
