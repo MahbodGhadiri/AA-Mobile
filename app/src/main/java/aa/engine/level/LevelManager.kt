@@ -7,6 +7,7 @@ import aa.engine.jobs.critical.MoveUpJob
 import aa.engine.jobs.critical.OrbitDetectionJob
 import aa.engine.jobs.critical.OrbitingJob
 import aa.engine.jobs.critical.SpawnJob
+import aa.engine.jobs.critical.WinJob
 
 class LevelManager(
     private var jobManager: JobManager,
@@ -21,6 +22,7 @@ class LevelManager(
         jobManager.addJobToDetectionPeriod(OrbitDetectionJob());
         jobManager.addJobToTweakingPeriod(SpawnJob());
         jobManager.addJobToDetectionPeriod(CollisionJob());
+        jobManager.addJobToDetectionPeriod(WinJob());
     }
 
     private fun setupOptionalJobs() {
