@@ -4,4 +4,6 @@
     <string name="levels">levels</string>
     <string name="settings">settings</string>
     <string name="play">play</string>
+    <string name="game_name">aa</string>
+    <string name="title_activity_main2">MainActivity2</string>
 </resources>
