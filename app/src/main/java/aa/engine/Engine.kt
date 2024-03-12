@@ -1,25 +1,20 @@
 package aa.engine
 
-<<<<<<< HEAD
 //import aa.engine.jobs.critical.MoveUpJob
-=======
 
->>>>>>> master
 import aa.engine.elements.MainCircle
 import aa.engine.elements.SmallBall
 import aa.engine.helpers.ExecutionContext
 import aa.engine.jobs.JobManager
-<<<<<<< HEAD
 import aa.engine.jobs.critical.CollisionJob
 import aa.engine.jobs.critical.MoveUpJob
 import aa.engine.jobs.critical.OrbitDetectionJob
 import aa.engine.jobs.critical.OrbitingJob
 import aa.engine.jobs.critical.SpawnJob
 import aa.engine.jobs.optional.ChangingOrbitingDirectionJob
-=======
 import aa.engine.level.Level
 import aa.engine.level.LevelManager
->>>>>>> master
+
 import java.util.Timer
 import kotlin.concurrent.timerTask
 
@@ -34,16 +29,13 @@ class Engine(
 
     init {
         this.jobManager = JobManager(context);
-<<<<<<< HEAD
         jobManager.addJobToMovingPeriod(OrbitingJob())
         jobManager.addJobToMovingPeriod(ChangingOrbitingDirectionJob())
         jobManager.addJobToMovingPeriod(MoveUpJob())
         jobManager.addJobToDetectionPeriod(OrbitDetectionJob())
         jobManager.addJobToTweakingPeriod(SpawnJob());
         jobManager.addJobToDetectionPeriod(CollisionJob())
-=======
         this.levelManager = LevelManager(jobManager, context);
->>>>>>> master
     }
 
     public fun play(
