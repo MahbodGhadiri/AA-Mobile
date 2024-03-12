@@ -1,5 +1,6 @@
 package aa.android
 
+import aa.android.activities.GameActivity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         animationView.playAnimation()
         val play_button = findViewById<ImageView>(R.id.imageView)
         play_button.setOnClickListener {
-            // Create an Intent to start LevelActivity
+            // Create an Intent to start Activity
             val intent = Intent(this, GameActivity::class.java)
 
             // Start the new activity
