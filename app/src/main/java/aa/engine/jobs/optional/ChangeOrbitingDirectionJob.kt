@@ -3,21 +3,32 @@ package aa.engine.jobs.optional
 import aa.engine.helpers.ExecutionContext
 import aa.engine.jobs.Job
 
-class ChangingOrbitingDirectionJob : Job() {
+class ChangeOrbitingDirectionJob(
+    private val lowerBound: Int,
+    private val upperBound: Int
+) : Job() {
 
-    var sleepPeriod = (30..500).random()
+    private var sleepingPeriod: Int = 0;
+    private val sleepingRange = lowerBound..upperBound;
 
+    init {
+        generateSleepingPeroid()
+    }
 
     override fun run(context: ExecutionContext) {
-        if (this.sleepPeriod <= 0) {
+        if (this.sleepingPeriod <= 0) {
             context.setRotationSpeed((-1) * context.getRotationSpeed())
-            sleepPeriod = (30..500).random()
+            generateSleepingPeroid()
 
         }
 
-        sleepPeriod -= 1
+        sleepingPeriod -= 1
 
 
+    }
+
+    fun generateSleepingPeroid() {
+        this.sleepingPeriod = sleepingRange.random()
     }
 
 }
