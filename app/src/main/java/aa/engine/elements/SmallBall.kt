@@ -14,13 +14,13 @@ enum class SmallBallStatus {
 }
 
 open class SmallBall constructor(
+    private var status: SmallBallStatus = SmallBallStatus.HIDDEN,
+    private var theta: Float = 90F,
     private val position: Position = Position(
         AppConfig.getScrWidth() / 2,
-        AppConfig.getScrHeight() - AppConfig.getScrHeight() / 10
+        AppConfig.getScrHeight() + AppConfig.getScrHeight() / 10
     ),
     private var radius: Float = AppConfig.getScrWidth() / 24,
-    private var status: SmallBallStatus = SmallBallStatus.HIDDEN,
-    private var theta: Float = 90F
 ) {
     fun setPosition(x: Float, y: Float) {
         this.position.setPosition(x, y);

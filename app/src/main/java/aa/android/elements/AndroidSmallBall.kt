@@ -1,12 +1,16 @@
 package aa.android.elements
 
 import aa.engine.elements.SmallBall
+import aa.engine.elements.SmallBallStatus
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-class AndroidSmallBall() : SmallBall() {
+class AndroidSmallBall(
+    status: SmallBallStatus = SmallBallStatus.HIDDEN,
+    theta: Float = 90F
+) : SmallBall(status, theta) {
 
     private var left: Float = 0F;
     private var top: Float = 0F;
