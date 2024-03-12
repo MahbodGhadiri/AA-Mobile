@@ -47,7 +47,7 @@ class CollisionJob() : Job() {
                 ) < smallBallCriticalDistance
             ) {
                 // collision detected. stop the engine
-                AppConfig.setEngineStatus(EngineStatus.STOPPED);
+                AppConfig.setEngineStatus(EngineStatus.GAMEOVER);
             }
         }
     }

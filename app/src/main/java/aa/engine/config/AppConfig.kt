@@ -5,7 +5,8 @@ import android.content.Context
 
 enum class EngineStatus {
     RUNNING,
-    STOPPED
+    WIN,
+    GAMEOVER
 }
 
 object AppConfig {
