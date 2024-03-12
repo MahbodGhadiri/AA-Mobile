@@ -1,11 +1,19 @@
 package aa.android
 
+import aa.android.activities.GameOverActivity
+import aa.android.activities.WinActivity
+import aa.android.elements.AndroidLine
 import aa.android.elements.AndroidMainCircle
 import aa.android.elements.AndroidSmallBall
+import aa.android.receiver.ChangeActivityReceiver
 import aa.android.receiver.ReRenderReceiver
 import aa.engine.Engine
+import aa.engine.config.AppConfig
+import aa.engine.config.EngineStatus
 import aa.engine.elements.SmallBall
 import aa.engine.elements.SmallBallStatus
+import aa.engine.level.Level
+import aa.engine.level.levels.Level1
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -19,60 +27,114 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 public class GameView(context: Context, attrs: AttributeSet) :
     View(context, attrs) {
     private val mainCircle: AndroidMainCircle;
-    private var smallBalls = ArrayList<AndroidSmallBall>();
-    private var index = 0;
+    private val smallBalls = ArrayList<AndroidSmallBall>();
+    private val line = AndroidLine();
     private val engine: Engine;
 
-    init {
-        val lbm = LocalBroadcastManager.getInstance(this.context);
-        val intent = Intent().setAction("reRender");
-        val receiver = ReRenderReceiver { invalidate(); requestLayout() }
-        lbm.registerReceiver(receiver, IntentFilter("reRender"))
 
-        this.setOnClickListener {
-            if (this.smallBalls.size > index) {
-                smallBalls[index].setStatus(SmallBallStatus.APPROACHING);
-                index++;
-            }
+    init {
+        AppConfig.initialize(context);
+        val lbm = LocalBroadcastManager.getInstance(this.context);
+        val reRenderIntent = Intent().setAction("reRender");
+        val reRenderReceiver =
+            ReRenderReceiver { invalidate(); requestLayout() }
+        val changeActivityReceiver: ChangeActivityReceiver =
+            ChangeActivityReceiver();
+
+        lbm.registerReceiver(
+            changeActivityReceiver,
+            IntentFilter("changeActivity")
+        );
+        lbm.registerReceiver(reRenderReceiver, IntentFilter("reRender"))
+
+        this.mainCircle = AndroidMainCircle();
+
+        this.engine = Engine(mainCircle);
+        //TODO: should be loaded by level activity -----
+        val level = Level1();
+        // ---------------------------------------------
+        engine.play(level, generateSmallBalls(level)) {
+            lbm.sendBroadcast(
+                reRenderIntent
+            )
         }
 
-        val width = resources.displayMetrics.widthPixels
-        val height = resources.displayMetrics.heightPixels
+        this.setOnClickListener {
+            val executionContext = engine.getContext();
+            val ball = executionContext.getSpawnedBall();
+            if (ball != null) {
+                executionContext.addApproachingBall(ball);
+                executionContext.setSpawnedBall(null);
 
-        //TODO: for test, should be moved in future
-        this.mainCircle = AndroidMainCircle(width, height);
-        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
-        this.smallBalls.add(AndroidSmallBall(width, height, mainCircle));
-        this.smallBalls[0].setStatus(SmallBallStatus.SPINNING);
-        index++;
-        //TODO: -----------------------------
+                val hiddenBall = executionContext.getAndPopHiddenBall();
+                if (hiddenBall != null) executionContext.setSpawningBall(
+                    hiddenBall
+                ) else {
+                    executionContext.setSpawningBall(null);
+                }
 
-        this.engine = Engine(mainCircle, smallBalls as ArrayList<SmallBall>);
-        engine.play {
-            lbm.sendBroadcast(intent);
+            }
         }
 
     }
 
+    private fun generateSmallBalls(level: Level): ArrayList<SmallBall> {
+        smallBalls.removeAll(smallBalls.toSet());
+        System.out.println(level.getHiddenBallNum())
+        for (i in 1..level.getHiddenBallNum()) {
+            smallBalls.add(AndroidSmallBall())
+        }
+        smallBalls.add(AndroidSmallBall(SmallBallStatus.SPAWNING))
+        for (theta in level.getSpinningBallsTheta()) {
+            smallBalls.add(AndroidSmallBall(SmallBallStatus.SPINNING, theta));
+        }
+        return smallBalls as ArrayList<SmallBall>;
+    }
+
+    private fun handleGameOver() {
+        // to stop the engine
+        this.engine.stop();
+
+        // going to GameOver activity
+        val intent = Intent(context, GameOverActivity::class.java);
+        context.startActivity(intent);
+    }
+
+    private fun handleWin() {
+        // to stop the engine
+        this.engine.stop();
+
+        val intent = Intent(context, WinActivity::class.java);
+        context.startActivity(intent);
+    }
 
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
+        super.onDraw(canvas);
 
-        canvas.drawOval(
-            this.mainCircle.getRectF(),
-            this.mainCircle.getPaint()
-        )
+        // checking if the app should stop or not
+        if (AppConfig.getEngineStatus() == EngineStatus.GAMEOVER) this.handleGameOver();
+        else if (AppConfig.getEngineStatus() == EngineStatus.WIN) this.handleWin();
 
-
+        val mainCirclePosition = mainCircle.getPosition();
         for (smallBall in this.smallBalls) {
+            val smallBallPosition = smallBall.getPosition()
+            smallBall.calculateNewRectF();
+
+//            if (smallBall.getStatus() == SmallBallStatus.HIDDEN) {
+//                smallBall.setPosition(
+//                    AppConfig.getScrWidth() / 2,
+//                    AppConfig.getScrHeight()
+//                );
+//            }
             if (smallBall.getStatus() == SmallBallStatus.SPINNING) {
-                smallBall.calculateNewRectF()
+                this.line.draw(canvas, mainCirclePosition, smallBallPosition)
             }
-            canvas.drawOval(smallBall.getRectF(), smallBall.getPaint())
+            smallBall.draw(canvas);
         }
 
-    }
+        mainCircle.draw(canvas);
 
+    }
 
 }

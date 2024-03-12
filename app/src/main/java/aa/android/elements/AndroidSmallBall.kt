@@ -1,23 +1,16 @@
 package aa.android.elements
 
-import aa.engine.elements.MainCircle
 import aa.engine.elements.SmallBall
-import aa.engine.helpers.Position
+import aa.engine.elements.SmallBallStatus
+import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
 class AndroidSmallBall(
-    private val width: Int,
-    private val height: Int,
-    private val mainCircle: MainCircle
-) : SmallBall(
-    mainCircle,
-    Position(
-        width / 2, height - height / 10
-    ),
-    width / 24,
-) {
+    status: SmallBallStatus = SmallBallStatus.HIDDEN,
+    theta: Float = 90F
+) : SmallBall(status, theta) {
 
     private var left: Float = 0F;
     private var top: Float = 0F;
@@ -35,13 +28,13 @@ class AndroidSmallBall(
 
     public fun calculateNewRectF() {
         this.left =
-            (this.getPosition().getX() - this.getRadius()).toFloat();
+            (this.getPosition().getX() - this.getRadius());
         this.top =
-            (this.getPosition().getY() - this.getRadius()).toFloat();
+            (this.getPosition().getY() - this.getRadius());
         this.right =
-            (this.getPosition().getX() + this.getRadius()).toFloat();
+            (this.getPosition().getX() + this.getRadius());
         this.bottom =
-            (this.getPosition().getY() + this.getRadius()).toFloat();
+            (this.getPosition().getY() + this.getRadius());
 
         rectF.top = top;
         rectF.left = left;
@@ -55,5 +48,10 @@ class AndroidSmallBall(
 
     public fun getPaint(): Paint {
         return this.paint;
+    }
+
+    public fun draw(canvas: Canvas) {
+        this.calculateNewRectF();
+        canvas.drawOval(rectF, paint);
     }
 }

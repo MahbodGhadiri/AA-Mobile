@@ -1,29 +1,32 @@
 package aa.engine.elements
 
+import aa.engine.config.AppConfig
 import aa.engine.helpers.Position
 import kotlin.math.cos
 import kotlin.math.sin
 
 enum class SmallBallStatus {
     HIDDEN,
+    SPAWNING,
     SPAWNED,
     APPROACHING,
     SPINNING
 }
 
 open class SmallBall constructor(
-    //TODO: better way of keeping main circle orbit is needed!
-    private val mainCircle: MainCircle,
-    private val position: Position,
-    private var radius: Int,
     private var status: SmallBallStatus = SmallBallStatus.HIDDEN,
-    private var theta: Int = 90
+    private var theta: Float = 90F,
+    private val position: Position = Position(
+        AppConfig.getScrWidth() / 2,
+        AppConfig.getScrHeight() + AppConfig.getScrHeight() / 10
+    ),
+    private var radius: Float = AppConfig.getSmallBallRadius(),
 ) {
-    fun setPosition(x: Int, y: Int) {
+    fun setPosition(x: Float, y: Float) {
         this.position.setPosition(x, y);
     }
 
-    fun setRadius(radius: Int) {
+    fun setRadius(radius: Float) {
         this.radius = radius;
     }
 
@@ -31,19 +34,24 @@ open class SmallBall constructor(
         this.status = status;
     }
 
-    fun setTheta(theta: Int) {
+    fun setTheta(theta: Float) {
         this.theta = theta;
 
         // calculate new position
         val x =
-            mainCircle.getPosition()
-                .getX() + (mainCircle.getOrbit() * sin(Math.toRadians(theta.toDouble())))
+            AppConfig.getMainCirclePos()
+                .getX() + (AppConfig.getMainCircleOrbit() * sin(
+                Math.toRadians(
+                    theta.toDouble()
+                )
+            ))
 
-        val y = mainCircle.getPosition().getY() + (mainCircle.getOrbit() * cos(
+        val y = AppConfig.getMainCirclePos()
+            .getY() + (AppConfig.getMainCircleOrbit() * cos(
             Math.toRadians(theta.toDouble())
         ))
 
-        this.setPosition(x.toInt(), y.toInt())
+        this.setPosition(x.toFloat(), y.toFloat())
     }
 
 
@@ -51,7 +59,7 @@ open class SmallBall constructor(
         return this.position;
     }
 
-    fun getRadius(): Int {
+    fun getRadius(): Float {
         return this.radius;
     }
 
@@ -59,7 +67,7 @@ open class SmallBall constructor(
         return this.status;
     }
 
-    fun getTheta(): Int {
+    fun getTheta(): Float {
         return this.theta;
     }
 }

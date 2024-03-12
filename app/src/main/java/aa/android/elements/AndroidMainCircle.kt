@@ -1,17 +1,12 @@
 package aa.android.elements
 
 import aa.engine.elements.MainCircle
-import aa.engine.helpers.Position
+import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-public class AndroidMainCircle(width: Int, height: Int) : MainCircle(
-    Position(
-        width / 2,
-        height / 3
-    ), width / 6, width / 3
-) {
+public class AndroidMainCircle() : MainCircle() {
     private var rectF: RectF;
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.GREEN
@@ -29,10 +24,10 @@ public class AndroidMainCircle(width: Int, height: Int) : MainCircle(
             this.getPosition().getY() + this.getRadius();
 
         this.rectF = RectF(
-            left.toFloat(),
-            top.toFloat(),
-            right.toFloat(),
-            bottom.toFloat()
+            left,
+            top,
+            right,
+            bottom
         )
     }
 
@@ -42,5 +37,9 @@ public class AndroidMainCircle(width: Int, height: Int) : MainCircle(
 
     public fun getPaint(): Paint {
         return this.paint;
+    }
+
+    public fun draw(canvas: Canvas) {
+        canvas.drawOval(rectF, paint);
     }
 }
