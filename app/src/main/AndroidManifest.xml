@@ -13,10 +13,6 @@
         android:theme="@style/Theme.Android"
         tools:targetApi="31">
         <activity
-            android:name=".activities.GameActivity"
-            android:configChanges="orientation"
-            android:exported="true"
-            android:screenOrientation="portrait"
 
             android:name=".MainActivity"
             android:exported="true">
@@ -27,8 +23,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GameActivity"
-            android:exported="true">
+            android:name=".activities.GameActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:screenOrientation="portrait"
+>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
