@@ -20,7 +20,7 @@ open class SmallBall constructor(
         AppConfig.getScrWidth() / 2,
         AppConfig.getScrHeight() + AppConfig.getScrHeight() / 10
     ),
-    private var radius: Float = AppConfig.getScrWidth() / 24,
+    private var radius: Float = AppConfig.getSmallBallRadius(),
 ) {
     fun setPosition(x: Float, y: Float) {
         this.position.setPosition(x, y);

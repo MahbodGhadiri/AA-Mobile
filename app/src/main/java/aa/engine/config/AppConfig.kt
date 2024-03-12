@@ -35,10 +35,10 @@ object AppConfig {
             screenWidth / 2,
             screenHeight / 3
         );
-        mainCircleRadius = screenWidth / 6;
+        mainCircleRadius = screenWidth / 8;
         mainCircleOrbit = screenWidth / 3;
 
-        smallBallRadius = screenWidth / 24;
+        smallBallRadius = screenWidth / 30;
     }
 
 
