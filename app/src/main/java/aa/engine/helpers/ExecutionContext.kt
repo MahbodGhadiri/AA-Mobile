@@ -6,7 +6,6 @@ import aa.engine.elements.SmallBallStatus
 
 class ExecutionContext(
     private val mainCircle: MainCircle,
-    smallBalls: ArrayList<SmallBall>
 ) {
     private var rotationSpeed: Int = 0;
     private var approachingSpeed: Int = 0;
@@ -17,20 +16,23 @@ class ExecutionContext(
     private val approachingBalls = ArrayList<SmallBall>();
     private var spawningBall: SmallBall? = null;
 
-    init {
+    public fun getMainCircle(): MainCircle {
+        return this.mainCircle;
+    }
+
+    /* this function should be called by the UI component responsible for generating
+     small balls and called before calling engine.play();
+     */
+    public fun setSmallBalls(smallBalls: ArrayList<SmallBall>) {
         for (smallBall in smallBalls) {
             when (smallBall.getStatus()) {
                 SmallBallStatus.HIDDEN -> hiddenBalls.add(smallBall);
                 SmallBallStatus.SPAWNED -> spawnedBall = smallBall;
+                SmallBallStatus.SPAWNING -> spawningBall = smallBall;
                 SmallBallStatus.APPROACHING -> approachingBalls.add(smallBall)
                 SmallBallStatus.SPINNING -> spinningBalls.add(smallBall);
-                SmallBallStatus.SPAWNING -> spawningBall = smallBall;
             }
         }
-    }
-
-    public fun getMainCircle(): MainCircle {
-        return this.mainCircle;
     }
 
     fun getRotationSpeed(): Int {
@@ -101,5 +103,14 @@ class ExecutionContext(
     fun addSpinningBall(ball: SmallBall) {
         ball.setStatus(SmallBallStatus.SPINNING)
         spinningBalls.add(ball);
+    }
+
+    fun flushBalls() {
+        hiddenBalls.removeAll(hiddenBalls.toSet());
+        spawnedBall = null;
+        spawningBall = null;
+        approachingBalls.removeAll(approachingBalls.toSet());
+        spinningBalls.removeAll(spinningBalls.toSet());
+
     }
 }

@@ -24,6 +24,12 @@ class JobManager(context: ExecutionContext) {
         detectionPeriod.add(job);
     }
 
+    fun flushJobs() {
+        tweakingPeriod.removeAll(tweakingPeriod.toSet());
+        movingPeriod.removeAll(movingPeriod.toSet());
+        detectionPeriod.removeAll(detectionPeriod.toSet());
+    }
+
     public fun tick() {
         val tweakingIterator = tweakingPeriod.iterator();
         while (tweakingIterator.hasNext()) {

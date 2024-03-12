@@ -11,6 +11,8 @@ import aa.engine.config.AppConfig
 import aa.engine.config.EngineStatus
 import aa.engine.elements.SmallBall
 import aa.engine.elements.SmallBallStatus
+import aa.engine.level.Level
+import aa.engine.level.levels.Level1
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -32,8 +34,9 @@ public class GameView(context: Context, attrs: AttributeSet) :
     init {
         AppConfig.initialize(context);
         val lbm = LocalBroadcastManager.getInstance(this.context);
-        val intent = Intent().setAction("reRender");
-        val receiver = ReRenderReceiver { invalidate(); requestLayout() }
+        val reRenderIntent = Intent().setAction("reRender");
+        val reRenderReceiver =
+            ReRenderReceiver { invalidate(); requestLayout() }
         val changeActivityReceiver: ChangeActivityReceiver =
             ChangeActivityReceiver();
 
@@ -41,25 +44,18 @@ public class GameView(context: Context, attrs: AttributeSet) :
             changeActivityReceiver,
             IntentFilter("changeActivity")
         );
-        lbm.registerReceiver(receiver, IntentFilter("reRender"))
+        lbm.registerReceiver(reRenderReceiver, IntentFilter("reRender"))
 
-        val width = resources.displayMetrics.widthPixels.toFloat()
-        val height = resources.displayMetrics.heightPixels.toFloat()
-
-        //TODO: for test, should be moved in future
         this.mainCircle = AndroidMainCircle();
 
-        for (i in 1..10) {
-            this.smallBalls.add(AndroidSmallBall());
-        }
-
-        this.smallBalls[0].setStatus(SmallBallStatus.SPINNING);
-        this.smallBalls[1].setStatus(SmallBallStatus.SPAWNED);
-        //TODO: -----------------------------
-
-        this.engine = Engine(mainCircle, smallBalls as ArrayList<SmallBall>);
-        engine.play {
-            lbm.sendBroadcast(intent);
+        this.engine = Engine(mainCircle);
+        //TODO: should be loaded by level activity -----
+        val level = Level1();
+        // ---------------------------------------------
+        engine.play(level, generateSmallBalls(level)) {
+            lbm.sendBroadcast(
+                reRenderIntent
+            )
         }
 
         this.setOnClickListener {
@@ -79,6 +75,19 @@ public class GameView(context: Context, attrs: AttributeSet) :
             }
         }
 
+    }
+
+    private fun generateSmallBalls(level: Level): ArrayList<SmallBall> {
+        smallBalls.removeAll(smallBalls.toSet());
+        System.out.println(level.getHiddenBallNum())
+        for (i in 1..level.getHiddenBallNum()) {
+            smallBalls.add(AndroidSmallBall())
+        }
+        smallBalls.add(AndroidSmallBall(SmallBallStatus.SPAWNING))
+        for (theta in level.getSpinningBallsTheta()) {
+            smallBalls.add(AndroidSmallBall(SmallBallStatus.SPINNING, theta));
+        }
+        return smallBalls as ArrayList<SmallBall>;
     }
 
     private fun handleGameOver() {
@@ -103,12 +112,12 @@ public class GameView(context: Context, attrs: AttributeSet) :
             val smallBallPosition = smallBall.getPosition()
             smallBall.calculateNewRectF();
 
-            if (smallBall.getStatus() == SmallBallStatus.HIDDEN) {
-                smallBall.setPosition(
-                    AppConfig.getScrWidth() / 2,
-                    AppConfig.getScrHeight()
-                );
-            }
+//            if (smallBall.getStatus() == SmallBallStatus.HIDDEN) {
+//                smallBall.setPosition(
+//                    AppConfig.getScrWidth() / 2,
+//                    AppConfig.getScrHeight()
+//                );
+//            }
             if (smallBall.getStatus() == SmallBallStatus.SPINNING) {
                 this.line.draw(canvas, mainCirclePosition, smallBallPosition)
             }
@@ -118,6 +127,5 @@ public class GameView(context: Context, attrs: AttributeSet) :
         mainCircle.draw(canvas);
 
     }
-
 
 }
