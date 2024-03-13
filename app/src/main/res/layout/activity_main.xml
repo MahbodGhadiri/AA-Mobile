@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/background2" />
+        app:lottie_rawRes="@raw/main_activity_animation_background" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -28,11 +28,12 @@
         android:layout_height="211dp"
         android:layout_marginBottom="60dp"
         android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/play_icon2" />
+        app:srcCompat="@drawable/play_icon" />
 
     <TextView
         android:id="@+id/textView2"
