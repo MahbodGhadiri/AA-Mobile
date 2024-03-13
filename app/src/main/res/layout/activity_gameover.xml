@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="175dp"
+                android:layout_gravity="center"
+                android:src="@drawable/game_over_line" />
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="175dp"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="right"
+                    android:letterSpacing="0.23"
+                    android:text="GAME"
+                    android:textColor="@color/primary"
+                    android:textFontWeight="700"
+                    android:textSize="50dp"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:gravity="right"
+                    android:letterSpacing="0.23"
+                    android:text="OVER"
+                    android:textColor="@color/danger"
+                    android:textFontWeight="900"
+                    android:textSize="50dp"
+                    tools:ignore="RtlHardcoded" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:src="@drawable/ellipse_10" />
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/ellipse_12" />
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/ellipse_9" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="30dp"
+                    android:src="@drawable/group_1" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/group_2" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/group_3" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
