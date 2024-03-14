@@ -1,5 +1,6 @@
 package aa.android.elements
 
+import aa.engine.config.AppConfig
 import aa.engine.elements.MainCircle
 import android.graphics.Canvas
 import android.graphics.Color
@@ -9,7 +10,7 @@ import android.graphics.RectF
 public class AndroidMainCircle() : MainCircle() {
     private var rectF: RectF;
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.GREEN
+        color = Color.parseColor(AppConfig.getGamePageElementsColor())
         style = Paint.Style.FILL
     }
 

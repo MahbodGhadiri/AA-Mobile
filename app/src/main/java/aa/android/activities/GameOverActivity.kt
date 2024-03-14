@@ -1,7 +1,9 @@
 package aa.android.activities
 
 import aa.android.R
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -24,6 +26,12 @@ class GameOverActivity : AppCompatActivity() {
                 systemBars.bottom
             )
             insets
+        }
+
+        val retry_button = findViewById<ImageView>(R.id.retry);
+        retry_button.setOnClickListener {
+            val intent = Intent(this, GameActivity::class.java);
+            startActivity(intent);
         }
     }
 }
