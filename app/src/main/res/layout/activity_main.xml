@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="#31363F"
     tools:context=".MainActivity">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -20,45 +20,45 @@
         app:layout_constraintVertical_bias="0.0"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/main_activity_animation_background" />
+        app:lottie_rawRes="@raw/main_activity_animation_background"
+        app:lottie_useCompositionFrameRate="false" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="116dp"
-        android:layout_height="211dp"
-        android:layout_marginBottom="60dp"
+        android:layout_width="78dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="116dp"
         android:clickable="true"
+        android:contextClickable="false"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/animation_view"
+        app:layout_constraintVertical_bias="0.95"
         app:srcCompat="@drawable/play_icon" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginEnd="176dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/game_name"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        android:textSize="80sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/animation_view"
-        app:layout_constraintStart_toStartOf="@+id/animation_view"
-        app:layout_constraintTop_toTopOf="@+id/animation_view" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="107dp"
-        android:layout_height="199dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/menu_icon" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/credit_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
