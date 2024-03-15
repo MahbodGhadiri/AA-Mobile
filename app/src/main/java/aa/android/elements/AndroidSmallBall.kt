@@ -1,5 +1,6 @@
 package aa.android.elements
 
+import aa.engine.config.AppConfig
 import aa.engine.elements.SmallBall
 import aa.engine.elements.SmallBallStatus
 import android.graphics.Canvas
@@ -18,7 +19,7 @@ class AndroidSmallBall(
     private var bottom: Float = 0F;
     private val rectF: RectF = RectF(left, top, right, bottom);
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.RED
+        color = Color.parseColor(AppConfig.getGamePageElementsColor())
         style = Paint.Style.FILL
     }
 

@@ -1,5 +1,6 @@
 package aa.android.elements
 
+import aa.engine.config.AppConfig
 import aa.engine.helpers.Position
 import android.graphics.Canvas
 import android.graphics.Color
@@ -9,7 +10,7 @@ class AndroidLine {
     private var paint = Paint()
 
     init {
-        paint.setColor(Color.CYAN);
+        paint.setColor(Color.parseColor(AppConfig.getGamePageElementsColor()));
         paint.style = Paint.Style.FILL;
     }
 

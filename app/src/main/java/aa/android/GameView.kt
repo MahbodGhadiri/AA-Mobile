@@ -26,27 +26,49 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 public class GameView(context: Context, attrs: AttributeSet) :
     View(context, attrs) {
-    private val mainCircle: AndroidMainCircle;
+    private lateinit var mainCircle: AndroidMainCircle;
     private val smallBalls = ArrayList<AndroidSmallBall>();
     private val line = AndroidLine();
-    private val engine: Engine;
+    private lateinit var engine: Engine;
+    private var lbm: LocalBroadcastManager;
+    private var reRenderReceiver: ReRenderReceiver;
+    private var reRenderIntent: Intent;
+    private var isFirstTime: Boolean = true;
 
 
     init {
         AppConfig.initialize(context);
-        val lbm = LocalBroadcastManager.getInstance(this.context);
-        val reRenderIntent = Intent().setAction("reRender");
-        val reRenderReceiver =
+        this.lbm = LocalBroadcastManager.getInstance(this.context);
+        this.reRenderIntent = Intent().setAction("reRender");
+        this.reRenderReceiver =
             ReRenderReceiver { invalidate(); requestLayout() }
         val changeActivityReceiver: ChangeActivityReceiver =
             ChangeActivityReceiver();
 
-        lbm.registerReceiver(
+        this.lbm.registerReceiver(
             changeActivityReceiver,
             IntentFilter("changeActivity")
         );
-        lbm.registerReceiver(reRenderReceiver, IntentFilter("reRender"))
+        this.lbm.registerReceiver(
+            this.reRenderReceiver,
+            IntentFilter("reRender")
+        )
 
+
+        this.initializeEngine();
+        this.isFirstTime = false;
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (!this.isFirstTime) {
+            this.initializeEngine();
+            AppConfig.setEngineStatus(EngineStatus.RUNNING);
+        }
+    }
+
+
+    private fun initializeEngine() {
         this.mainCircle = AndroidMainCircle();
 
         this.engine = Engine(mainCircle);
@@ -54,8 +76,8 @@ public class GameView(context: Context, attrs: AttributeSet) :
         val level = Level1();
         // ---------------------------------------------
         engine.play(level, generateSmallBalls(level)) {
-            lbm.sendBroadcast(
-                reRenderIntent
+            this.lbm.sendBroadcast(
+                this.reRenderIntent
             )
         }
 
@@ -75,12 +97,10 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
             }
         }
-
     }
 
     private fun generateSmallBalls(level: Level): ArrayList<SmallBall> {
         smallBalls.removeAll(smallBalls.toSet());
-        System.out.println(level.getHiddenBallNum())
         for (i in 1..level.getHiddenBallNum()) {
             smallBalls.add(AndroidSmallBall())
         }
@@ -98,6 +118,8 @@ public class GameView(context: Context, attrs: AttributeSet) :
         // going to GameOver activity
         val intent = Intent(context, GameOverActivity::class.java);
         context.startActivity(intent);
+
+        AppConfig.setEngineStatus(EngineStatus.READY);
     }
 
     private fun handleWin() {
@@ -106,6 +128,8 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
         val intent = Intent(context, WinActivity::class.java);
         context.startActivity(intent);
+
+        AppConfig.setEngineStatus(EngineStatus.READY);
     }
 
     @SuppressLint("DrawAllocation")
@@ -113,8 +137,17 @@ public class GameView(context: Context, attrs: AttributeSet) :
         super.onDraw(canvas);
 
         // checking if the app should stop or not
-        if (AppConfig.getEngineStatus() == EngineStatus.GAMEOVER) this.handleGameOver();
-        else if (AppConfig.getEngineStatus() == EngineStatus.WIN) this.handleWin();
+        if (AppConfig.getEngineStatus() == EngineStatus.GAMEOVER) {
+            this.handleGameOver();
+            return;
+        };
+        else if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
+            this.handleWin();
+            return;
+        };
+        else if (AppConfig.getEngineStatus() == EngineStatus.READY) {
+            return;
+        }
 
         val mainCirclePosition = mainCircle.getPosition();
         for (smallBall in this.smallBalls) {
