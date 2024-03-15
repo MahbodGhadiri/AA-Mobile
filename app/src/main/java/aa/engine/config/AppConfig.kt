@@ -6,7 +6,8 @@ import android.content.Context
 enum class EngineStatus {
     RUNNING,
     WIN,
-    GAMEOVER
+    GAMEOVER,
+    READY
 }
 
 object AppConfig {
@@ -55,7 +56,7 @@ object AppConfig {
     fun getMainCircleOrbit(): Float = mainCircleOrbit;
     fun getSmallBallRadius(): Float = smallBallRadius;
     fun getEngineStatus(): EngineStatus = engineStatus;
-    fun getGamePageElementsColor(): String? = gamePageElementsColor;
+    fun getGamePageElementsColor(): String = gamePageElementsColor;
 
 
     // setters
