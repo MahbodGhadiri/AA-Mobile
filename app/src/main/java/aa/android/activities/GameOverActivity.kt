@@ -16,7 +16,7 @@ class GameOverActivity : AppCompatActivity() {
         enableEdgeToEdge();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameover);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.gameOver)) { v, insets ->
             val systemBars =
                 insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(
@@ -28,8 +28,8 @@ class GameOverActivity : AppCompatActivity() {
             insets
         }
 
-        val retry_button = findViewById<ImageView>(R.id.retry);
-        retry_button.setOnClickListener {
+        val retryButton = findViewById<ImageView>(R.id.retry);
+        retryButton.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java);
             startActivity(intent);
         }
