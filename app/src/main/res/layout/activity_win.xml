@@ -1,56 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/gameOver"
+    android:id="@+id/win"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical">
-
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
         tools:ignore="MissingConstraints">
 
+
         <ImageView
-            android:layout_width="300dp"
-            android:layout_height="175dp"
-            android:layout_gravity="center"
-            android:src="@drawable/game_over_line" />
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            app:srcCompat="@drawable/top_small_circle__1_" />
 
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="175dp"
-            android:layout_gravity="center"
-            android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
 
-            <TextView
-                android:layout_width="300dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="20dp"
-                android:gravity="right"
-                android:letterSpacing="0.23"
-                android:text="GAME"
-                android:textColor="@color/primary"
-                android:textFontWeight="700"
-                android:textSize="50dp"
-                android:textStyle="bold"
-                tools:ignore="RtlHardcoded" />
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                app:srcCompat="@drawable/vector_2" />
 
-            <TextView
-                android:layout_width="300dp"
-                android:layout_height="60dp"
-                android:gravity="right"
-                android:letterSpacing="0.23"
-                android:text="OVER"
-                android:textColor="@color/danger"
-                android:textFontWeight="900"
-                android:textSize="50dp"
-                android:textStyle="bold"
-                tools:ignore="RtlHardcoded" />
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="240dp"
+                android:layout_height="175dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="70dp"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left"
+                    android:letterSpacing="0.23"
+                    android:text="YOU"
+                    android:textColor="@color/primary"
+                    android:textFontWeight="700"
+                    android:textSize="50dp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:gravity="right"
+                    android:letterSpacing="0.23"
+                    android:text="WON"
+                    android:textColor="@color/success"
+                    android:textFontWeight="900"
+                    android:textSize="50dp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded" />
+            </LinearLayout>
+
+        </RelativeLayout>
     </FrameLayout>
 
     <LinearLayout
@@ -96,11 +113,18 @@
 
 
             <ImageView
-                android:id="@+id/retry"
+                android:id="@+id/next"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="30dp"
-                android:src="@drawable/group_1__1_" />
+                app:srcCompat="@drawable/group_14" />
+
+            <ImageView
+                android:id="@+id/retry"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="20dp"
+                app:srcCompat="@drawable/group_4" />
 
             <ImageView
                 android:id="@+id/menu"
@@ -118,5 +142,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>

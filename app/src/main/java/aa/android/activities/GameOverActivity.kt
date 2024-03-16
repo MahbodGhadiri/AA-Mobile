@@ -1,5 +1,6 @@
 package aa.android.activities
 
+import aa.android.MainActivity
 import aa.android.R
 import android.content.Intent
 import android.os.Bundle
@@ -31,6 +32,12 @@ class GameOverActivity : AppCompatActivity() {
         val retryButton = findViewById<ImageView>(R.id.retry);
         retryButton.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java);
+            startActivity(intent);
+        }
+
+        val menuButton = findViewById<ImageView>(R.id.menu);
+        menuButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java);
             startActivity(intent);
         }
     }
