@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ContributorFragment">
+        <attr name="contributor_name" format="string" />
+        <attr name="contributor_bio" format="string" />
+        <attr name="contributor_github_url" format="string" />
+        <attr name="contributor_linkedin_url" format="string" />
+        <attr name="contributor_telegram_url" format="string" />
+        <attr name="contributor_pic" format="integer" />
+    </declare-styleable>
+</resources>

@@ -1,5 +1,6 @@
 package aa.android
 
+import aa.android.activities.AboutUsActivity
 import aa.android.activities.GameActivity
 import android.content.Intent
 import android.os.Bundle
@@ -29,12 +30,18 @@ class MainActivity : AppCompatActivity() {
         val animationView =
             findViewById<LottieAnimationView>(R.id.animation_view)
         animationView.playAnimation()
-        val play_button = findViewById<ImageView>(R.id.imageView)
-        play_button.setOnClickListener {
+        val playButton = findViewById<ImageView>(R.id.PlayButton)
+        playButton.setOnClickListener {
             // Create an Intent to start Activity
             val intent = Intent(this, GameActivity::class.java)
 
             // Start the new activity
+            startActivity(intent)
+        }
+
+        val aboutUsButton = findViewById<ImageView>(R.id.AboutUsButton)
+        aboutUsButton.setOnClickListener {
+            val intent = Intent(this, AboutUsActivity::class.java)
             startActivity(intent)
         }
     }
