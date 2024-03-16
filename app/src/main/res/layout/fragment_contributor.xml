@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="411dp"
+    android:layout_height="400dp"
+    tools:context=".ContributorFragment">
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="30dp"
+        android:textColor="@color/primary"
+        android:textSize="28dp"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bioTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="30dp"
+        android:textColor="@color/primary"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/profile_side_line"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/emptyView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_weight="4" />
+
+        <ImageView
+            android:id="@+id/profilePicView"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="10" />
+
+        <ImageView
+            android:id="@+id/githubIconView"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="3"
+            android:src="@drawable/github_icon" />
+
+        <ImageView
+            android:id="@+id/linkedinIconView"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="3"
+            android:src="@drawable/linkedin_icon" />
+
+        <ImageView
+            android:id="@+id/telegramIconView"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="3"
+            android:src="@drawable/telegram_icon" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

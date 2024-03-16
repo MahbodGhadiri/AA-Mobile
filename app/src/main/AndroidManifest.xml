@@ -24,6 +24,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activities.AboutUsActivity"
+            android:exported="true"></activity>
+        <activity
             android:name=".activities.GameActivity"
             android:configChanges="orientation"
             android:exported="true"

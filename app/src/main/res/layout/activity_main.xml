@@ -25,7 +25,7 @@
         tools:ignore="MissingClass" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/PlayButton"
         android:layout_width="78dp"
         android:layout_height="75dp"
         android:layout_marginBottom="116dp"
@@ -41,25 +41,25 @@
         app:srcCompat="@drawable/play_icon" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/LevelsButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="60dp"
         android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/PlayButton"
         app:srcCompat="@drawable/menu_icon" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/AboutUsButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/PlayButton"
         app:srcCompat="@drawable/credit_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
