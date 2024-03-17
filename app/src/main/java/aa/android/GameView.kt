@@ -132,20 +132,20 @@ public class GameView(context: Context, attrs: AttributeSet) :
         AppConfig.setEngineStatus(EngineStatus.READY);
     }
 
-    @SuppressLint("DrawAllocation")
+    @SuppressLint("DrawAllocation", "ResourceAsColor")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas);
 
         // checking if the app should stop or not
         if (AppConfig.getEngineStatus() == EngineStatus.GAMEOVER) {
-            this.handleGameOver();
-            return;
+            this.engine.stop();
+            val gameView = findViewById<GameView>(R.id.GameView);
+            gameView.setBackgroundColor(resources.getColor(R.color.danger));
         };
         else if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
             this.handleWin();
             return;
-        };
-        else if (AppConfig.getEngineStatus() == EngineStatus.READY) {
+        } else if (AppConfig.getEngineStatus() == EngineStatus.READY) {
             return;
         }
 
