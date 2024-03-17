@@ -8,7 +8,7 @@
     android:background="@color/background"
     tools:context=".activities.GameActivity">
 
-    <aa.android.GameView
+    <aa.android.views.GameView
         android:id="@+id/GameView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

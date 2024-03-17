@@ -1,75 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContributorMahbodGhadiri"
+            android:name="aa.android.fragments.ContributorFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+
+            app:contributor_bio="@string/mahbod_ghadiri_bio"
+            app:contributor_github_url="https://github.com/MahbodGhadiri"
+            app:contributor_linkedin_url="https://www.linkedin.com/in/mahbod-ghadiri-sani-34b521233/"
+            app:contributor_name="@string/mahbod_ghadiri_name"
+            app:contributor_pic="@drawable/mahbod_pic"
+            app:contributor_telegram_url="https://telegram.me/MahbodGhadiriSani" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContributorJosephOsan"
+            android:name="aa.android.fragments.ContributorFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragmentContributorMahbodGhadiri"
-                android:name="aa.android.ContributorFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            app:contributor_bio="@string/joseph_osanlou_bio"
+            app:contributor_github_url="https://github.com/josephosan"
+            app:contributor_linkedin_url="https://www.linkedin.com/in/yousof-osanlou-ba8b0124a/"
+            app:contributor_name="@string/joseph_osanlou_name"
+            app:contributor_pic="@drawable/joseph_pic"
+            app:contributor_telegram_url="https://telegram.me/josephosan" />
 
-                app:contributor_bio="@string/mahbod_ghadiri_bio"
-                app:contributor_github_url="https://github.com/MahbodGhadiri"
-                app:contributor_linkedin_url="https://www.linkedin.com/in/mahbod-ghadiri-sani-34b521233/"
-                app:contributor_name="@string/mahbod_ghadiri_name"
-                app:contributor_pic="@drawable/mahbod_pic"
-                app:contributor_telegram_url="https://telegram.me/MahbodGhadiriSani" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContributorDanialAzimi"
+            android:name="aa.android.fragments.ContributorFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragmentContributorJosephOsan"
-                android:name="aa.android.ContributorFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            app:contributor_bio="@string/danial_azimi_bio"
+            app:contributor_github_url="https://github.com/danilazm"
+            app:contributor_linkedin_url="https://www.linkedin.com/in/yousof-osanlou-ba8b0124a/"
+            app:contributor_name="@string/danial_azimi_name"
+            app:contributor_pic="@drawable/danial_pic"
+            app:contributor_telegram_url="https://telegram.me/danialazimii" />
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContributorArminJodat"
+            android:name="aa.android.fragments.ContributorFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-                app:contributor_bio="@string/joseph_osanlou_bio"
-                app:contributor_github_url="https://github.com/josephosan"
-                app:contributor_linkedin_url="https://www.linkedin.com/in/yousof-osanlou-ba8b0124a/"
-                app:contributor_name="@string/joseph_osanlou_name"
-                app:contributor_pic="@drawable/joseph_pic"
-                app:contributor_telegram_url="https://telegram.me/josephosan" />
+            app:contributor_bio="@string/armin_jodat_bio"
+            app:contributor_github_url="https://github.com/ar1381"
+            app:contributor_linkedin_url="https://www.linkedin.com/in/armin-jodat-917868231/"
+            app:contributor_name="@string/armin_jodat_name"
+            app:contributor_pic="@drawable/armin_pic"
+            app:contributor_telegram_url="https://telegram.me/arminjodat" />
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragmentContributorDanialAzimi"
-                android:name="aa.android.ContributorFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                app:contributor_bio="@string/danial_azimi_bio"
-                app:contributor_github_url="https://github.com/danilazm"
-                app:contributor_linkedin_url="https://www.linkedin.com/in/yousof-osanlou-ba8b0124a/"
-                app:contributor_name="@string/danial_azimi_name"
-                app:contributor_pic="@drawable/danial_pic"
-                app:contributor_telegram_url="https://telegram.me/danialazimii" />
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragmentContributorArminJodat"
-                android:name="aa.android.ContributorFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                app:contributor_bio="@string/armin_jodat_bio"
-                app:contributor_github_url="https://github.com/ar1381"
-                app:contributor_linkedin_url="https://www.linkedin.com/in/armin-jodat-917868231/"
-                app:contributor_name="@string/armin_jodat_name"
-                app:contributor_pic="@drawable/armin_pic"
-                app:contributor_telegram_url="https://telegram.me/arminjodat" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="30dp" />
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+    </LinearLayout>
+</ScrollView>

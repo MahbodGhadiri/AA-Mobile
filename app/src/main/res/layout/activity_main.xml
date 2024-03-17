@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#31363F"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
@@ -49,7 +49,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PlayButton"
-        app:srcCompat="@drawable/menu_icon" />
+        app:srcCompat="@drawable/levels_icon" />
 
     <ImageView
         android:id="@+id/AboutUsButton"

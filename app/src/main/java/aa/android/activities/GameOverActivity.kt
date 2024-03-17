@@ -1,6 +1,5 @@
 package aa.android.activities
 
-import aa.android.MainActivity
 import aa.android.R
 import android.content.Intent
 import android.os.Bundle
