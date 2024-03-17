@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            app:srcCompat="@drawable/top_small_circle__1_" />
+            app:srcCompat="@drawable/win_lose_circle1" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -47,10 +47,10 @@
                     android:layout_marginTop="20dp"
                     android:gravity="left"
                     android:letterSpacing="0.23"
-                    android:text="YOU"
+                    android:text="@string/you"
                     android:textColor="@color/primary"
                     android:textFontWeight="700"
-                    android:textSize="50dp"
+                    android:textSize="50sp"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded" />
 
@@ -59,10 +59,10 @@
                     android:layout_height="60dp"
                     android:gravity="right"
                     android:letterSpacing="0.23"
-                    android:text="WON"
+                    android:text="@string/won"
                     android:textColor="@color/success"
                     android:textFontWeight="900"
-                    android:textSize="50dp"
+                    android:textSize="50sp"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded" />
             </LinearLayout>
@@ -89,19 +89,19 @@
                 android:layout_width="190dp"
                 android:layout_height="230dp"
                 android:layout_gravity="bottom"
-                android:src="@drawable/ellipse_12" />
+                android:src="@drawable/win_lose_circle3" />
 
             <ImageView
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_weight="0.5"
-                android:src="@drawable/ellipse_10" />
+                android:src="@drawable/win_lose_circle2" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="60dp"
                 android:layout_gravity="bottom"
-                android:src="@drawable/ellipse_12" />
+                android:src="@drawable/win_lose_circle3" />
         </LinearLayout>
 
         <LinearLayout
@@ -117,28 +117,28 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="30dp"
-                app:srcCompat="@drawable/group_14" />
+                app:srcCompat="@drawable/next_level_icon" />
 
             <ImageView
                 android:id="@+id/retry"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
-                app:srcCompat="@drawable/group_4" />
+                app:srcCompat="@drawable/win_retry_icon" />
 
             <ImageView
                 android:id="@+id/menu"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
-                android:src="@drawable/group_2" />
+                android:src="@drawable/menu_icon" />
 
             <ImageView
                 android:id="@+id/levels"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
-                android:src="@drawable/menu_icon" />
+                android:src="@drawable/levels_icon" />
         </LinearLayout>
 
     </LinearLayout>

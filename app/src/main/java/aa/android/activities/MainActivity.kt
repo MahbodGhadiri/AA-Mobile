@@ -1,7 +1,6 @@
-package aa.android
+package aa.android.activities
 
-import aa.android.activities.AboutUsActivity
-import aa.android.activities.GameActivity
+import aa.android.R
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView

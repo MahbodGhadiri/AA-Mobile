@@ -31,10 +31,10 @@
                 android:layout_marginTop="20dp"
                 android:gravity="right"
                 android:letterSpacing="0.23"
-                android:text="GAME"
+                android:text="@string/game"
                 android:textColor="@color/primary"
                 android:textFontWeight="700"
-                android:textSize="50dp"
+                android:textSize="50sp"
                 android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
 
@@ -43,10 +43,10 @@
                 android:layout_height="60dp"
                 android:gravity="right"
                 android:letterSpacing="0.23"
-                android:text="OVER"
+                android:text="@string/over"
                 android:textColor="@color/danger"
                 android:textFontWeight="900"
-                android:textSize="50dp"
+                android:textSize="50sp"
                 android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
         </LinearLayout>
@@ -72,19 +72,19 @@
                 android:layout_width="190dp"
                 android:layout_height="230dp"
                 android:layout_gravity="bottom"
-                android:src="@drawable/ellipse_12" />
+                android:src="@drawable/win_lose_circle3" />
 
             <ImageView
                 android:layout_width="140dp"
-                android:layout_height="140dp"
+                android:layout_height="0dp"
                 android:layout_weight="0.5"
-                android:src="@drawable/ellipse_10" />
+                android:src="@drawable/win_lose_circle2" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="60dp"
                 android:layout_gravity="bottom"
-                android:src="@drawable/ellipse_12" />
+                android:src="@drawable/win_lose_circle3" />
         </LinearLayout>
 
         <LinearLayout
@@ -100,21 +100,21 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="30dp"
-                android:src="@drawable/group_1__1_" />
+                android:src="@drawable/lose_retry_icon" />
 
             <ImageView
                 android:id="@+id/menu"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
-                android:src="@drawable/group_2" />
+                android:src="@drawable/menu_icon" />
 
             <ImageView
                 android:id="@+id/levels"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
-                android:src="@drawable/menu_icon" />
+                android:src="@drawable/levels_icon" />
         </LinearLayout>
 
     </LinearLayout>

@@ -1,4 +1,4 @@
-package aa.android.receiver
+package aa.android.receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
