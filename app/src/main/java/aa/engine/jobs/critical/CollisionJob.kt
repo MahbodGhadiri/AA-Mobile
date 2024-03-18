@@ -44,7 +44,7 @@ class CollisionJob() : Job() {
                 && calDistance(
                     sBall.getPosition(),
                     closestBallToMainCircle.getPosition()
-                ) < smallBallCriticalDistance
+                ) <= smallBallCriticalDistance
             ) {
                 // collision detected. stop the engine
                 AppConfig.setEngineStatus(EngineStatus.GAMEOVER);
