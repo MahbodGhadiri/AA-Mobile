@@ -35,10 +35,12 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private var reRenderIntent: Intent;
     private var isFirstTime: Boolean = true;
     private var activityContext: Context? = null
+    private var gameView: GameView? = null
 
 
     init {
         AppConfig.initialize(context);
+        this.gameView = findViewById(R.id.GameView);
         this.lbm = LocalBroadcastManager.getInstance(this.context);
         this.reRenderIntent = Intent().setAction("reRender");
         this.reRenderReceiver =
@@ -88,6 +90,13 @@ public class GameView(context: Context, attrs: AttributeSet) :
         }
 
         this.setOnClickListener {
+            if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
+                val intent = Intent(context, WinActivity::class.java);
+                context.startActivity(intent);
+                this.engine.stop();
+                AppConfig.setEngineStatus(EngineStatus.READY);
+                this.gameView?.setBackgroundColor(resources.getColor(R.color.background));
+            }
             val executionContext = engine.getContext();
             val ball = executionContext.getSpawnedBall();
             if (ball != null) {
@@ -119,21 +128,11 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
     private fun handleGameOver() {
         this.engine.stop();
-        val gameView = findViewById<GameView>(R.id.GameView);
-        gameView.setBackgroundColor(resources.getColor(R.color.danger));
+        this.gameView?.setBackgroundColor(resources.getColor(R.color.danger));
 
         (this.activityContext as GameActivity).showGameOverButtons();
     }
 
-    private fun handleWin() {
-        // to stop the engine
-        this.engine.stop();
-
-        val intent = Intent(context, WinActivity::class.java);
-        context.startActivity(intent);
-
-        AppConfig.setEngineStatus(EngineStatus.READY);
-    }
 
     @SuppressLint("DrawAllocation", "ResourceAsColor", "Range")
     override fun onDraw(canvas: Canvas) {
@@ -144,8 +143,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
             this.handleGameOver();
         };
         else if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
-            this.handleWin();
-            return;
+            this.gameView?.setBackgroundColor(resources.getColor(R.color.success));
         } else if (AppConfig.getEngineStatus() == EngineStatus.READY) {
             return;
         }
