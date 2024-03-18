@@ -30,18 +30,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:minHeight="150dp"
+            android:minHeight="180dp"
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/menuButton"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center|start"
-                app:srcCompat="@drawable/menu_icon" />
+                android:src="@drawable/group_2" />
 
             <ImageView
+                android:id="@+id/retryButton"
                 android:layout_width="78dp"
                 android:layout_height="75dp"
                 android:layout_gravity="top|center"
@@ -50,16 +51,15 @@
                 android:clickable="true"
                 android:contextClickable="false"
                 android:focusable="true"
-                app:srcCompat="@drawable/play_icon" />
-
+                android:src="@drawable/group_1__1_" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/levelsButton"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center|end"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                app:srcCompat="@drawable/credit_icon" />
+                android:src="@drawable/menu_icon"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
         </LinearLayout>
     </LinearLayout>
 

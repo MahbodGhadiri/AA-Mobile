@@ -1,9 +1,12 @@
 package aa.android.activities
 
 import aa.android.GameView
+import aa.android.MainActivity
 import aa.android.R
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -36,10 +39,23 @@ class GameActivity : AppCompatActivity() {
             )
             insets
         }
+
+
+        val retryButton = findViewById<ImageView>(R.id.retryButton);
+        retryButton.setOnClickListener {
+            val intent = Intent(this, GameActivity::class.java);
+            startActivity(intent);
+        }
+
+        val menuButton = findViewById<ImageView>(R.id.menuButton);
+        menuButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java);
+            startActivity(intent);
+        }
     }
 
     fun showGameOverButtons() {
-        gameOverButtons.visibility = View.VISIBLE
+        gameOverButtons.visibility = View.VISIBLE;
     }
 
     fun hideGameOverButtons() {
