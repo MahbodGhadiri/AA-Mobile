@@ -1,4 +1,4 @@
-package aa.android.receiver
+package aa.android.receivers
 
 import aa.android.activities.WinActivity
 import android.content.BroadcastReceiver
