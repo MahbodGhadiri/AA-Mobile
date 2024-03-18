@@ -13,7 +13,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class GameActivity : AppCompatActivity() {
-    private var gameView: GameView? = null
     private lateinit var gameOverButtons: LinearLayout;
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,10 +21,7 @@ class GameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game)
 
         gameOverButtons = findViewById(R.id.gameOverButtons);
-
-        val gameView = findViewById<GameView>(R.id.GameView)
-        gameView.setActivity(this)  // Pass the context (activity) to GameView
-        this.gameView = gameView
+        
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.game)) { v, insets ->
             val systemBars =

@@ -34,7 +34,6 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private var reRenderReceiver: ReRenderReceiver;
     private var reRenderIntent: Intent;
     private var isFirstTime: Boolean = true;
-    private var activityContext: Context? = null
     private var gameView: GameView? = null
 
 
@@ -62,10 +61,6 @@ public class GameView(context: Context, attrs: AttributeSet) :
         this.isFirstTime = false;
     }
 
-
-    fun setActivity(context: Context) {
-        this.activityContext = context
-    }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -130,7 +125,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
         this.engine.stop();
         this.gameView?.setBackgroundColor(resources.getColor(R.color.danger));
 
-        (this.activityContext as GameActivity).showGameOverButtons();
+        (this.context as GameActivity).showGameOverButtons();
     }
 
 
