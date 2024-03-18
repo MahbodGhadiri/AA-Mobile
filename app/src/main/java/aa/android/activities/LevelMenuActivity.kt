@@ -1,7 +1,9 @@
 package aa.android.activities
 
 import aa.android.R
+import aa.engine.config.AppConfig
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -25,5 +27,12 @@ class LevelMenuActivity : AppCompatActivity() {
             )
             insets
         }
+    }
+
+    public fun handleClickedButton(v: View) {
+        val buttonId = v.getId()
+        println(buttonId)
+
+
     }
 }

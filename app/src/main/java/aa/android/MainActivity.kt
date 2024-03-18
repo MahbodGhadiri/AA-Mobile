@@ -2,6 +2,7 @@ package aa.android
 
 import aa.android.activities.AboutUsActivity
 import aa.android.activities.GameActivity
+import aa.android.activities.LevelMenuActivity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
@@ -42,6 +43,12 @@ class MainActivity : AppCompatActivity() {
         val aboutUsButton = findViewById<ImageView>(R.id.AboutUsButton)
         aboutUsButton.setOnClickListener {
             val intent = Intent(this, AboutUsActivity::class.java)
+            startActivity(intent)
+        }
+
+        val levelsButton = findViewById<ImageView>(R.id.LevelsButton)
+        levelsButton.setOnClickListener {
+            val intent = Intent(this, LevelMenuActivity::class.java)
             startActivity(intent)
         }
     }
