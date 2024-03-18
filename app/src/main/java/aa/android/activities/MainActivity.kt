@@ -1,8 +1,12 @@
-package aa.android
+package aa.android.activities
 
+<<<<<<< HEAD:app/src/main/java/aa/android/MainActivity.kt
 import aa.android.activities.AboutUsActivity
 import aa.android.activities.GameActivity
 import aa.android.activities.LevelMenuActivity
+=======
+import aa.android.R
+>>>>>>> master:app/src/main/java/aa/android/activities/MainActivity.kt
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView

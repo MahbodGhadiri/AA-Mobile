@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="411dp"
     android:layout_height="400dp"
-    tools:context=".ContributorFragment">
+    tools:context=".fragments.ContributorFragment">
 
     <TextView
         android:id="@+id/nameTextView"
@@ -13,7 +13,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="30dp"
         android:textColor="@color/primary"
-        android:textSize="28dp"
+        android:textSize="28sp"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +25,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
         android:textColor="@color/primary"
-        android:textSize="18dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
