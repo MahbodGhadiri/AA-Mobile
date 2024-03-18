@@ -1,8 +1,7 @@
 package aa.android.activities
 
-import aa.android.GameView
-import aa.android.MainActivity
 import aa.android.R
+import aa.android.views.GameView
 import android.content.Intent
 import android.os.Bundle
 import android.view.View

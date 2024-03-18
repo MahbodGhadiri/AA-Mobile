@@ -38,7 +38,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center|start"
-                android:src="@drawable/group_2" />
+                android:src="@drawable/menu_icon" />
 
             <ImageView
                 android:id="@+id/retryButton"
@@ -50,14 +50,14 @@
                 android:clickable="true"
                 android:contextClickable="false"
                 android:focusable="true"
-                android:src="@drawable/group_1__1_" />
+                android:src="@drawable/lose_retry_icon" />
 
             <ImageView
                 android:id="@+id/levelsButton"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center|end"
-                android:src="@drawable/menu_icon"
+                android:src="@drawable/levels_icon"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
         </LinearLayout>
     </LinearLayout>

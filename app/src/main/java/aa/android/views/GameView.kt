@@ -1,5 +1,6 @@
 package aa.android.views
 
+import aa.android.R
 import aa.android.activities.GameActivity
 import aa.android.activities.WinActivity
 import aa.android.elements.AndroidLine
