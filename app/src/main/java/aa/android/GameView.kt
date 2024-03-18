@@ -1,6 +1,6 @@
 package aa.android
 
-import aa.android.activities.GameOverActivity
+import aa.android.activities.GameActivity
 import aa.android.activities.WinActivity
 import aa.android.elements.AndroidLine
 import aa.android.elements.AndroidMainCircle
@@ -34,6 +34,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private var reRenderReceiver: ReRenderReceiver;
     private var reRenderIntent: Intent;
     private var isFirstTime: Boolean = true;
+    private var activityContext: Context? = null
 
 
     init {
@@ -57,6 +58,11 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
         this.initializeEngine();
         this.isFirstTime = false;
+    }
+
+
+    fun setActivity(context: Context) {
+        this.activityContext = context
     }
 
     override fun onAttachedToWindow() {
@@ -112,14 +118,11 @@ public class GameView(context: Context, attrs: AttributeSet) :
     }
 
     private fun handleGameOver() {
-        // to stop the engine
         this.engine.stop();
+        val gameView = findViewById<GameView>(R.id.GameView);
+        gameView.setBackgroundColor(resources.getColor(R.color.danger));
 
-        // going to GameOver activity
-        val intent = Intent(context, GameOverActivity::class.java);
-        context.startActivity(intent);
-
-        AppConfig.setEngineStatus(EngineStatus.READY);
+        (this.activityContext as GameActivity).showGameOverButtons();
     }
 
     private fun handleWin() {
@@ -132,15 +135,13 @@ public class GameView(context: Context, attrs: AttributeSet) :
         AppConfig.setEngineStatus(EngineStatus.READY);
     }
 
-    @SuppressLint("DrawAllocation", "ResourceAsColor")
+    @SuppressLint("DrawAllocation", "ResourceAsColor", "Range")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas);
 
         // checking if the app should stop or not
         if (AppConfig.getEngineStatus() == EngineStatus.GAMEOVER) {
-            this.engine.stop();
-            val gameView = findViewById<GameView>(R.id.GameView);
-            gameView.setBackgroundColor(resources.getColor(R.color.danger));
+            this.handleGameOver();
         };
         else if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
             this.handleWin();
@@ -163,6 +164,14 @@ public class GameView(context: Context, attrs: AttributeSet) :
             if (smallBall.getStatus() == SmallBallStatus.SPINNING) {
                 this.line.draw(canvas, mainCirclePosition, smallBallPosition)
             }
+
+            // if game over
+            if (AppConfig.getEngineStatus() == EngineStatus.GAMEOVER) {
+                if (smallBall.getStatus() == SmallBallStatus.SPAWNED || smallBall.getStatus() == SmallBallStatus.SPAWNING) {
+                    continue;
+                }
+            }
+
             smallBall.draw(canvas);
         }
 

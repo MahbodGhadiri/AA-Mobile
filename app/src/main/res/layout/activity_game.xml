@@ -18,36 +18,49 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/gameOverButtons"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="60dp"
-            app:srcCompat="@drawable/menu_icon" />
+        <LinearLayout
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="78dp"
-            android:layout_height="75dp"
-            android:layout_gravity="center_vertical"
-            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="150dp"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
 
-            android:contextClickable="false"
-            android:focusable="true"
-            app:srcCompat="@drawable/play_icon" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center|start"
+                app:srcCompat="@drawable/menu_icon" />
+
+            <ImageView
+                android:layout_width="78dp"
+                android:layout_height="75dp"
+                android:layout_gravity="top|center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:clickable="true"
+                android:contextClickable="false"
+                android:focusable="true"
+                app:srcCompat="@drawable/play_icon" />
 
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:srcCompat="@drawable/credit_icon" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center|end"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:srcCompat="@drawable/credit_icon" />
+        </LinearLayout>
     </LinearLayout>
 
 
