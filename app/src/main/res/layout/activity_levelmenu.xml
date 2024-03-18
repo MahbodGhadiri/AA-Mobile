@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/levelmenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#31363F">
+
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="889dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/Level1"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="88dp"
+                android:layout_marginEnd="86dp"
+                android:onClick="handleClickedButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/group_5" />
+
+            <ImageButton
+                android:id="@+id/Level2"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="88dp"
+                android:layout_marginEnd="68dp"
+                android:onClick="handleClickedButton"
+                android:scaleType="center"
+                app:layout_constraintEnd_toStartOf="@+id/Level1"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/group_6" />
+
+            <ImageButton
+                android:id="@+id/Level3"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:onClick="handleClickedButton"
+                app:layout_constraintEnd_toEndOf="@+id/Level1"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Level1"
+                app:layout_constraintTop_toBottomOf="@+id/Level1"
+                app:srcCompat="@drawable/group_7" />
+
+            <ImageButton
+                android:id="@+id/Level4"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:onClick="handleClickedButton"
+                app:layout_constraintEnd_toEndOf="@+id/Level2"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/Level2"
+                app:layout_constraintTop_toBottomOf="@+id/Level2"
+                app:srcCompat="@drawable/group_8" />
+
+            <ImageButton
+                android:id="@+id/Level5"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:onClick="handleClickedButton"
+                app:layout_constraintEnd_toEndOf="@+id/Level3"
+                app:layout_constraintStart_toStartOf="@+id/Level3"
+                app:layout_constraintTop_toBottomOf="@+id/Level3"
+                app:srcCompat="@drawable/group_9" />
+
+            <ImageButton
+                android:id="@+id/Level6"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:onClick="handleClickedButton"
+                app:layout_constraintEnd_toEndOf="@+id/Level4"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Level4"
+                app:layout_constraintTop_toBottomOf="@+id/Level4"
+                app:srcCompat="@drawable/group_10" />
+
+            <ImageButton
+                android:id="@+id/Level7"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:onClick="handleClickedButton"
+                app:layout_constraintEnd_toEndOf="@+id/Level5"
+                app:layout_constraintStart_toStartOf="@+id/Level5"
+                app:layout_constraintTop_toBottomOf="@+id/Level5"
+                app:srcCompat="@drawable/group_11" />
+
+            <ImageButton
+                android:id="@+id/Level8"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:onClick="handleClickedButton"
+                app:layout_constraintEnd_toEndOf="@+id/Level6"
+                app:layout_constraintStart_toStartOf="@+id/Level6"
+                app:layout_constraintTop_toBottomOf="@+id/Level6"
+                app:srcCompat="@drawable/group_12" />
+
+            <ImageButton
+                android:id="@+id/Level9"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:onClick="handleClickedButton"
+                app:layout_constraintEnd_toEndOf="@+id/Level7"
+                app:layout_constraintStart_toStartOf="@+id/Level7"
+                app:layout_constraintTop_toBottomOf="@+id/Level7"
+                app:srcCompat="@drawable/group_13" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

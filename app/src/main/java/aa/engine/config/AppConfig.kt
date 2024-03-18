@@ -27,6 +27,8 @@ object AppConfig {
 
     private var gamePageElementsColor: String = "#76ABAE";
 
+    private var currentLevel: Int = 0
+
     fun initialize(context: Context) {
         screenWidth =
             context.resources.displayMetrics.widthPixels.toFloat();
@@ -63,5 +65,11 @@ object AppConfig {
     fun setEngineStatus(status: EngineStatus) {
         engineStatus = status;
     }
+
+    fun setCurrentLevel(level: Int) {
+        currentLevel = level
+    }
 }
+
+
 
