@@ -3,6 +3,7 @@ package aa.android.activities
 
 import aa.android.R
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -12,6 +13,19 @@ import androidx.core.view.WindowInsetsCompat
 import com.airbnb.lottie.LottieAnimationView
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mediaPlayer: MediaPlayer;
+
+    override fun onStop() {
+        super.onStop()
+        mediaPlayer.stop()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mediaPlayer.isLooping = true;
+        mediaPlayer.start()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -50,5 +64,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LevelMenuActivity::class.java)
             startActivity(intent)
         }
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.background_sound)
+        mediaPlayer.isLooping = true;
+        mediaPlayer.start()
+
     }
 }

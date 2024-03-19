@@ -1,6 +1,7 @@
 package aa.android.activities
 
 import aa.android.R
+import aa.android.views.GameView
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -34,21 +35,25 @@ class GameActivity : AppCompatActivity() {
             insets
         }
 
+        val gameView = findViewById<GameView>(R.id.GameView)
 
         val retryButton = findViewById<ImageView>(R.id.retryButton);
         retryButton.setOnClickListener {
+            gameView.stopMusic()
             val intent = Intent(this, GameActivity::class.java);
             startActivity(intent);
         }
 
         val menuButton = findViewById<ImageView>(R.id.menuButton);
         menuButton.setOnClickListener {
+            gameView.stopMusic()
             val intent = Intent(this, MainActivity::class.java);
             startActivity(intent);
         }
 
         val levelsButton = findViewById<ImageView>(R.id.levelsButton);
         levelsButton.setOnClickListener {
+            gameView.stopMusic()
             val intent = Intent(this, LevelMenuActivity::class.java);
             startActivity(intent);
         }

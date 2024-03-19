@@ -17,6 +17,8 @@ class Engine(
     private val jobManager: JobManager;
     private val levelManager: LevelManager;
     private val context = ExecutionContext(mainCircle);
+    private var onCollisionSound: () -> Unit = {}
+    private var onWinSound: () -> Unit = {}
     private var timer: Timer? = null;
 
 
@@ -33,11 +35,11 @@ class Engine(
         val timer = Timer();
         this.timer = timer;
         context.setSmallBalls(smallBalls);
-        levelManager.setup(level);
+        levelManager.setup(level, onWinSound, onCollisionSound);
         timer.scheduleAtFixedRate(
             timerTask { jobManager.tick(); callback(); },
             0,
-            10
+            30
         );
         return timer;
     }
@@ -49,5 +51,13 @@ class Engine(
 
     public fun getContext(): ExecutionContext {
         return this.context;
+    }
+
+    public fun setCollisionSound(soundPlayer: () -> Unit) {
+        onCollisionSound = soundPlayer;
+    }
+
+    public fun setWinSound(soundPlayer: () -> Unit) {
+        onWinSound = soundPlayer;
     }
 }

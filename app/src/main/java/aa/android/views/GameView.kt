@@ -19,6 +19,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Canvas
+import android.media.MediaPlayer
 import android.util.AttributeSet
 import android.view.View
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -33,7 +34,11 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private var reRenderReceiver: ReRenderReceiver;
     private var reRenderIntent: Intent;
     private var isFirstTime: Boolean = true;
-    private var gameView: GameView? = null
+    private val mainMusicPlayer: MediaPlayer;
+    private val winSoundPlayer: MediaPlayer;
+    private val loseSoundPlayer: MediaPlayer;
+    private val popSoundPlayer: MediaPlayer;
+
     val preferences =
         context.applicationContext.getSharedPreferences(
             resources.getString(
@@ -47,7 +52,6 @@ public class GameView(context: Context, attrs: AttributeSet) :
             context.resources.displayMetrics.heightPixels.toFloat()
         );
 
-        this.gameView = findViewById(R.id.GameView);
         this.lbm = LocalBroadcastManager.getInstance(this.context);
         this.reRenderIntent = Intent().setAction("reRender");
         this.reRenderReceiver =
@@ -64,14 +68,26 @@ public class GameView(context: Context, attrs: AttributeSet) :
             IntentFilter("reRender")
         )
 
-
+        this.winSoundPlayer = MediaPlayer.create(this.context, R.raw.gamewin)
+        this.loseSoundPlayer = MediaPlayer.create(this.context, R.raw.gameover)
+        this.popSoundPlayer = MediaPlayer.create(this.context, R.raw.popsound)
+        this.mainMusicPlayer =
+            MediaPlayer.create(this.context, R.raw.background_sound)
+        mainMusicPlayer.isLooping = true;
+        mainMusicPlayer.start()
         this.initializeEngine();
         this.isFirstTime = false;
     }
 
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        mainMusicPlayer.stop()
+    }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow();
+        mainMusicPlayer.isLooping = true;
+        mainMusicPlayer.start()
         if (!this.isFirstTime) {
             this.initializeEngine();
             AppConfig.setEngineStatus(EngineStatus.RUNNING);
@@ -89,10 +105,12 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
 
         this.engine = Engine(mainCircle);
-        //TODO: should be loaded by level activity -----
+        engine.setWinSound { winSoundPlayer.start() }
+        engine.setCollisionSound { loseSoundPlayer.start() }
+
         val level = Class.forName("aa.engine.level.levels.Level" + currentLevel)
             .getDeclaredConstructor().newInstance() as Level;
-        // ---------------------------------------------
+
         engine.play(level, generateSmallBalls(level)) {
             this.lbm.sendBroadcast(
                 this.reRenderIntent
@@ -105,8 +123,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
                     resources.getString(R.string.highest_completed_level),
                     "0"
                 )
-                System.out.println(highestFinishedLevel)
-                System.out.println(currentLevel)
+
                 if (currentLevel != null && highestFinishedLevel != null) {
                     if (currentLevel.toInt() > highestFinishedLevel.toInt()) {
                         System.out.println("updated value")
@@ -122,14 +139,16 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
                 }
                 val intent = Intent(context, WinActivity::class.java);
+                mainMusicPlayer.stop();
                 context.startActivity(intent);
                 this.engine.stop();
                 AppConfig.setEngineStatus(EngineStatus.READY);
-                this.gameView?.setBackgroundColor(resources.getColor(R.color.background));
+                this.setBackgroundColor(resources.getColor(R.color.background));
             }
             val executionContext = engine.getContext();
             val ball = executionContext.getSpawnedBall();
             if (ball != null) {
+                popSoundPlayer.start();
                 executionContext.addApproachingBall(ball);
                 executionContext.setSpawnedBall(null);
 
@@ -156,9 +175,14 @@ public class GameView(context: Context, attrs: AttributeSet) :
         return smallBalls as ArrayList<SmallBall>;
     }
 
+    public fun stopMusic() {
+        mainMusicPlayer.stop()
+    }
+
     private fun handleGameOver() {
         this.engine.stop();
-        this.gameView?.setBackgroundColor(resources.getColor(R.color.danger));
+        mainMusicPlayer.stop()
+        this.setBackgroundColor(resources.getColor(R.color.danger));
 
         (this.context as GameActivity).showGameOverButtons();
     }
@@ -173,7 +197,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
             this.handleGameOver();
         };
         else if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
-            this.gameView?.setBackgroundColor(resources.getColor(R.color.success));
+            this.setBackgroundColor(resources.getColor(R.color.success));
         } else if (AppConfig.getEngineStatus() == EngineStatus.READY) {
             return;
         }

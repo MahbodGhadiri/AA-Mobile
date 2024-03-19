@@ -9,7 +9,7 @@ import aa.engine.jobs.Job
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-class CollisionJob() : Job() {
+class CollisionJob(private val onCollisionSound: () -> Unit) : Job() {
     private fun calDistance(o1: Position, o2: Position): Double {
         val x2 = (o1.getX() - o2.getX()).toDouble().pow(2.0);
         val y2 = (o1.getY() - o2.getY()).toDouble().pow(2.0);
@@ -48,6 +48,7 @@ class CollisionJob() : Job() {
             ) {
                 // collision detected. stop the engine
                 AppConfig.setEngineStatus(EngineStatus.GAMEOVER);
+                onCollisionSound()
             }
         }
     }
