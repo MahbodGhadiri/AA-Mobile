@@ -1,7 +1,6 @@
 package aa.engine.config
 
 import aa.engine.helpers.Position
-import android.content.Context
 
 enum class EngineStatus {
     RUNNING,
@@ -27,13 +26,15 @@ object AppConfig {
 
     private var gamePageElementsColor: String = "#76ABAE";
 
-    private var currentLevel: Int = 0
+    private val levelsCount = 5
+        get() = field
 
-    fun initialize(context: Context) {
-        screenWidth =
-            context.resources.displayMetrics.widthPixels.toFloat();
-        screenHeight =
-            context.resources.displayMetrics.heightPixels.toFloat();
+    private var currentLevel: Int = 0
+        get() = field
+
+    fun initialize(width: Float, height: Float) {
+        screenWidth = width;
+        screenHeight = height;
         spawnBallPos =
             Position(screenWidth / 2, screenHeight - screenHeight / 10);
         mainCirclePos = Position(

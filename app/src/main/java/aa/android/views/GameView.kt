@@ -38,7 +38,10 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
 
     init {
-        AppConfig.initialize(context);
+        AppConfig.initialize(
+            context.resources.displayMetrics.widthPixels.toFloat(),
+            context.resources.displayMetrics.heightPixels.toFloat()
+        );
         this.gameView = findViewById(R.id.GameView);
         this.lbm = LocalBroadcastManager.getInstance(this.context);
         this.reRenderIntent = Intent().setAction("reRender");
