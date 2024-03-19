@@ -2,7 +2,7 @@ package aa.engine.level.levels
 
 import aa.engine.level.Level
 
-class Level2 : Level(2, 3, arrayOf(0F, 90F, 180F, 270F), 4) {
+class Level2 : Level(2, 3, arrayOf(0F, 90F, 180F, 270F), 2) {
     init {
         optionalMovingJobs = emptyArray();
         optionalDetectionJobs = emptyArray();

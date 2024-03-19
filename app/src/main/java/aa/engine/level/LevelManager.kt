@@ -15,7 +15,7 @@ class LevelManager(
 ) {
     private var currentLevel: Level? = null;
     private fun setupCriticalJobs() {
-        context.setApproachingSpeed(75);
+        context.setApproachingSpeed(50);
         jobManager.addJobToMovingPeriod(OrbitingJob());
         jobManager.addJobToMovingPeriod(MoveUpJob());
         jobManager.addJobToTweakingPeriod(SpawnJob());
