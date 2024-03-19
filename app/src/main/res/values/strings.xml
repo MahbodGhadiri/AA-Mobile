@@ -42,4 +42,6 @@
     <string name="over"> OVER</string>
     <string name="you"> YOU</string>
     <string name="won"> WON</string>
+    <string name="current_level"> CURRENT_LEVEL</string>
+    <string name="preferences">aa.android.preferences</string>
 </resources>

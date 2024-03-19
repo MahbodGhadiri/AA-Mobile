@@ -1,6 +1,10 @@
 package aa.android.activities
 
 import aa.android.R
+import aa.engine.config.AppConfig
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -11,6 +15,9 @@ import androidx.core.view.WindowInsetsCompat
 
 class LevelMenuActivity : AppCompatActivity() {
     lateinit var textIds: IntArray;
+    lateinit var sharedPref: SharedPreferences;
+    var currentLevel: String = "1";
+    var page: Int = 1;
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
@@ -35,6 +42,15 @@ class LevelMenuActivity : AppCompatActivity() {
             insets
         }
 
+        sharedPref = this.getSharedPreferences(
+            resources.getString(R.string.preferences),
+            Context.MODE_PRIVATE
+        )
+
+        currentLevel =
+            sharedPref.getString(getString(R.string.current_level), "1")
+                .toString()
+
         textIds = intArrayOf(
             R.id.Button1,
             R.id.Button2,
@@ -49,15 +65,29 @@ class LevelMenuActivity : AppCompatActivity() {
         )
 
         var textView: TextView;
+
         for (i in 1..10) {
+            val tag = ((page - 1) * 10) + i;
             textView = findViewById<TextView>(textIds[i - 1])
-            textView.setText(i.toString());
+            if (tag <= AppConfig.getLevelCount()) {
+                if (i.toString() == currentLevel) {
+                    textView.setTextColor(getColor(R.color.primary_shade))
+                }
+                textView.setText(tag.toString());
+                textView.setTag(tag.toString())
+            } else textView.visibility = View.INVISIBLE
+
         }
 
     }
 
     public fun handleClickedButton(v: View) {
-        val buttonId = v.getId()
-        println(buttonId)
+        val levelNumber = v.getTag().toString()
+        with(sharedPref.edit()) {
+            putString(getString(R.string.current_level), levelNumber)
+            apply()
+        }
+        val intent = Intent(this, GameActivity::class.java)
+        startActivity(intent)
     }
 }

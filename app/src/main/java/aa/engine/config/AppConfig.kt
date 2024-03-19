@@ -26,11 +26,8 @@ object AppConfig {
 
     private var gamePageElementsColor: String = "#76ABAE";
 
-    private val levelsCount = 5
-        get() = field
+    private const val levelsCount = 6
 
-    private var currentLevel: Int = 0
-        get() = field
 
     fun initialize(width: Float, height: Float) {
         screenWidth = width;
@@ -60,16 +57,13 @@ object AppConfig {
     fun getSmallBallRadius(): Float = smallBallRadius;
     fun getEngineStatus(): EngineStatus = engineStatus;
     fun getGamePageElementsColor(): String = gamePageElementsColor;
-
+    fun getLevelCount(): Int = levelsCount
 
     // setters
     fun setEngineStatus(status: EngineStatus) {
         engineStatus = status;
     }
-
-    fun setCurrentLevel(level: Int) {
-        currentLevel = level
-    }
+    
 }
 
 
