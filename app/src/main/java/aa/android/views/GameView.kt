@@ -33,7 +33,6 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private var reRenderReceiver: ReRenderReceiver;
     private var reRenderIntent: Intent;
     private var isFirstTime: Boolean = true;
-    private var gameView: GameView? = null
     val preferences =
         context.applicationContext.getSharedPreferences(
             resources.getString(
@@ -47,7 +46,6 @@ public class GameView(context: Context, attrs: AttributeSet) :
             context.resources.displayMetrics.heightPixels.toFloat()
         );
 
-        this.gameView = findViewById(R.id.GameView);
         this.lbm = LocalBroadcastManager.getInstance(this.context);
         this.reRenderIntent = Intent().setAction("reRender");
         this.reRenderReceiver =
@@ -125,7 +123,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
                 context.startActivity(intent);
                 this.engine.stop();
                 AppConfig.setEngineStatus(EngineStatus.READY);
-                this.gameView?.setBackgroundColor(resources.getColor(R.color.background));
+                this.setBackgroundColor(resources.getColor(R.color.background));
             }
             val executionContext = engine.getContext();
             val ball = executionContext.getSpawnedBall();
@@ -158,7 +156,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
     private fun handleGameOver() {
         this.engine.stop();
-        this.gameView?.setBackgroundColor(resources.getColor(R.color.danger));
+        this.setBackgroundColor(resources.getColor(R.color.danger));
 
         (this.context as GameActivity).showGameOverButtons();
     }
@@ -173,7 +171,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
             this.handleGameOver();
         };
         else if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
-            this.gameView?.setBackgroundColor(resources.getColor(R.color.success));
+            this.setBackgroundColor(resources.getColor(R.color.success));
         } else if (AppConfig.getEngineStatus() == EngineStatus.READY) {
             return;
         }
