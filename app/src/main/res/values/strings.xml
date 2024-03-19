@@ -43,5 +43,6 @@
     <string name="you"> YOU</string>
     <string name="won"> WON</string>
     <string name="current_level"> CURRENT_LEVEL</string>
+    <string name="highest_completed_level"> HIGHEST_COMPLETED_LEVEL</string>
     <string name="preferences">aa.android.preferences</string>
 </resources>

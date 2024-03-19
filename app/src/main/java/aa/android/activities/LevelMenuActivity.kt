@@ -17,12 +17,8 @@ class LevelMenuActivity : AppCompatActivity() {
     lateinit var textIds: IntArray;
     lateinit var sharedPref: SharedPreferences;
     var currentLevel: String = "1";
+    var highestCompletedLevel: String = "0";
     var page: Int = 1;
-
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-
-    }
 
     override fun onCreate(
         savedInstanceState: Bundle?
@@ -51,6 +47,11 @@ class LevelMenuActivity : AppCompatActivity() {
             sharedPref.getString(getString(R.string.current_level), "1")
                 .toString()
 
+        highestCompletedLevel = sharedPref.getString(
+            getString(R.string.highest_completed_level),
+            "0"
+        ).toString()
+
         textIds = intArrayOf(
             R.id.Button1,
             R.id.Button2,
@@ -73,6 +74,10 @@ class LevelMenuActivity : AppCompatActivity() {
                 if (i.toString() == currentLevel) {
                     textView.setTextColor(getColor(R.color.primary_shade))
                 }
+                if (i > (highestCompletedLevel.toInt() + 1)) {
+                    textView.background =
+                        getDrawable(R.drawable.level_background_unavailable)
+                }
                 textView.setText(tag.toString());
                 textView.setTag(tag.toString())
             } else textView.visibility = View.INVISIBLE
@@ -83,11 +88,16 @@ class LevelMenuActivity : AppCompatActivity() {
 
     public fun handleClickedButton(v: View) {
         val levelNumber = v.getTag().toString()
-        with(sharedPref.edit()) {
-            putString(getString(R.string.current_level), levelNumber)
-            apply()
+
+        if (levelNumber.toInt() <= (highestCompletedLevel.toInt() + 1)) {
+            with(sharedPref.edit()) {
+                putString(getString(R.string.current_level), levelNumber)
+                apply()
+            }
+            val intent = Intent(this, GameActivity::class.java)
+            startActivity(intent)
         }
-        val intent = Intent(this, GameActivity::class.java)
-        startActivity(intent)
+
+
     }
 }

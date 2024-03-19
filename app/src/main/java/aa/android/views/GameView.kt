@@ -101,6 +101,26 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
         this.setOnClickListener {
             if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
+                val highestFinishedLevel = preferences.getString(
+                    resources.getString(R.string.highest_completed_level),
+                    "0"
+                )
+                System.out.println(highestFinishedLevel)
+                System.out.println(currentLevel)
+                if (currentLevel != null && highestFinishedLevel != null) {
+                    if (currentLevel.toInt() > highestFinishedLevel.toInt()) {
+                        System.out.println("updated value")
+                        with(preferences.edit()) {
+                            putString(
+                                resources.getString(R.string.highest_completed_level),
+                                currentLevel
+                            )
+                            apply()
+                        }
+                    }
+
+
+                }
                 val intent = Intent(context, WinActivity::class.java);
                 context.startActivity(intent);
                 this.engine.stop();
