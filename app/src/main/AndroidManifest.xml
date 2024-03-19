@@ -25,7 +25,7 @@
         </activity>
         <activity
             android:name=".activities.AboutUsActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.GameActivity"
             android:configChanges="orientation"
@@ -49,11 +49,7 @@
 
         </activity>
 
-        <activity
-            android:name=".activities.GameOverActivity"
-            android:configChanges="orientation"
-            android:exported="true"
-            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

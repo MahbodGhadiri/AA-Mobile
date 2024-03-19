@@ -2,10 +2,10 @@ package aa.engine.level.levels
 
 import aa.engine.level.Level
 
-class Level1 : Level(1, 2, arrayOf(20F, 50F, 70F), 5) {
+class Level3 : Level(3, 3, arrayOf(0F, 45F, 90F, 180F, 225F, 270F), 7) {
     init {
-        optionalTweakingJobs = emptyArray();
         optionalMovingJobs = emptyArray();
         optionalDetectionJobs = emptyArray();
+        optionalTweakingJobs = emptyArray();
     }
 }

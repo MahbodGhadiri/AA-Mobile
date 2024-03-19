@@ -1,7 +1,6 @@
 package aa.android.activities
 
 import aa.android.R
-import aa.android.views.GameView
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -21,7 +20,7 @@ class GameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game)
 
         gameOverButtons = findViewById(R.id.gameOverButtons);
-        
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.game)) { v, insets ->
             val systemBars =
@@ -45,6 +44,12 @@ class GameActivity : AppCompatActivity() {
         val menuButton = findViewById<ImageView>(R.id.menuButton);
         menuButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java);
+            startActivity(intent);
+        }
+
+        val levelsButton = findViewById<ImageView>(R.id.levelsButton);
+        levelsButton.setOnClickListener {
+            val intent = Intent(this, LevelMenuActivity::class.java);
             startActivity(intent);
         }
     }
