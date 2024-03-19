@@ -10,7 +10,7 @@
         android:id="@+id/nameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
         android:textColor="@color/primary"
         android:textSize="28sp"

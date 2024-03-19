@@ -46,7 +46,7 @@
 
             app:contributor_bio="@string/danial_azimi_bio"
             app:contributor_github_url="https://github.com/danilazm"
-            app:contributor_linkedin_url="https://www.linkedin.com/in/yousof-osanlou-ba8b0124a/"
+            app:contributor_linkedin_url="https://www.linkedin.com"
             app:contributor_name="@string/danial_azimi_name"
             app:contributor_pic="@drawable/danial_pic"
             app:contributor_telegram_url="https://telegram.me/danialazimii" />
