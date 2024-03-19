@@ -1,5 +1,7 @@
 package aa.engine.jobs
 
+import aa.engine.config.AppConfig
+import aa.engine.config.EngineStatus
 import aa.engine.helpers.ExecutionContext
 
 class JobManager(context: ExecutionContext) {
@@ -50,6 +52,8 @@ class JobManager(context: ExecutionContext) {
             }
             job.execute(context);
         }
+
+        if (AppConfig.getEngineStatus() != EngineStatus.RUNNING) return;
 
         val detectionIterator = detectionPeriod.iterator();
         while (detectionIterator.hasNext()) {

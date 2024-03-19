@@ -15,14 +15,13 @@ class LevelManager(
 ) {
     private var currentLevel: Level? = null;
     private fun setupCriticalJobs() {
-        context.setRotationSpeed(2);
-        context.setApproachingSpeed(25);
+        context.setApproachingSpeed(75);
         jobManager.addJobToMovingPeriod(OrbitingJob());
         jobManager.addJobToMovingPeriod(MoveUpJob());
-        jobManager.addJobToDetectionPeriod(OrbitDetectionJob());
         jobManager.addJobToTweakingPeriod(SpawnJob());
-        jobManager.addJobToDetectionPeriod(CollisionJob());
         jobManager.addJobToDetectionPeriod(WinJob());
+        jobManager.addJobToDetectionPeriod(CollisionJob());
+        jobManager.addJobToDetectionPeriod(OrbitDetectionJob());
     }
 
     private fun setupOptionalJobs() {
