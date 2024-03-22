@@ -145,9 +145,14 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private fun generateSmallBalls(level: Level): ArrayList<SmallBall> {
         smallBalls.removeAll(smallBalls.toSet());
         for (i in 1..level.getHiddenBallNum()) {
-            smallBalls.add(AndroidSmallBall())
+            smallBalls.add(AndroidSmallBall(countNumber = i))
         }
-        smallBalls.add(AndroidSmallBall(SmallBallStatus.SPAWNING))
+        smallBalls.add(
+            AndroidSmallBall(
+                SmallBallStatus.SPAWNING,
+                countNumber = level.getHiddenBallNum() + 1
+            )
+        )
         for (theta in level.getSpinningBallsTheta()) {
             smallBalls.add(AndroidSmallBall(SmallBallStatus.SPINNING, theta));
         }
@@ -186,6 +191,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
             }
 
             smallBall.draw(canvas);
+
         }
 
         mainCircle.draw(canvas);

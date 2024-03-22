@@ -14,6 +14,7 @@ enum class SmallBallStatus {
 }
 
 open class SmallBall constructor(
+
     private var status: SmallBallStatus = SmallBallStatus.HIDDEN,
     private var theta: Float = 90F,
     private val position: Position = Position(

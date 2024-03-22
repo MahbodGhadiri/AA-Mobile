@@ -28,6 +28,8 @@ object AppConfig {
 
     private const val levelsCount = 6
 
+    private var textSize: Float = 60F
+
 
     fun initialize(width: Float, height: Float) {
         screenWidth = width;
@@ -55,6 +57,7 @@ object AppConfig {
     fun getMainCircleRadius(): Float = mainCircleRadius;
     fun getMainCircleOrbit(): Float = mainCircleOrbit;
     fun getSmallBallRadius(): Float = smallBallRadius;
+    fun getTextSize(): Float = textSize;
     fun getEngineStatus(): EngineStatus = engineStatus;
     fun getGamePageElementsColor(): String = gamePageElementsColor;
     fun getLevelCount(): Int = levelsCount
@@ -63,7 +66,7 @@ object AppConfig {
     fun setEngineStatus(status: EngineStatus) {
         engineStatus = status;
     }
-    
+
 }
 
 
