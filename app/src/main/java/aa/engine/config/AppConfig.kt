@@ -28,6 +28,8 @@ object AppConfig {
 
     private const val levelsCount = 6
 
+    private var approachingSpeed: Float = 50F;
+
 
     fun initialize(width: Float, height: Float) {
         screenWidth = width;
@@ -58,12 +60,17 @@ object AppConfig {
     fun getEngineStatus(): EngineStatus = engineStatus;
     fun getGamePageElementsColor(): String = gamePageElementsColor;
     fun getLevelCount(): Int = levelsCount
+    fun getApproachingSpeed(): Float = approachingSpeed
 
     // setters
     fun setEngineStatus(status: EngineStatus) {
         engineStatus = status;
     }
-    
+
+    fun setApproachingSpeed(speed: Float) {
+        this.approachingSpeed = speed;
+    }
+
 }
 
 

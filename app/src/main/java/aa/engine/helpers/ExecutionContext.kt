@@ -7,8 +7,8 @@ import aa.engine.elements.SmallBallStatus
 class ExecutionContext(
     private val mainCircle: MainCircle,
 ) {
-    private var rotationSpeed: Int = 0;
-    private var approachingSpeed: Int = 0;
+    private var rotationSpeed: Float = 0F;
+    private var approachingSpeed: Float = 0F;
 
     private val hiddenBalls = ArrayList<SmallBall>();
     private var spawnedBall: SmallBall? = null;
@@ -35,19 +35,19 @@ class ExecutionContext(
         }
     }
 
-    fun getRotationSpeed(): Int {
+    fun getRotationSpeed(): Float {
         return rotationSpeed;
     }
 
-    fun setRotationSpeed(speed: Int) {
+    fun setRotationSpeed(speed: Float) {
         this.rotationSpeed = speed;
     }
 
-    fun getApproachingSpeed(): Int {
+    fun getApproachingSpeed(): Float {
         return approachingSpeed;
     }
 
-    fun setApproachingSpeed(speed: Int) {
+    fun setApproachingSpeed(speed: Float) {
         this.approachingSpeed = speed;
     }
 

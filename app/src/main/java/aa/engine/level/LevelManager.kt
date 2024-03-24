@@ -1,5 +1,6 @@
 package aa.engine.level
 
+import aa.engine.config.AppConfig
 import aa.engine.helpers.ExecutionContext
 import aa.engine.jobs.JobManager
 import aa.engine.jobs.critical.CollisionJob
@@ -15,7 +16,7 @@ class LevelManager(
 ) {
     private var currentLevel: Level? = null;
     private fun setupCriticalJobs() {
-        context.setApproachingSpeed(50);
+        context.setApproachingSpeed(AppConfig.getApproachingSpeed());
         jobManager.addJobToMovingPeriod(OrbitingJob());
         jobManager.addJobToMovingPeriod(MoveUpJob());
         jobManager.addJobToTweakingPeriod(SpawnJob());
