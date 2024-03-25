@@ -39,7 +39,8 @@ class LevelManager(
 
     public fun setup(level: Level) {
         currentLevel = level;
-        context.setRotationSpeed(currentLevel!!.getRotationSpeed())
+        context.setRotationSpeed(currentLevel!!.getRotationSpeed());
+        context.setSpawningSpeed(AppConfig.getSpawningSpeed());
         this.setupCriticalJobs();
         this.setupOptionalJobs();
     }

@@ -125,19 +125,21 @@ public class GameView(context: Context, attrs: AttributeSet) :
                 AppConfig.setEngineStatus(EngineStatus.READY);
                 this.setBackgroundColor(resources.getColor(R.color.background));
             }
-            val executionContext = engine.getContext();
-            val ball = executionContext.getSpawnedBall();
-            if (ball != null) {
-                executionContext.addApproachingBall(ball);
-                executionContext.setSpawnedBall(null);
+            if (AppConfig.getScreenClickable()) {
+                val executionContext = engine.getContext();
+                val ball = executionContext.getSpawnedBall();
+                if (ball != null) {
+                    executionContext.addApproachingBall(ball);
+                    executionContext.setSpawnedBall(null);
 
-                val hiddenBall = executionContext.getAndPopHiddenBall();
-                if (hiddenBall != null) executionContext.setSpawningBall(
-                    hiddenBall
-                ) else {
-                    executionContext.setSpawningBall(null);
+                    val hiddenBall = executionContext.getAndPopHiddenBall();
+                    if (hiddenBall != null) executionContext.setSpawningBall(
+                        hiddenBall
+                    ) else {
+                        executionContext.setSpawningBall(null);
+                    }
+
                 }
-
             }
         }
     }

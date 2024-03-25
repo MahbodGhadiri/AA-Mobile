@@ -1,5 +1,6 @@
 package aa.engine.jobs.critical
 
+import aa.engine.config.AppConfig
 import aa.engine.elements.SmallBall
 import aa.engine.helpers.ExecutionContext
 import aa.engine.jobs.Job
@@ -16,6 +17,7 @@ class OrbitDetectionJob() : Job() {
                 context.addSpinningBall(smallBall);
                 smallBall.setTheta(0F);
                 iterator.remove();
+                AppConfig.setScreenClickable(true);
                 context.setApproachingSpeed(context.getApproachingSpeedCopy());
                 context.setRotationSpeed(context.getRotationSpeedCopy());
             }

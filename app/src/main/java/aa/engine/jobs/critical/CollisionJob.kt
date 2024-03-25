@@ -56,6 +56,7 @@ class CollisionJob() : Job() {
                     closestBallToMainCircle.getPosition()
                 ) <= 3.1 * AppConfig.getSmallBallRadius().toDouble()
             ) {
+                AppConfig.setScreenClickable(false);
                 context.setApproachingSpeed(1F, false);
                 context.setRotationSpeed(.1F, false);
             }
@@ -68,6 +69,7 @@ class CollisionJob() : Job() {
                 ) <= smallBallCriticalDistance
             ) {
                 // collision detected. stop the engine
+                AppConfig.setScreenClickable(true);
                 AppConfig.setEngineStatus(EngineStatus.GAMEOVER);
                 break;
             }

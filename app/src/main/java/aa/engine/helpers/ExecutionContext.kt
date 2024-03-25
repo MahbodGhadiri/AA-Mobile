@@ -9,9 +9,12 @@ class ExecutionContext(
 ) {
     private var rotationSpeed: Float = 0F;
     private var approachingSpeed: Float = 0F;
+    private var spawningSpeed: Float = 0F;
 
     private var _rotationSpeed: Float = 0F;
     private var _approachingSpeed: Float = 0F;
+    private var _spawningSpeed: Float = 0F;
+
 
     private val hiddenBalls = ArrayList<SmallBall>();
     private var spawnedBall: SmallBall? = null;
@@ -37,6 +40,21 @@ class ExecutionContext(
             }
         }
     }
+
+    // start:: spawning
+    fun getSpawningSpeed(): Float {
+        return spawningSpeed;
+    }
+
+    fun getSpawningSpeedCopy(): Float {
+        return this._spawningSpeed;
+    }
+
+    fun setSpawningSpeed(speed: Float, setCopy: Boolean = true) {
+        this.spawningSpeed = speed;
+        if (setCopy) this._spawningSpeed = speed;
+    }
+    // end:: spawning
 
     fun getRotationSpeed(): Float {
         return rotationSpeed;
