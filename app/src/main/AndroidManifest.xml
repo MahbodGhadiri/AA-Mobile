@@ -25,7 +25,8 @@
         </activity>
         <activity
             android:name=".activities.AboutUsActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.GameActivity"
             android:configChanges="orientation"
