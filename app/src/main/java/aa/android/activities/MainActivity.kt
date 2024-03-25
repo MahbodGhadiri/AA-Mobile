@@ -14,20 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.airbnb.lottie.LottieAnimationView
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mediaPlayer: MediaPlayer;
 
-    override fun onStop() {
-        super.onStop()
-//        mediaPlayer.stop()
-    }
-
-    override fun onResume() {
-        super.onResume()
-//        mediaPlayer.isLooping = true;
-//        mediaPlayer.start()
-//        stopService(Intent(this, BackgroundMusicService::class.java))
-//        startService(Intent(this, BackgroundMusicService::class.java))
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,9 +56,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.background_sound)
-        mediaPlayer.isLooping = true;
-        mediaPlayer.start()
+
 
     }
 }

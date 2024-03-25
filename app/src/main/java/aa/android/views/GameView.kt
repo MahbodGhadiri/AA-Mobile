@@ -34,7 +34,6 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private var reRenderReceiver: ReRenderReceiver;
     private var reRenderIntent: Intent;
     private var isFirstTime: Boolean = true;
-    private val mainMusicPlayer: MediaPlayer;
     private val winSoundPlayer: MediaPlayer;
     private val loseSoundPlayer: MediaPlayer;
     private val popSoundPlayer: MediaPlayer;
@@ -71,23 +70,17 @@ public class GameView(context: Context, attrs: AttributeSet) :
         this.winSoundPlayer = MediaPlayer.create(this.context, R.raw.gamewin)
         this.loseSoundPlayer = MediaPlayer.create(this.context, R.raw.gameover)
         this.popSoundPlayer = MediaPlayer.create(this.context, R.raw.popsound)
-        this.mainMusicPlayer =
-            MediaPlayer.create(this.context, R.raw.background_sound)
-        mainMusicPlayer.isLooping = true;
-        mainMusicPlayer.start()
         this.initializeEngine();
         this.isFirstTime = false;
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        mainMusicPlayer.stop()
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow();
-        mainMusicPlayer.isLooping = true;
-        mainMusicPlayer.start()
+
         if (!this.isFirstTime) {
             this.initializeEngine();
             AppConfig.setEngineStatus(EngineStatus.RUNNING);
@@ -139,7 +132,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
                 }
                 val intent = Intent(context, WinActivity::class.java);
-                mainMusicPlayer.stop();
+
                 context.startActivity(intent);
                 this.engine.stop();
                 AppConfig.setEngineStatus(EngineStatus.READY);
@@ -176,12 +169,10 @@ public class GameView(context: Context, attrs: AttributeSet) :
     }
 
     public fun stopMusic() {
-        mainMusicPlayer.stop()
     }
 
     private fun handleGameOver() {
         this.engine.stop();
-        mainMusicPlayer.stop()
         this.setBackgroundColor(resources.getColor(R.color.danger));
 
         (this.context as GameActivity).showGameOverButtons();
