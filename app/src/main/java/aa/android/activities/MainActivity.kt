@@ -2,6 +2,7 @@ package aa.android.activities
 
 
 import aa.android.R
+import aa.android.sound.BackgroundMusicService
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -17,19 +18,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        mediaPlayer.stop()
+//        mediaPlayer.stop()
     }
 
     override fun onResume() {
         super.onResume()
-        mediaPlayer.isLooping = true;
-        mediaPlayer.start()
+//        mediaPlayer.isLooping = true;
+//        mediaPlayer.start()
+//        stopService(Intent(this, BackgroundMusicService::class.java))
+//        startService(Intent(this, BackgroundMusicService::class.java))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        startService(Intent(this, BackgroundMusicService::class.java))
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars =
                 insets.getInsets(WindowInsetsCompat.Type.systemBars())

@@ -58,7 +58,6 @@ class GameActivity : AppCompatActivity() {
             startActivity(intent);
         }
     }
-
     fun showGameOverButtons() {
         gameOverButtons.visibility = View.VISIBLE;
     }
