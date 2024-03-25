@@ -22,12 +22,6 @@ class CollisionJob() : Job() {
     }
 
     override fun run(context: ExecutionContext) { // trying to implement o(n)
-        if (rotationSpeed == 0F || approachingSpeed == 0F) {
-            rotationSpeed = context.getRotationSpeed();
-            approachingSpeed = context.getApproachingSpeed();
-        }
-
-
         val smallBallCriticalDistance: Float =
             AppConfig.getSmallBallRadius() * 2; // it's 2 * radius of the small ball.
         val approachingBalls: ArrayList<SmallBall> =
@@ -60,22 +54,12 @@ class CollisionJob() : Job() {
                 && calDistance(
                     sBall.getPosition(),
                     closestBallToMainCircle.getPosition()
-                ) <= 4 * AppConfig.getSmallBallRadius().toDouble()
+                ) <= 3.1 * AppConfig.getSmallBallRadius().toDouble()
             ) {
-                context.setApproachingSpeed(1F);
-                context.setRotationSpeed(.1F);
+                context.setApproachingSpeed(1F, false);
+                context.setRotationSpeed(.1F, false);
             }
 
-            if (
-                closestBallToMainCircle != null
-                && calDistance(
-                    sBall.getPosition(),
-                    closestBallToMainCircle.getPosition()
-                ) > 4 * AppConfig.getSmallBallRadius().toDouble()
-            ) {
-                context.setRotationSpeed(rotationSpeed);
-                context.setApproachingSpeed(approachingSpeed);
-            }
             if (
                 closestBallToMainCircle != null
                 && calDistance(

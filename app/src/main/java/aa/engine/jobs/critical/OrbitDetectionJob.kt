@@ -16,6 +16,8 @@ class OrbitDetectionJob() : Job() {
                 context.addSpinningBall(smallBall);
                 smallBall.setTheta(0F);
                 iterator.remove();
+                context.setApproachingSpeed(context.getApproachingSpeedCopy());
+                context.setRotationSpeed(context.getRotationSpeedCopy());
             }
 
         }

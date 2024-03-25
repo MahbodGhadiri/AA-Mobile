@@ -10,6 +10,9 @@ class ExecutionContext(
     private var rotationSpeed: Float = 0F;
     private var approachingSpeed: Float = 0F;
 
+    private var _rotationSpeed: Float = 0F;
+    private var _approachingSpeed: Float = 0F;
+
     private val hiddenBalls = ArrayList<SmallBall>();
     private var spawnedBall: SmallBall? = null;
     private val spinningBalls = ArrayList<SmallBall>();
@@ -39,16 +42,26 @@ class ExecutionContext(
         return rotationSpeed;
     }
 
-    fun setRotationSpeed(speed: Float) {
+    fun getRotationSpeedCopy(): Float {
+        return _rotationSpeed;
+    }
+
+    fun setRotationSpeed(speed: Float, setCopy: Boolean = true) {
         this.rotationSpeed = speed;
+        if (setCopy) this._rotationSpeed = speed;
     }
 
     fun getApproachingSpeed(): Float {
         return approachingSpeed;
     }
 
-    fun setApproachingSpeed(speed: Float) {
+    fun getApproachingSpeedCopy(): Float {
+        return _approachingSpeed;
+    }
+
+    fun setApproachingSpeed(speed: Float, setCopy: Boolean = true) {
         this.approachingSpeed = speed;
+        if (setCopy) this._approachingSpeed = speed;
     }
 
     fun setSpawningBall(ball: SmallBall?) {
