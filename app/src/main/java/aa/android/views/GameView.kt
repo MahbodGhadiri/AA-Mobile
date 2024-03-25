@@ -125,19 +125,21 @@ public class GameView(context: Context, attrs: AttributeSet) :
                 AppConfig.setEngineStatus(EngineStatus.READY);
                 this.setBackgroundColor(resources.getColor(R.color.background));
             }
-            val executionContext = engine.getContext();
-            val ball = executionContext.getSpawnedBall();
-            if (ball != null) {
-                executionContext.addApproachingBall(ball);
-                executionContext.setSpawnedBall(null);
+            if (AppConfig.getScreenClickable()) {
+                val executionContext = engine.getContext();
+                val ball = executionContext.getSpawnedBall();
+                if (ball != null) {
+                    executionContext.addApproachingBall(ball);
+                    executionContext.setSpawnedBall(null);
 
-                val hiddenBall = executionContext.getAndPopHiddenBall();
-                if (hiddenBall != null) executionContext.setSpawningBall(
-                    hiddenBall
-                ) else {
-                    executionContext.setSpawningBall(null);
+                    val hiddenBall = executionContext.getAndPopHiddenBall();
+                    if (hiddenBall != null) executionContext.setSpawningBall(
+                        hiddenBall
+                    ) else {
+                        executionContext.setSpawningBall(null);
+                    }
+
                 }
-
             }
         }
     }
@@ -145,8 +147,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private fun generateSmallBalls(level: Level): ArrayList<SmallBall> {
         smallBalls.removeAll(smallBalls.toSet());
         for (i in 1..level.getHiddenBallNum()) {
-            smallBalls.add(AndroidSmallBall())
-        }
+            smallBalls.add(AndroidSmallBall()); }
         smallBalls.add(AndroidSmallBall(SmallBallStatus.SPAWNING))
         for (theta in level.getSpinningBallsTheta()) {
             smallBalls.add(AndroidSmallBall(SmallBallStatus.SPINNING, theta));

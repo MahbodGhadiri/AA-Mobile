@@ -10,6 +10,9 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 class CollisionJob() : Job() {
+    private var rotationSpeed: Float = 0F;
+    private var approachingSpeed: Float = 0F;
+
     private fun calDistance(o1: Position, o2: Position): Double {
         val x2 = (o1.getX() - o2.getX()).toDouble().pow(2.0);
         val y2 = (o1.getY() - o2.getY()).toDouble().pow(2.0);
@@ -39,6 +42,25 @@ class CollisionJob() : Job() {
         }
 
         for (sBall in spinningBalls) {
+            /*
+              the normal speed of a approaching ball is 50 px per engine tick.
+              so, if two ball distances were less than 50 px and not collided,
+              there is a possibility that they collide later,
+              here is the calculation.
+             */
+
+            if (
+                closestBallToMainCircle != null
+                && calDistance(
+                    sBall.getPosition(),
+                    closestBallToMainCircle.getPosition()
+                ) <= 3.1 * AppConfig.getSmallBallRadius().toDouble()
+            ) {
+                AppConfig.setScreenClickable(false);
+                context.setApproachingSpeed(1F, false);
+                context.setRotationSpeed(.1F, false);
+            }
+
             if (
                 closestBallToMainCircle != null
                 && calDistance(
@@ -47,7 +69,9 @@ class CollisionJob() : Job() {
                 ) <= smallBallCriticalDistance
             ) {
                 // collision detected. stop the engine
+                AppConfig.setScreenClickable(true);
                 AppConfig.setEngineStatus(EngineStatus.GAMEOVER);
+                break;
             }
         }
     }

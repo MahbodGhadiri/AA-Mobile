@@ -12,7 +12,7 @@ class SpawnJob() : Job() {
             if (y > AppConfig.getSpawnBallPos().getY()) {
                 smallBall.setPosition(
                     smallBall.getPosition().getX(),
-                    y - AppConfig.getSpawningSpeed() * (y - AppConfig.getSpawnBallPos()
+                    y - (AppConfig.getSpawningSpeed() + 10) * (y - AppConfig.getSpawnBallPos()
                         .getY()) / 25
                 );
             }
