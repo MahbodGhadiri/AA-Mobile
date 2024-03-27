@@ -78,6 +78,10 @@ object AppConfig {
         this.screenClickable = value;
     }
 
+    fun setMainCircleOrbit(value: Float) {
+        this.mainCircleOrbit = value;
+    }
+
 }
 
 

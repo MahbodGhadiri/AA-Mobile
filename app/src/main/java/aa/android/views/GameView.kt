@@ -22,9 +22,12 @@ import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.View
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import java.util.Timer
+import java.util.TimerTask
 
 public class GameView(context: Context, attrs: AttributeSet) :
     View(context, attrs) {
+    private var originalOrbit: Float = 0F;
     private lateinit var mainCircle: AndroidMainCircle;
     private val smallBalls = ArrayList<AndroidSmallBall>();
     private val line = AndroidLine();
@@ -45,6 +48,10 @@ public class GameView(context: Context, attrs: AttributeSet) :
             context.resources.displayMetrics.widthPixels.toFloat(),
             context.resources.displayMetrics.heightPixels.toFloat()
         );
+
+        if (originalOrbit == 0F) {
+            originalOrbit = AppConfig.getMainCircleOrbit();
+        }
 
         this.lbm = LocalBroadcastManager.getInstance(this.context);
         this.reRenderIntent = Intent().setAction("reRender");
@@ -99,31 +106,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
         this.setOnClickListener {
             if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
-                val highestFinishedLevel = preferences.getString(
-                    resources.getString(R.string.highest_completed_level),
-                    "0"
-                )
-                System.out.println(highestFinishedLevel)
-                System.out.println(currentLevel)
-                if (currentLevel != null && highestFinishedLevel != null) {
-                    if (currentLevel.toInt() > highestFinishedLevel.toInt()) {
-                        System.out.println("updated value")
-                        with(preferences.edit()) {
-                            putString(
-                                resources.getString(R.string.highest_completed_level),
-                                currentLevel
-                            )
-                            apply()
-                        }
-                    }
-
-
-                }
-                val intent = Intent(context, WinActivity::class.java);
-                context.startActivity(intent);
-                this.engine.stop();
-                AppConfig.setEngineStatus(EngineStatus.READY);
-                this.setBackgroundColor(resources.getColor(R.color.background));
+                this.handleLevelWin();
             }
             if (AppConfig.getScreenClickable()) {
                 val executionContext = engine.getContext();
@@ -141,6 +124,44 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
                 }
             }
+        }
+    }
+
+    private fun handleLevelWin() {
+        val intent = Intent(context, WinActivity::class.java);
+        context.startActivity(intent);
+        AppConfig.setEngineStatus(EngineStatus.READY);
+
+        Timer().schedule(object : TimerTask() {
+            override fun run() {
+                engine.stop();
+                setBackgroundColor(resources.getColor(R.color.background));
+            }
+        }, 1000);
+
+
+        val currentLevel =
+            preferences.getString(
+                resources.getString(R.string.current_level),
+                "1"
+            )
+
+        val highestFinishedLevel = preferences.getString(
+            resources.getString(R.string.highest_completed_level),
+            "0"
+        )
+        if (currentLevel != null && highestFinishedLevel != null) {
+            if (currentLevel.toInt() > highestFinishedLevel.toInt()) {
+                with(preferences.edit()) {
+                    putString(
+                        resources.getString(R.string.highest_completed_level),
+                        currentLevel
+                    )
+                    apply()
+                }
+            }
+
+
         }
     }
 
@@ -172,9 +193,18 @@ public class GameView(context: Context, attrs: AttributeSet) :
             this.handleGameOver();
         };
         else if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
-            this.setBackgroundColor(resources.getColor(R.color.success));
+
+
+            if (AppConfig.getMainCircleOrbit() < AppConfig.getScrWidth()) {
+                AppConfig.setMainCircleOrbit(AppConfig.getMainCircleOrbit() + 4);
+                this.setBackgroundColor(resources.getColor(R.color.success));
+            } else {
+                handleLevelWin();
+            }
+
+
         } else if (AppConfig.getEngineStatus() == EngineStatus.READY) {
-            return;
+            // do nothing
         }
 
         val mainCirclePosition = mainCircle.getPosition();
