@@ -196,7 +196,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
 
             if (AppConfig.getMainCircleOrbit() < AppConfig.getScrWidth()) {
-                AppConfig.setMainCircleOrbit(AppConfig.getMainCircleOrbit() + 4);
+                AppConfig.setMainCircleOrbit(AppConfig.getMainCircleOrbit() + 5);
                 this.setBackgroundColor(resources.getColor(R.color.success));
             } else {
                 handleLevelWin();
