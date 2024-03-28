@@ -13,6 +13,7 @@ class WinJob(private val onWinSound: () -> Unit) : Job() {
             context.getSpawnedBall() == null &&
             context.getApproachingBalls().size == 0
         ) {
+            context.setRotationSpeed(0F);
             AppConfig.setEngineStatus(EngineStatus.WIN);
             onWinSound()
         }

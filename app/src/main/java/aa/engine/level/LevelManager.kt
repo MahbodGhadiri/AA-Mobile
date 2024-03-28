@@ -1,5 +1,6 @@
 package aa.engine.level
 
+import aa.engine.config.AppConfig
 import aa.engine.helpers.ExecutionContext
 import aa.engine.jobs.JobManager
 import aa.engine.jobs.critical.CollisionJob
@@ -18,7 +19,7 @@ class LevelManager(
         onWinSound: () -> Unit,
         onCollisionSound: () -> Unit
     ) {
-        context.setApproachingSpeed(70);
+        context.setApproachingSpeed(AppConfig.getApproachingSpeed());
         jobManager.addJobToMovingPeriod(OrbitingJob());
         jobManager.addJobToMovingPeriod(MoveUpJob());
         jobManager.addJobToTweakingPeriod(SpawnJob());
@@ -45,7 +46,8 @@ class LevelManager(
         onCollisionSound: () -> Unit
     ) {
         currentLevel = level;
-        context.setRotationSpeed(currentLevel!!.getRotationSpeed())
+        context.setRotationSpeed(currentLevel!!.getRotationSpeed());
+        context.setSpawningSpeed(AppConfig.getSpawningSpeed());
         this.setupCriticalJobs(onWinSound, onCollisionSound);
         this.setupOptionalJobs();
     }

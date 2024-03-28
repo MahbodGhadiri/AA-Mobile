@@ -39,7 +39,7 @@ class Engine(
         timer.scheduleAtFixedRate(
             timerTask { jobManager.tick(); callback(); },
             0,
-            30
+            15
         );
         return timer;
     }

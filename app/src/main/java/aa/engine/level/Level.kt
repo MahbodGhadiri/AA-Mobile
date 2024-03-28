@@ -6,7 +6,7 @@ abstract class Level(
     private val levelNo: Int,
     private val hiddenBallNum: Int,
     private val spinningBallsTheta: Array<Float>,
-    private val rotationSpeed: Int
+    private val rotationSpeed: Float
 ) {
     lateinit var optionalMovingJobs: Array<Job>;
     lateinit var optionalTweakingJobs: Array<Job>;
@@ -15,5 +15,5 @@ abstract class Level(
     fun getLevelNo(): Int = levelNo;
     fun getHiddenBallNum(): Int = hiddenBallNum;
     fun getSpinningBallsTheta(): Array<Float> = spinningBallsTheta;
-    fun getRotationSpeed(): Int = rotationSpeed;
+    fun getRotationSpeed(): Float = rotationSpeed;
 }
