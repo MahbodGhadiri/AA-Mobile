@@ -2,7 +2,9 @@ package aa.android.activities
 
 
 import aa.android.R
+import aa.android.sound.BackgroundMusicService
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -12,10 +14,13 @@ import androidx.core.view.WindowInsetsCompat
 import com.airbnb.lottie.LottieAnimationView
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        startService(Intent(this, BackgroundMusicService::class.java))
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars =
                 insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -50,5 +55,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LevelMenuActivity::class.java)
             startActivity(intent)
         }
+
+
+
     }
 }

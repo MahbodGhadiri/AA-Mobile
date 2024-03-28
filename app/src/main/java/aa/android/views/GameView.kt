@@ -19,6 +19,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Canvas
+import android.media.MediaPlayer
 import android.util.AttributeSet
 import android.view.View
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -36,6 +37,10 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private var reRenderReceiver: ReRenderReceiver;
     private var reRenderIntent: Intent;
     private var isFirstTime: Boolean = true;
+    private val winSoundPlayer: MediaPlayer;
+    private val loseSoundPlayer: MediaPlayer;
+    private val popSoundPlayer: MediaPlayer;
+
     val preferences =
         context.applicationContext.getSharedPreferences(
             resources.getString(
@@ -69,14 +74,20 @@ public class GameView(context: Context, attrs: AttributeSet) :
             IntentFilter("reRender")
         )
 
-
+        this.winSoundPlayer = MediaPlayer.create(this.context, R.raw.gamewin)
+        this.loseSoundPlayer = MediaPlayer.create(this.context, R.raw.gameover)
+        this.popSoundPlayer = MediaPlayer.create(this.context, R.raw.popsound)
         this.initializeEngine();
         this.isFirstTime = false;
     }
 
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+    }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow();
+
         if (!this.isFirstTime) {
             this.initializeEngine();
             AppConfig.setEngineStatus(EngineStatus.RUNNING);
@@ -94,10 +105,12 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
 
         this.engine = Engine(mainCircle);
-        //TODO: should be loaded by level activity -----
+        engine.setWinSound { winSoundPlayer.start() }
+        engine.setCollisionSound { loseSoundPlayer.start() }
+
         val level = Class.forName("aa.engine.level.levels.Level" + currentLevel)
             .getDeclaredConstructor().newInstance() as Level;
-        // ---------------------------------------------
+
         engine.play(level, generateSmallBalls(level)) {
             this.lbm.sendBroadcast(
                 this.reRenderIntent
@@ -112,6 +125,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
                 val executionContext = engine.getContext();
                 val ball = executionContext.getSpawnedBall();
                 if (ball != null) {
+                    popSoundPlayer.start();
                     executionContext.addApproachingBall(ball);
                     executionContext.setSpawnedBall(null);
 
@@ -174,6 +188,9 @@ public class GameView(context: Context, attrs: AttributeSet) :
             smallBalls.add(AndroidSmallBall(SmallBallStatus.SPINNING, theta));
         }
         return smallBalls as ArrayList<SmallBall>;
+    }
+
+    public fun stopMusic() {
     }
 
     private fun handleGameOver() {
