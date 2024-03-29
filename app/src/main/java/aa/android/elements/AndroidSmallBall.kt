@@ -12,9 +12,7 @@ import android.graphics.RectF
 class AndroidSmallBall(
     status: SmallBallStatus = SmallBallStatus.HIDDEN,
     theta: Float = 90F,
-    countNumber: Int = 0
-
-
+    number: Int = 0
 ) : SmallBall(status, theta) {
 
     private var countNumber: Int = 0
@@ -39,7 +37,7 @@ class AndroidSmallBall(
 
     init {
         this.calculateNewRectF();
-        this.countNumber = countNumber
+        this.countNumber = number
 
     }
 

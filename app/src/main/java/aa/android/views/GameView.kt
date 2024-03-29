@@ -167,13 +167,13 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
     private fun generateSmallBalls(level: Level): ArrayList<SmallBall> {
         smallBalls.removeAll(smallBalls.toSet());
-        for (i in 1..level.getHiddenBallNum()) {
-            smallBalls.add(AndroidSmallBall(countNumber = i))
+        for (i in 1..level.getInitialHiddenBallNum()) {
+            smallBalls.add(AndroidSmallBall(number = i))
         }
         smallBalls.add(
             AndroidSmallBall(
                 SmallBallStatus.SPAWNING,
-                countNumber = level.getHiddenBallNum() + 1
+                number = level.getInitialHiddenBallNum() + 1
             )
         )
         for (theta in level.getSpinningBallsTheta()) {
