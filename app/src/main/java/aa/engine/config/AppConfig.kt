@@ -32,6 +32,8 @@ object AppConfig {
 
     private var screenClickable: Boolean = true;
 
+    private var textSize: Float = 50F
+
 
     fun initialize(width: Float, height: Float) {
         screenWidth = width;
@@ -59,6 +61,7 @@ object AppConfig {
     fun getMainCircleRadius(): Float = mainCircleRadius;
     fun getMainCircleOrbit(): Float = mainCircleOrbit;
     fun getSmallBallRadius(): Float = smallBallRadius;
+    fun getTextSize(): Float = textSize;
     fun getEngineStatus(): EngineStatus = engineStatus;
     fun getGamePageElementsColor(): String = gamePageElementsColor;
     fun getLevelCount(): Int = levelsCount

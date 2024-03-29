@@ -13,7 +13,7 @@ abstract class Level(
     lateinit var optionalDetectionJobs: Array<Job>;
 
     fun getLevelNo(): Int = levelNo;
-    fun getHiddenBallNum(): Int = hiddenBallNum;
+    fun getInitialHiddenBallNum(): Int = hiddenBallNum;
     fun getSpinningBallsTheta(): Array<Float> = spinningBallsTheta;
     fun getRotationSpeed(): Float = rotationSpeed;
 }
