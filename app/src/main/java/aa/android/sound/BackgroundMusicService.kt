@@ -24,7 +24,7 @@ class BackgroundMusicService : Service() {
 
     }
 
-    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         mediaPlayer.start()
         Log.d("BackgroundMusicService", "Background music started")
         return START_STICKY
