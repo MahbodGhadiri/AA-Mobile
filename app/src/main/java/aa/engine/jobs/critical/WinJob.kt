@@ -13,6 +13,7 @@ class WinJob : Job() {
             context.getSpawnedBall() == null &&
             context.getApproachingBalls().size == 0
         ) {
+            context.setRotationSpeed(0F);
             AppConfig.setEngineStatus(EngineStatus.WIN);
         }
     }

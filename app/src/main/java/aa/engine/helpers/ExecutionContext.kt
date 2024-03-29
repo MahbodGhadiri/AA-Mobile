@@ -7,8 +7,14 @@ import aa.engine.elements.SmallBallStatus
 class ExecutionContext(
     private val mainCircle: MainCircle,
 ) {
-    private var rotationSpeed: Int = 0;
-    private var approachingSpeed: Int = 0;
+    private var rotationSpeed: Float = 0F;
+    private var approachingSpeed: Float = 0F;
+    private var spawningSpeed: Float = 0F;
+
+    private var _rotationSpeed: Float = 0F;
+    private var _approachingSpeed: Float = 0F;
+    private var _spawningSpeed: Float = 0F;
+
 
     private val hiddenBalls = ArrayList<SmallBall>();
     private var spawnedBall: SmallBall? = null;
@@ -35,20 +41,45 @@ class ExecutionContext(
         }
     }
 
-    fun getRotationSpeed(): Int {
+    // start:: spawning
+    fun getSpawningSpeed(): Float {
+        return spawningSpeed;
+    }
+
+    fun getSpawningSpeedCopy(): Float {
+        return this._spawningSpeed;
+    }
+
+    fun setSpawningSpeed(speed: Float, setCopy: Boolean = true) {
+        this.spawningSpeed = speed;
+        if (setCopy) this._spawningSpeed = speed;
+    }
+    // end:: spawning
+
+    fun getRotationSpeed(): Float {
         return rotationSpeed;
     }
 
-    fun setRotationSpeed(speed: Int) {
-        this.rotationSpeed = speed;
+    fun getRotationSpeedCopy(): Float {
+        return _rotationSpeed;
     }
 
-    fun getApproachingSpeed(): Int {
+    fun setRotationSpeed(speed: Float, setCopy: Boolean = true) {
+        this.rotationSpeed = speed;
+        if (setCopy) this._rotationSpeed = speed;
+    }
+
+    fun getApproachingSpeed(): Float {
         return approachingSpeed;
     }
 
-    fun setApproachingSpeed(speed: Int) {
+    fun getApproachingSpeedCopy(): Float {
+        return _approachingSpeed;
+    }
+
+    fun setApproachingSpeed(speed: Float, setCopy: Boolean = true) {
         this.approachingSpeed = speed;
+        if (setCopy) this._approachingSpeed = speed;
     }
 
     fun setSpawningBall(ball: SmallBall?) {

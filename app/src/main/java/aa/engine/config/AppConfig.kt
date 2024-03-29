@@ -13,7 +13,7 @@ object AppConfig {
     private var screenWidth: Float = 0.0f;
     private var screenHeight: Float = 0.0f;
 
-    private val spawningSpeed: Int = 3;
+    private val spawningSpeed: Float = 3F;
     private lateinit var spawnBallPos: Position;
 
     private lateinit var mainCirclePos: Position;
@@ -27,6 +27,10 @@ object AppConfig {
     private var gamePageElementsColor: String = "#76ABAE";
 
     private const val levelsCount = 6
+
+    private var approachingSpeed: Float = 50F;
+
+    private var screenClickable: Boolean = true;
 
     private var textSize: Float = 50F
 
@@ -52,7 +56,7 @@ object AppConfig {
     fun getScrWidth(): Float = screenWidth;
     fun getScrHeight(): Float = screenHeight;
     fun getSpawnBallPos(): Position = spawnBallPos;
-    fun getSpawningSpeed(): Int = spawningSpeed;
+    fun getSpawningSpeed(): Float = spawningSpeed;
     fun getMainCirclePos(): Position = mainCirclePos;
     fun getMainCircleRadius(): Float = mainCircleRadius;
     fun getMainCircleOrbit(): Float = mainCircleOrbit;
@@ -61,10 +65,24 @@ object AppConfig {
     fun getEngineStatus(): EngineStatus = engineStatus;
     fun getGamePageElementsColor(): String = gamePageElementsColor;
     fun getLevelCount(): Int = levelsCount
+    fun getApproachingSpeed(): Float = approachingSpeed
+    fun getScreenClickable(): Boolean = screenClickable
 
     // setters
     fun setEngineStatus(status: EngineStatus) {
         engineStatus = status;
+    }
+
+    fun setApproachingSpeed(speed: Float) {
+        this.approachingSpeed = speed;
+    }
+
+    fun setScreenClickable(value: Boolean) {
+        this.screenClickable = value;
+    }
+
+    fun setMainCircleOrbit(value: Float) {
+        this.mainCircleOrbit = value;
     }
 
 }
