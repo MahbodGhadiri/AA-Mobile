@@ -28,7 +28,7 @@ object AppConfig {
 
     private const val levelsCount = 6
 
-    private var textSize: Float = 60F
+    private var textSize: Float = 50F
 
 
     fun initialize(width: Float, height: Float) {

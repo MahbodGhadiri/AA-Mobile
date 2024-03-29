@@ -23,7 +23,8 @@ class AndroidSmallBall(
     private var right: Float = 0F;
     private var bottom: Float = 0F;
     private val rectF: RectF = RectF(left, top, right, bottom);
-    private val textRect: Rect = Rect(left.toInt(), top.toInt(), right.toInt(), bottom.toInt());
+    private val textRect: Rect =
+        Rect(left.toInt(), top.toInt(), right.toInt(), bottom.toInt());
     private val ovalPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.parseColor(AppConfig.getGamePageElementsColor())
         style = Paint.Style.FILL
@@ -31,7 +32,8 @@ class AndroidSmallBall(
     }
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         textSize = AppConfig.getTextSize()
-
+        textAlign = Paint.Align.CENTER
+        isFakeBoldText = true
     }
 
 
@@ -56,12 +58,7 @@ class AndroidSmallBall(
         rectF.right = right;
         rectF.bottom = bottom;
 
-        textPaint.getTextBounds(
-            countNumber.toString(),
-            0,
-            countNumber.toString().length,
-            textRect
-        );
+
     }
 
     public fun getRectF(): RectF {
@@ -77,14 +74,14 @@ class AndroidSmallBall(
 
 
         canvas.drawOval(rectF, ovalPaint);
-        if (countNumber != 0) {
-            canvas.drawText(
-                countNumber.toString(),
-                this.getPosition().getX() - (textRect.width() / 2),
-                this.getPosition().getY() + (textRect.height() / 2),
-                textPaint
-            )
-        }
+        if (countNumber == 0) return;
+        canvas.drawText(
+            countNumber.toString(),
+            this.getPosition().getX(),
+            this.getPosition().getY() + (AppConfig.getTextSize() / 3),
+            textPaint
+        )
+
 
     }
 }
