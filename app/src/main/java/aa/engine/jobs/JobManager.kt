@@ -33,6 +33,7 @@ class JobManager(context: ExecutionContext) {
     }
 
     public fun tick() {
+        if (AppConfig.getEngineStatus() == EngineStatus.CLEANED_UP) return
         val tweakingIterator = tweakingPeriod.iterator();
         while (tweakingIterator.hasNext()) {
             val job = tweakingIterator.next();
@@ -52,7 +53,7 @@ class JobManager(context: ExecutionContext) {
             }
             job.execute(context);
         }
-
+        System.out.println("mid tick")
         if (AppConfig.getEngineStatus() != EngineStatus.RUNNING) return;
 
         val detectionIterator = detectionPeriod.iterator();
@@ -64,5 +65,6 @@ class JobManager(context: ExecutionContext) {
             }
             job.execute(context);
         }
+        System.out.println("end tick")
     }
 }

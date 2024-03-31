@@ -210,10 +210,13 @@ public class GameView(context: Context, attrs: AttributeSet) :
     @SuppressLint("DrawAllocation", "ResourceAsColor", "Range")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas);
+        if (AppConfig.getEngineStatus() == EngineStatus.CLEANED_UP) {
 
+        }
         // checking if the app should stop or not
-        if (AppConfig.getEngineStatus() == EngineStatus.GAMEOVER) {
+        else if (AppConfig.getEngineStatus() == EngineStatus.GAMEOVER) {
             this.handleGameOver();
+            AppConfig.setEngineStatus(EngineStatus.CLEANED_UP)
         };
         else if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
 

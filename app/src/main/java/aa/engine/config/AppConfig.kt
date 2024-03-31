@@ -6,7 +6,8 @@ enum class EngineStatus {
     RUNNING,
     WIN,
     GAMEOVER,
-    READY
+    READY,
+    CLEANED_UP
 }
 
 object AppConfig {

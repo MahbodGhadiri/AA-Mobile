@@ -55,7 +55,7 @@ class LevelManager(
     public fun clearLevel() {
         currentLevel = null;
         this.jobManager.flushJobs();
-        this.context.flushBalls();
+        // this.context.flushBalls();
     }
 
 
