@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -72,13 +73,13 @@ class WinActivity : AppCompatActivity() {
             }
         }
 
-        val homeButton = findViewById<ImageView>(R.id.menu)
+        val homeButton = findViewById<FrameLayout>(R.id.menu)
         homeButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
-        val levelsMenuButton = findViewById<ImageView>(R.id.levels)
+        val levelsMenuButton = findViewById<FrameLayout>(R.id.levels)
         levelsMenuButton.setOnClickListener {
             val intent = Intent(this, LevelMenuActivity::class.java)
             startActivity(intent)

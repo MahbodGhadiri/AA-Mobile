@@ -120,7 +120,7 @@
                 app:srcCompat="@drawable/next_level_icon" />
 
             <FrameLayout
-                android:id="@+id/Button3"
+                android:id="@+id/retry"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@drawable/level_background_available"
@@ -141,16 +141,15 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="-5dp"
+                    android:layout_marginBottom="5dp"
                     android:gravity="bottom|center"
-                    android:style="?android:attr/borderlessButtonStyle"
                     android:text="Retry"
                     android:textColor="@color/primary"
                     android:textSize="10sp" />
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/Button4"
+                android:id="@+id/menu"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
 
@@ -171,11 +170,10 @@
                     app:srcCompat="@drawable/menu_icon" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="61dp"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="-7dp"
+                    android:layout_marginBottom="3dp"
                     android:gravity="bottom|center"
-                    android:style="?android:attr/borderlessButtonStyle"
                     android:text="Menu"
                     android:textColor="@color/primary"
                     android:textSize="10sp" />
@@ -204,9 +202,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="-7dp"
+                    android:layout_marginBottom="5dp"
                     android:gravity="bottom|center"
-                    android:style="?android:attr/borderlessButtonStyle"
                     android:text="Levels"
                     android:textColor="@color/primary"
                     android:textSize="10sp" />
