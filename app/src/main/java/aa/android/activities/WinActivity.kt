@@ -49,7 +49,7 @@ class WinActivity : AppCompatActivity() {
         )
 
 
-        val retryButton = findViewById<ImageView>(R.id.retry);
+        val retryButton = findViewById<FrameLayout>(R.id.retry);
         retryButton.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java);
             startActivity(intent);

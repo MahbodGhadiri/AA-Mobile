@@ -143,7 +143,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="5dp"
                     android:gravity="bottom|center"
-                    android:text="Retry"
+                    android:text="@string/retry"
                     android:textColor="@color/primary"
                     android:textSize="10sp" />
             </FrameLayout>
@@ -174,7 +174,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="3dp"
                     android:gravity="bottom|center"
-                    android:text="Menu"
+                    android:text="@string/menu"
                     android:textColor="@color/primary"
                     android:textSize="10sp" />
             </FrameLayout>
@@ -204,7 +204,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="5dp"
                     android:gravity="bottom|center"
-                    android:text="Levels"
+                    android:text="@string/levels"
                     android:textColor="@color/primary"
                     android:textSize="10sp" />
             </FrameLayout>
