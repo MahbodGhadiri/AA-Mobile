@@ -40,26 +40,66 @@
         app:layout_constraintVertical_bias="0.95"
         app:srcCompat="@drawable/play_icon" />
 
-    <ImageView
+    <FrameLayout
         android:id="@+id/LevelsButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="60dp"
         android:layout_marginBottom="60dp"
+        android:background="@drawable/level_background_available"
+        android:onClick="handleClickedButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PlayButton"
-        app:srcCompat="@drawable/levels_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/PlayButton">
 
-    <ImageView
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="5dp"
+            app:srcCompat="@drawable/levels_icon" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="-7dp"
+            android:gravity="bottom|center"
+            android:style="?android:attr/borderlessButtonStyle"
+            android:text="Levels"
+            android:textColor="@color/primary"
+            android:textSize="10sp" />
+    </FrameLayout>
+
+    <FrameLayout
         android:id="@+id/AboutUsButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
+
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/level_background_available"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PlayButton"
-        app:srcCompat="@drawable/credit_icon" />
+        app:srcCompat="@drawable/credit_icon">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="7dp"
+            app:srcCompat="@drawable/menu_icon" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="-7dp"
+            android:gravity="bottom|center"
+            android:style="?android:attr/borderlessButtonStyle"
+            android:text="Menu"
+            android:textColor="@color/primary"
+            android:textSize="10sp" />
+    </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

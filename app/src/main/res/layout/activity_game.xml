@@ -23,7 +23,7 @@
         android:layout_height="match_parent"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,12 +33,35 @@
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 
-            <ImageView
+            <FrameLayout
                 android:id="@+id/menuButton"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_gravity="center|start"
-                android:src="@drawable/menu_icon" />
+                android:background="@drawable/level_background_available"
+                android:onClick="handleClickedButton"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/Button5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Button4"
+                app:layout_constraintTop_toBottomOf="@+id/Button1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="7dp"
+                    app:srcCompat="@drawable/menu_icon" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="-7dp"
+                    android:gravity="bottom|center"
+                    android:style="?android:attr/borderlessButtonStyle"
+                    android:text="Menu"
+                    android:textColor="@color/primary"
+                    android:textSize="10sp" />
+            </FrameLayout>
 
             <ImageView
                 android:id="@+id/retryButton"
@@ -52,13 +75,35 @@
                 android:focusable="true"
                 android:src="@drawable/lose_retry_icon" />
 
-            <ImageView
+            <FrameLayout
                 android:id="@+id/levelsButton"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_gravity="center|end"
-                android:src="@drawable/levels_icon"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                android:background="@drawable/level_background_available"
+                android:onClick="handleClickedButton"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/Button5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Button4"
+                app:layout_constraintTop_toBottomOf="@+id/Button1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="5dp"
+                    app:srcCompat="@drawable/levels_icon" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="-7dp"
+                    android:gravity="bottom|center"
+                    android:style="?android:attr/borderlessButtonStyle"
+                    android:text="Menu"
+                    android:textColor="@color/primary"
+                    android:textSize="10sp" />
+            </FrameLayout>
         </LinearLayout>
     </LinearLayout>
 
