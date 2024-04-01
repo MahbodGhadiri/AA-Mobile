@@ -4,12 +4,31 @@ import aa.android.R
 import android.app.Service
 import android.content.Intent
 import android.media.MediaPlayer
+import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import androidx.annotation.Nullable
 
 class BackgroundMusicService : Service() {
     private lateinit var mediaPlayer: MediaPlayer
+    private var isPlaying = false
+    inner class LocalBinder : Binder() {
+        fun getService(): BackgroundMusicService = this@BackgroundMusicService
+    }
+
+    fun pauseMusic() {
+        if (isPlaying) {
+            mediaPlayer.pause()
+            isPlaying = false
+        }
+    }
+
+    fun resumeMusic() {
+        if (!isPlaying) {
+            mediaPlayer.start()
+            isPlaying = true
+        }
+    }
 
     @Nullable
     override fun onBind(intent: Intent): IBinder? {
@@ -26,6 +45,7 @@ class BackgroundMusicService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         mediaPlayer.start()
+        isPlaying = true
         Log.d("BackgroundMusicService", "Background music started")
         return START_STICKY
     }
