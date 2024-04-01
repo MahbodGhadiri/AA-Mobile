@@ -43,6 +43,7 @@ class BackgroundMusicService : Service() {
 
     }
 
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         mediaPlayer.start()
         isPlaying = true

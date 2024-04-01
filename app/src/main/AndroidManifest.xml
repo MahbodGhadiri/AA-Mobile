@@ -53,6 +53,7 @@
         </activity>
         <service android:name=".sound.BackgroundMusicService"
             android:foregroundServiceType="mediaPlayback"
+            android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="androidx.media3.session.MediaSessionService"/>
