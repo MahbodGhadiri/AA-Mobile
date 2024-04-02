@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">aa-android</string>
+    <string name="app_name">aa</string>
     <string name="credits">Credits</string>
     <string name="levels">Levels</string>
     <string name="settings">Settings</string>
@@ -8,7 +8,6 @@
     <string name="contributors">Contributors</string>
     <string name="play">Play</string>
     <string name="game_name">aa</string>
-    <string name="title_activity_main2">MainActivity2</string>
     <string name="mahbod_ghadiri_name">Mahbod Ghadiri Sani</string>
     <string name="mahbod_ghadiri_bio">
       I am a web developer by profession and this app is actually my first experience with Android. I have always been interested in trying out new technologies and learning how they work. This project was also in line with this interest, to learn a new programming language and to enter the world of Android a little bit.
@@ -35,5 +34,9 @@
     <string name="setting_music">Music</string>
     <string name="setting_close_calls">Close Calls</string>
     <string name="setting_language">Language</string>
+    <string name="setting_sound_effects_preferences">SOUND_EFFECT_PREFERENCES</string>
+    <string name="setting_music_preferences">MUSIC_PREFERENCES</string>
+    <string name="setting_close_calls_preferences">CLOSE_CALLS_PREFERENCES</string>
+    <string name="setting_language_preferences">LANGUAGE</string>
 
 </resources>

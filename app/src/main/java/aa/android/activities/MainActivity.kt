@@ -4,7 +4,6 @@ package aa.android.activities
 import aa.android.R
 import aa.android.sound.BackgroundMusicService
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -57,6 +56,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val settingsButton = findViewById<FrameLayout>(R.id.SettingsButton)
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }

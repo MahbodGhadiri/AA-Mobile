@@ -50,19 +50,19 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun getPreferences() {
         hasSoundEffects = preferences.getBoolean(
-            getString(R.string.setting_sound_effects), true
+            getString(R.string.setting_sound_effects_preferences), true
         )
 
         hasMusic = preferences.getBoolean(
-            getString(R.string.setting_music), true
+            getString(R.string.setting_music_preferences), true
         )
 
         hasCloseCalls = preferences.getBoolean(
-            getString(R.string.setting_close_calls), true
+            getString(R.string.setting_close_calls_preferences), true
         )
 
         language = preferences.getString(
-            getString(R.string.setting_language), "English"
+            getString(R.string.setting_language_preferences), "English"
         ).toString()
 
     }
@@ -108,7 +108,7 @@ class SettingsActivity : AppCompatActivity() {
         hasSoundEffects = !hasSoundEffects
         with(preferences.edit()) {
             putBoolean(
-                getString(R.string.setting_sound_effects),
+                getString(R.string.setting_sound_effects_preferences),
                 hasSoundEffects
             )
             apply()
@@ -120,7 +120,7 @@ class SettingsActivity : AppCompatActivity() {
         hasMusic = !hasMusic
         with(preferences.edit()) {
             putBoolean(
-                getString(R.string.setting_music),
+                getString(R.string.setting_music_preferences),
                 hasMusic
             )
             apply()
@@ -132,7 +132,7 @@ class SettingsActivity : AppCompatActivity() {
         hasCloseCalls = !hasCloseCalls
         with(preferences.edit()) {
             putBoolean(
-                getString(R.string.setting_close_calls),
+                getString(R.string.setting_close_calls_preferences),
                 hasCloseCalls
             )
             apply()
