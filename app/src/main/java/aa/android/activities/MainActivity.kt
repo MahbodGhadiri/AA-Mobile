@@ -6,6 +6,7 @@ import aa.android.sound.BackgroundMusicService
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -44,13 +45,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val aboutUsButton = findViewById<ImageView>(R.id.AboutUsButton)
+        val aboutUsButton = findViewById<FrameLayout>(R.id.AboutUsButton)
         aboutUsButton.setOnClickListener {
             val intent = Intent(this, AboutUsActivity::class.java)
             startActivity(intent)
         }
 
-        val levelsButton = findViewById<ImageView>(R.id.LevelsButton)
+        val levelsButton = findViewById<FrameLayout>(R.id.LevelsButton)
         levelsButton.setOnClickListener {
             val intent = Intent(this, LevelMenuActivity::class.java)
             startActivity(intent)
