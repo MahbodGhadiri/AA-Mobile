@@ -23,7 +23,7 @@ class MainActivity : BaseActivity() {
             getString(R.string.setting_music_preferences),
             true
         )
-        
+
         if (hasMusic) {
             startService(Intent(this, BackgroundMusicService::class.java))
         }
@@ -68,7 +68,6 @@ class MainActivity : BaseActivity() {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
-
 
     }
 }

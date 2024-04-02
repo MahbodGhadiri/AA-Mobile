@@ -96,6 +96,12 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
 
     private fun initializeEngine() {
+        val hasSoundEffects = preferences.getBoolean(
+            resources.getString(R.string.setting_sound_effects_preferences),
+            true
+        )
+        AppConfig.setSoundEffectsStatus(hasSoundEffects)
+        
         this.mainCircle = AndroidMainCircle();
         val currentLevel =
             preferences.getString(
@@ -125,7 +131,10 @@ public class GameView(context: Context, attrs: AttributeSet) :
                 val executionContext = engine.getContext();
                 val ball = executionContext.getSpawnedBall();
                 if (ball != null) {
-                    popSoundPlayer.start();
+                    System.out.println(AppConfig.hasSoundEffects())
+                    if (AppConfig.hasSoundEffects()) {
+                        popSoundPlayer.start();
+                    }
                     executionContext.addApproachingBall(ball);
                     executionContext.setSpawnedBall(null);
 

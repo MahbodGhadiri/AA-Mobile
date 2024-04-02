@@ -106,6 +106,7 @@ class SettingsActivity : BaseActivity() {
             apply()
         }
         setResources()
+        AppConfig.setSoundEffectsStatus(hasSoundEffects)
     }
 
     private fun musicOnClick(v: View) {

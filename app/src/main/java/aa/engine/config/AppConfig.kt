@@ -37,6 +37,8 @@ object AppConfig {
 
     private var hasCloseCalls = true;
 
+    private var hasSoundEffects = true;
+
 
     fun initialize(width: Float, height: Float) {
         screenWidth = width;
@@ -71,6 +73,7 @@ object AppConfig {
     fun getApproachingSpeed(): Float = approachingSpeed
     fun getScreenClickable(): Boolean = screenClickable
     fun hasCloseCalls(): Boolean = hasCloseCalls
+    fun hasSoundEffects(): Boolean = hasSoundEffects
 
     // setters
     fun setEngineStatus(status: EngineStatus) {
@@ -91,6 +94,10 @@ object AppConfig {
 
     fun setCloseCallsStatus(hasCloseCalls: Boolean) {
         this.hasCloseCalls = hasCloseCalls;
+    }
+
+    fun setSoundEffectsStatus(hasSoundEffects: Boolean) {
+        this.hasSoundEffects = hasSoundEffects
     }
 
 
