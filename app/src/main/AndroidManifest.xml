@@ -18,7 +18,7 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -29,26 +29,27 @@
         </activity>
         <activity
             android:name=".activities.AboutUsActivity"
+            android:configChanges="orientation|locale"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.GameActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.LevelMenuActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.WinActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.SettingsActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|locale"
             android:exported="true"
             android:screenOrientation="portrait" />
 

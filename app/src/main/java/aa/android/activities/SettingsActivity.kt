@@ -11,13 +11,14 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.util.Locale
 
 class SettingsActivity : BaseActivity() {
 
     private var hasSoundEffects = true
     private var hasMusic = true
     private var hasCloseCalls = true
-    private var language = "English"
+    private var language = "en"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +55,7 @@ class SettingsActivity : BaseActivity() {
         )
 
         language = preferences.getString(
-            getString(R.string.setting_language_preferences), "English"
+            getString(R.string.setting_language_preferences), "en"
         ).toString()
 
     }
@@ -64,6 +65,7 @@ class SettingsActivity : BaseActivity() {
             findViewById<ImageView>(R.id.sound_effect_button)
         val musicButton = findViewById<ImageView>(R.id.music_button)
         val closeCallsButton = findViewById<ImageView>(R.id.close_calls_button)
+        val languageButton = findViewById<ImageView>(R.id.language_button)
 
         if (hasSoundEffects) {
             soundEffectButton.setImageResource(R.drawable.settings_sound_effect_on)
@@ -93,6 +95,10 @@ class SettingsActivity : BaseActivity() {
         closeCallsButton.adjustViewBounds = true
         closeCallsButton.setOnClickListener {
             closeCallsOnClick(it)
+        }
+
+        languageButton.setOnClickListener {
+            languageOnClick(it)
         }
     }
 
@@ -138,4 +144,22 @@ class SettingsActivity : BaseActivity() {
         setResources()
         AppConfig.setCloseCallsStatus(hasCloseCalls)
     }
+
+    private fun languageOnClick(v: View) {
+        if (language == "en") {
+            language = "fa"
+        } else {
+            language = "en"
+        }
+
+        with(preferences.edit()) {
+            putString(
+                getString(R.string.setting_language_preferences),
+                language
+            )
+            apply()
+        }
+    }
+
+    
 }
