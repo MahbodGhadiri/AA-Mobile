@@ -73,9 +73,9 @@ class CollisionJob(private val onCollisionSound: () -> Unit) : Job() {
                 AppConfig.setScreenClickable(true);
                 AppConfig.setEngineStatus(EngineStatus.GAMEOVER);
 
-                if (AppConfig.hasSoundEffects()) {
-                    onCollisionSound()
-                }
+//                if (AppConfig.hasSoundEffects()) {
+//                    onCollisionSound()
+//                }
 
                 break;
             }

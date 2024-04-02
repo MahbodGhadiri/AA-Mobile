@@ -2,6 +2,9 @@ package aa.engine.elements
 
 import aa.engine.config.AppConfig
 import aa.engine.helpers.Position
+import android.media.MediaPlayer
+import java.util.Timer
+import java.util.TimerTask
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -23,6 +26,24 @@ open class SmallBall constructor(
     ),
     private var radius: Float = AppConfig.getSmallBallRadius(),
 ) {
+    private var popSound: MediaPlayer? = null;
+
+    fun setPopSound(sound: MediaPlayer) {
+        this.popSound = sound;
+    }
+
+    fun playPopSound() {
+        this.popSound?.start();
+
+        // making sure to release the Media, otherwise it will be an overflow
+        Timer().schedule(object : TimerTask() {
+            override fun run() {
+                popSound?.stop();
+                popSound?.release();
+            }
+        }, 500);
+    }
+
     fun setPosition(x: Float, y: Float) {
         this.position.setPosition(x, y);
     }

@@ -5,7 +5,7 @@
     <string name="levels">مرحله ها</string>
     <string name="settings">تنظیمات</string>
     <string name="contributors">توسعه دهندگان</string>
-    <string name="retry">retry</string>
+    <string name="retry">دوباره</string>
     <string name="menu">منو</string>
     <string name="play">شروع</string>
     <string name="game_name">aa</string>
@@ -28,7 +28,7 @@
     <string name="game"> شما</string>
     <string name="over">باختید</string>
     <string name="you"> شما</string>
-    <string name="won"> برنده شدید</string>
+    <string name="won"> بردید</string>
     <string name="current_level"> CURRENT_LEVEL</string>
     <string name="highest_completed_level"> HIGHEST_COMPLETED_LEVEL</string>
     <string name="preferences">aa.android.preferences</string>

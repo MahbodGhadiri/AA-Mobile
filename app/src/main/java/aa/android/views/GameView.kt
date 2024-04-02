@@ -39,7 +39,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private var isFirstTime: Boolean = true;
     private val winSoundPlayer: MediaPlayer;
     private val loseSoundPlayer: MediaPlayer;
-    private val popSoundPlayer: MediaPlayer;
+    private val popSoundFile: Int;
 
     val preferences =
         context.applicationContext.getSharedPreferences(
@@ -76,7 +76,8 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
         this.winSoundPlayer = MediaPlayer.create(this.context, R.raw.gamewin)
         this.loseSoundPlayer = MediaPlayer.create(this.context, R.raw.gameover)
-        this.popSoundPlayer = MediaPlayer.create(this.context, R.raw.popsound)
+        this.popSoundFile = R.raw.popsound8
+
         this.initializeEngine();
         this.isFirstTime = false;
     }
@@ -101,7 +102,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
             true
         )
         AppConfig.setSoundEffectsStatus(hasSoundEffects)
-        
+
         this.mainCircle = AndroidMainCircle();
         val currentLevel =
             preferences.getString(
@@ -131,9 +132,8 @@ public class GameView(context: Context, attrs: AttributeSet) :
                 val executionContext = engine.getContext();
                 val ball = executionContext.getSpawnedBall();
                 if (ball != null) {
-                    System.out.println(AppConfig.hasSoundEffects())
                     if (AppConfig.hasSoundEffects()) {
-                        popSoundPlayer.start();
+                        ball.playPopSound()
                     }
                     executionContext.addApproachingBall(ball);
                     executionContext.setSpawnedBall(null);
@@ -160,7 +160,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
                 engine.stop();
                 setBackgroundColor(resources.getColor(R.color.background));
             }
-        }, 1000);
+        }, 100);
 
 
         val currentLevel =
@@ -191,13 +191,29 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private fun generateSmallBalls(level: Level): ArrayList<SmallBall> {
         smallBalls.removeAll(smallBalls.toSet());
         for (i in 1..level.getInitialHiddenBallNum()) {
-            smallBalls.add(AndroidSmallBall(number = i))
+            val sBall: AndroidSmallBall = AndroidSmallBall(number = i);
+            sBall.setPopSound(
+                MediaPlayer.create(
+                    this.context,
+                    this.popSoundFile
+                )
+            );
+            smallBalls.add(sBall);
         }
-        smallBalls.add(
-            AndroidSmallBall(
-                SmallBallStatus.SPAWNING,
-                number = level.getInitialHiddenBallNum() + 1
+
+        val sBall: AndroidSmallBall = AndroidSmallBall(
+            SmallBallStatus.SPAWNING,
+            number = level.getInitialHiddenBallNum() + 1
+        );
+        sBall.setPopSound(
+            MediaPlayer.create(
+                this.context,
+                this.popSoundFile
             )
+        );
+
+        smallBalls.add(
+            sBall
         )
         for (theta in level.getSpinningBallsTheta()) {
             smallBalls.add(AndroidSmallBall(SmallBallStatus.SPINNING, theta));
