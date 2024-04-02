@@ -69,6 +69,36 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/SettingsButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/level_background_available"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/AboutUsButton"
+        app:layout_constraintStart_toEndOf="@+id/LevelsButton"
+        app:layout_constraintTop_toBottomOf="@+id/PlayButton"
+        app:srcCompat="@drawable/credit_icon">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="7dp"
+            app:srcCompat="@drawable/settings_icon" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="3dp"
+            android:gravity="bottom|center"
+            android:text="@string/settings"
+            android:textColor="@color/primary"
+            android:textSize="8sp" />
+    </FrameLayout>
+
+    <FrameLayout
         android:id="@+id/AboutUsButton"
         android:layout_width="60dp"
         android:layout_height="60dp"

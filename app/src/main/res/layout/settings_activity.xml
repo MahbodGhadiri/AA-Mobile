@@ -1,0 +1,129 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settings"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_weight="1"
+        android:dividerPadding="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="6"
+            android:gravity="center"
+            android:text="@string/setting_sound_effects"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/sound_effect_button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:onClick="" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="6"
+            android:gravity="center"
+            android:text="@string/setting_music"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/music_button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_weight="1"
+        android:dividerPadding="15sp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="6"
+            android:gravity="center"
+            android:text="@string/setting_close_calls"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/close_calls_button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+
+        android:layout_weight="1"
+        android:dividerPadding="15sp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="6"
+            android:gravity="center"
+            android:text="@string/setting_language"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/language_button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:src="@drawable/settings_translate" />
+    </LinearLayout>
+
+
+</LinearLayout>

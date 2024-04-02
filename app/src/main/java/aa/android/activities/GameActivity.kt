@@ -2,6 +2,7 @@ package aa.android.activities
 
 import aa.android.R
 import aa.android.views.GameView
+import aa.engine.config.AppConfig
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -9,11 +10,10 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class GameActivity : AppCompatActivity() {
+class GameActivity : BaseActivity() {
     private lateinit var gameOverButtons: LinearLayout;
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +58,14 @@ class GameActivity : AppCompatActivity() {
             val intent = Intent(this, LevelMenuActivity::class.java);
             startActivity(intent);
         }
+
+        val hasCloseCalls = preferences.getBoolean(
+            getString(R.string.setting_close_calls_preferences),
+            true
+        )
+        AppConfig.setCloseCallsStatus(hasCloseCalls)
     }
+
     fun showGameOverButtons() {
         gameOverButtons.visibility = View.VISIBLE;
     }

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">aa-android</string>
+    <string name="app_name">aa</string>
     <string name="credits">امتیازات</string>
     <string name="levels">مرحله ها</string>
     <string name="settings">تنظیمات</string>
     <string name="contributors">توسعه دهندگان</string>
-    <string name="retry">retry</string>
+    <string name="retry">دوباره</string>
     <string name="menu">منو</string>
     <string name="play">شروع</string>
     <string name="game_name">aa</string>
-    <string name="title_activity_main2">MainActivity2</string>
     <string name="mahbod_ghadiri_name">مهبد غدیری ثانی</string>
     <string name="mahbod_ghadiri_bio">
         به طور کل توسعه دهنده وب هستم و در واقع این برنامه اولین تجربم با اندرویده. همیشه علاقم این بوده که تکنولوژی‌های جدید رو امتحان کنم و از نحوه کار کردنشون سر در بیارم. این پروژه هم کاملا در راستای همین علاقه بوده تا با زبان برنامه نویسی جدیدی آشنا بشم و به دنیا اندروید اندکی ورود کنم.
@@ -29,8 +28,16 @@
     <string name="game"> شما</string>
     <string name="over">باختید</string>
     <string name="you"> شما</string>
-    <string name="won"> برنده شدید</string>
+    <string name="won"> بردید</string>
     <string name="current_level"> CURRENT_LEVEL</string>
     <string name="highest_completed_level"> HIGHEST_COMPLETED_LEVEL</string>
     <string name="preferences">aa.android.preferences</string>
+    <string name="setting_sound_effects"> جلوه های صوتی</string>
+    <string name="setting_music"> موسبقی</string>
+    <string name="setting_close_calls">صحنه آهسته</string>
+    <string name="setting_language">زبان</string>
+    <string name="setting_sound_effects_preferences">SOUND_EFFECT_PREFERENCES</string>
+    <string name="setting_music_preferences">MUSIC_PREFERENCES</string>
+    <string name="setting_close_calls_preferences">CLOSE_CALLS_PREFERENCES</string>
+    <string name="setting_language_preferences">LANGUAGE</string>
 </resources>

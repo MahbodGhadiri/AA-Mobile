@@ -53,7 +53,6 @@ class JobManager(context: ExecutionContext) {
             }
             job.execute(context);
         }
-        System.out.println("mid tick")
         if (AppConfig.getEngineStatus() != EngineStatus.RUNNING) return;
 
         val detectionIterator = detectionPeriod.iterator();
@@ -65,6 +64,5 @@ class JobManager(context: ExecutionContext) {
             }
             job.execute(context);
         }
-        System.out.println("end tick")
     }
 }

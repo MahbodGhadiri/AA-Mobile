@@ -15,7 +15,10 @@ class WinJob(private val onWinSound: () -> Unit) : Job() {
         ) {
             context.setRotationSpeed(0F);
             AppConfig.setEngineStatus(EngineStatus.WIN);
-            onWinSound()
+
+            if (AppConfig.hasSoundEffects()) {
+                onWinSound
+            }
         }
     }
 }

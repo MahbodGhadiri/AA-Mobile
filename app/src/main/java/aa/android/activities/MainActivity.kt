@@ -4,24 +4,30 @@ package aa.android.activities
 import aa.android.R
 import aa.android.sound.BackgroundMusicService
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.airbnb.lottie.LottieAnimationView
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        startService(Intent(this, BackgroundMusicService::class.java))
+
+        val hasMusic = preferences.getBoolean(
+            getString(R.string.setting_music_preferences),
+            true
+        )
+
+        if (hasMusic) {
+            startService(Intent(this, BackgroundMusicService::class.java))
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars =
                 insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -57,7 +63,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        val settingsButton = findViewById<FrameLayout>(R.id.SettingsButton)
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }
