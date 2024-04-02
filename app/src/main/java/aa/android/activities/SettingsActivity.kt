@@ -3,6 +3,7 @@ package aa.android.activities
 
 import aa.android.R
 import aa.android.sound.BackgroundMusicService
+import aa.engine.config.AppConfig
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -134,5 +135,6 @@ class SettingsActivity : BaseActivity() {
             apply()
         }
         setResources()
+        AppConfig.setCloseCallsStatus(hasCloseCalls)
     }
 }

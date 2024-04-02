@@ -50,6 +50,7 @@ class CollisionJob(private val onCollisionSound: () -> Unit) : Job() {
              */
 
             if (
+                AppConfig.hasCloseCalls() &&
                 closestBallToMainCircle != null
                 && calDistance(
                     sBall.getPosition(),

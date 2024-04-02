@@ -2,6 +2,7 @@ package aa.android.activities
 
 import aa.android.R
 import aa.android.views.GameView
+import aa.engine.config.AppConfig
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -57,6 +58,12 @@ class GameActivity : BaseActivity() {
             val intent = Intent(this, LevelMenuActivity::class.java);
             startActivity(intent);
         }
+
+        val hasCloseCalls = preferences.getBoolean(
+            getString(R.string.setting_close_calls_preferences),
+            true
+        )
+        AppConfig.setCloseCallsStatus(hasCloseCalls)
     }
 
     fun showGameOverButtons() {
