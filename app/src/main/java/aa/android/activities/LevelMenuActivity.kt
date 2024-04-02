@@ -2,20 +2,16 @@ package aa.android.activities
 
 import aa.android.R
 import aa.engine.config.AppConfig
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class LevelMenuActivity : AppCompatActivity() {
+class LevelMenuActivity : BaseActivity() {
     lateinit var textIds: IntArray;
-    lateinit var sharedPref: SharedPreferences;
     var currentLevel: String = "1";
     var highestCompletedLevel: String = "0";
     var page: Int = 1;
@@ -38,16 +34,12 @@ class LevelMenuActivity : AppCompatActivity() {
             insets
         }
 
-        sharedPref = this.getSharedPreferences(
-            resources.getString(R.string.preferences),
-            Context.MODE_PRIVATE
-        )
 
         currentLevel =
-            sharedPref.getString(getString(R.string.current_level), "1")
+            preferences.getString(getString(R.string.current_level), "1")
                 .toString()
 
-        highestCompletedLevel = sharedPref.getString(
+        highestCompletedLevel = preferences.getString(
             getString(R.string.highest_completed_level),
             "0"
         ).toString()
@@ -90,7 +82,7 @@ class LevelMenuActivity : AppCompatActivity() {
         val levelNumber = v.getTag().toString()
 
         if (levelNumber.toInt() <= (highestCompletedLevel.toInt() + 1)) {
-            with(sharedPref.edit()) {
+            with(preferences.edit()) {
                 putString(getString(R.string.current_level), levelNumber)
                 apply()
             }

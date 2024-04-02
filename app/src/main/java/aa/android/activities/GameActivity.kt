@@ -9,11 +9,10 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class GameActivity : AppCompatActivity() {
+class GameActivity : BaseActivity() {
     private lateinit var gameOverButtons: LinearLayout;
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +58,7 @@ class GameActivity : AppCompatActivity() {
             startActivity(intent);
         }
     }
+
     fun showGameOverButtons() {
         gameOverButtons.visibility = View.VISIBLE;
     }
