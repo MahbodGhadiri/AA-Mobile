@@ -29,4 +29,9 @@
     <string name="current_level"> CURRENT_LEVEL</string>
     <string name="highest_completed_level"> HIGHEST_COMPLETED_LEVEL</string>
     <string name="preferences">aa.android.preferences</string>
+    <string name="setting_sound_effects">Sound Effects</string>
+    <string name="setting_music">Music</string>
+    <string name="setting_close_calls">Close Calls</string>
+    <string name="setting_language">Language</string>
+
 </resources>
