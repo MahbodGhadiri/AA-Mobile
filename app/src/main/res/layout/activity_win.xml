@@ -119,26 +119,95 @@
                 android:layout_margin="30dp"
                 app:srcCompat="@drawable/next_level_icon" />
 
-            <ImageView
+            <FrameLayout
                 android:id="@+id/retry"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_margin="20dp"
-                app:srcCompat="@drawable/win_retry_icon" />
+                android:background="@drawable/level_background_available"
+                android:onClick="handleClickedButton"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/Button5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Button4"
+                app:layout_constraintTop_toBottomOf="@+id/Button1">
 
-            <ImageView
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="5dp"
+                    app:srcCompat="@drawable/win_retry_button" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="bottom|center"
+                    android:text="@string/retry"
+                    android:textColor="@color/primary"
+                    android:textSize="10sp" />
+            </FrameLayout>
+
+            <FrameLayout
                 android:id="@+id/menu"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_margin="20dp"
-                android:src="@drawable/menu_icon" />
 
-            <ImageView
+                android:layout_margin="20dp"
+                android:background="@drawable/level_background_available"
+                android:onClick="handleClickedButton"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/Button5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Button4"
+                app:layout_constraintTop_toBottomOf="@+id/Button1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="7dp"
+                    app:srcCompat="@drawable/menu_icon" />
+
+                <TextView
+                    android:layout_width="61dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="bottom|center"
+                    android:text="@string/menu"
+                    android:textColor="@color/primary"
+                    android:textSize="10sp" />
+            </FrameLayout>
+
+
+            <FrameLayout
                 android:id="@+id/levels"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_margin="20dp"
-                android:src="@drawable/levels_icon" />
+                android:background="@drawable/level_background_available"
+                android:onClick="handleClickedButton"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/Button5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Button4"
+                app:layout_constraintTop_toBottomOf="@+id/Button1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="5dp"
+                    app:srcCompat="@drawable/levels_icon" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="bottom|center"
+                    android:text="@string/levels"
+                    android:textColor="@color/primary"
+                    android:textSize="10sp" />
+            </FrameLayout>
         </LinearLayout>
 
     </LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">aa-android</string>
+    <string name="credits">امتیازات</string>
+    <string name="levels">مرحله ها</string>
+    <string name="settings">تنظیمات</string>
+    <string name="contributors">توسعه دهندگان</string>
+    <string name="retry">retry</string>
+    <string name="menu">منو</string>
+    <string name="play">شروع</string>
+    <string name="game_name">aa</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="mahbod_ghadiri_name">مهبد غدیری ثانی</string>
+    <string name="mahbod_ghadiri_bio">
+        به طور کل توسعه دهنده وب هستم و در واقع این برنامه اولین تجربم با اندرویده. همیشه علاقم این بوده که تکنولوژی‌های جدید رو امتحان کنم و از نحوه کار کردنشون سر در بیارم. این پروژه هم کاملا در راستای همین علاقه بوده تا با زبان برنامه نویسی جدیدی آشنا بشم و به دنیا اندروید اندکی ورود کنم.
+    </string>
+    <string name="joseph_osanlou_name">یوسف اصانلو</string>
+    <string name="joseph_osanlou_bio">
+        یک توسعه دهنده جلوی 21 ساله, در حال حاضر دانشجوی رشته علوم کامپیوتر در دانشگاه خوارزمی هستم. علاقه شدیدی به قهوه, ورزش و android studio دارم و به دنبال فرصتی برای کار بر روی پروژه‌های چالش‌برانگیز و نوآورانه هستم.
+    </string>
+    <string name="danial_azimi_name">دانیال عظیمی</string>
+    <string name="danial_azimi_bio">
+        دانیالم، ۲۰ سالمه و فرانت اند دولوپر تازه کار هستم. دانشجوی دانشگاه خوارزمی ام و علاقه به یادگیری چیزای جدید دارم.
+    </string>
+    <string name="armin_jodat_name">آرمین جودت</string>
+    <string name="armin_jodat_bio">
+        سلام من یک backend دولپر ۲۱ ساله هستم و در حال حاضر دانشجوی cs در دانشگاه خوارزمی هستم.و از ساخت اپ در android لذت میبرم و ایجاد پروژه های خلاقانه  باعث خوشحالی من میشود.
+    </string>
+    <string name="game"> شما</string>
+    <string name="over">باختید</string>
+    <string name="you"> شما</string>
+    <string name="won"> برنده شدید</string>
+    <string name="current_level"> CURRENT_LEVEL</string>
+    <string name="highest_completed_level"> HIGHEST_COMPLETED_LEVEL</string>
+    <string name="preferences">aa.android.preferences</string>
+</resources>

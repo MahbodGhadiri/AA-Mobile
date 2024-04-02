@@ -1,26 +1,28 @@
 <resources>
     <string name="app_name">aa-android</string>
-    <string name="credits">credits</string>
-    <string name="levels">levels</string>
-    <string name="settings">settings</string>
-    <string name="play">play</string>
+    <string name="credits">Credits</string>
+    <string name="levels">Levels</string>
+    <string name="settings">Settings</string>
+    <string name="menu">Menu</string>
+    <string name="retry">Retry</string>
+    <string name="contributors">Contributors</string>
+    <string name="play">Play</string>
     <string name="game_name">aa</string>
     <string name="title_activity_main2">MainActivity2</string>
-    <string name="mahbod_ghadiri_name">مهبد غدیری ثانی</string>
+    <string name="mahbod_ghadiri_name">Mahbod Ghadiri Sani</string>
     <string name="mahbod_ghadiri_bio">
-        به طور کل توسعه دهنده وب هستم و در واقع این برنامه اولین تجربم با اندرویده. همیشه علاقم این بوده که تکنولوژی‌های جدید رو امتحان کنم و از نحوه کار کردنشون سر در بیارم. این پروژه هم کاملا در راستای همین علاقه بوده تا با زبان برنامه نویسی جدیدی آشنا بشم و به دنیا اندروید اندکی ورود کنم.
+      I am a web developer by profession and this app is actually my first experience with Android. I have always been interested in trying out new technologies and learning how they work. This project was also in line with this interest, to learn a new programming language and to enter the world of Android a little bit.
     </string>
-    <string name="joseph_osanlou_name">یوسف اصانلو</string>
+    <string name="joseph_osanlou_name">Joseph Osanlou</string>
     <string name="joseph_osanlou_bio">
-        یک توسعه دهنده جلوی 21 ساله, در حال حاضر دانشجوی رشته علوم کامپیوتر در دانشگاه خوارزمی هستم. علاقه شدیدی به قهوه, ورزش و android studio دارم و به دنبال فرصتی برای کار بر روی پروژه‌های چالش‌برانگیز و نوآورانه هستم.
-    </string>
-    <string name="danial_azimi_name">دانیال عظیمی</string>
+        I am a 21-year-old front-end developer, currently a student of computer science at Kharazmi University. I have a strong passion for coffee, sports, and Coding, and I am looking for an opportunity to work on challenging and innovative projects.    </string>
+    <string name="danial_azimi_name">Danial Azimi</string>
     <string name="danial_azimi_bio">
-        دانیالم، ۲۰ سالمه و فرانت اند دولوپر تازه کار هستم. دانشجوی دانشگاه خوارزمی ام و علاقه به یادگیری چیزای جدید دارم.
+        My name is Daniel, I am 20 years old and I am a junior front-end developer. I am a student at Kharazmi University and I am passionate about learning new things.
     </string>
-    <string name="armin_jodat_name">آرمین جودت</string>
+    <string name="armin_jodat_name">Armin Jodat</string>
     <string name="armin_jodat_bio">
-        سلام من یک backend دولپر ۲۱ ساله هستم و در حال حاضر دانشجوی cs در دانشگاه خوارزمی هستم.و از ساخت اپ در android لذت میبرم و ایجاد پروژه های خلاقانه  باعث خوشحالی من میشود.
+        Hello, I am a 21-year-old backend developer and I am currently a CS student at Kharazmi University. I enjoy building apps on Android and I am happy to create creative projects.
     </string>
     <string name="game"> GAME</string>
     <string name="over"> OVER</string>

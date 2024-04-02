@@ -5,6 +5,7 @@ import aa.android.views.GameView
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
@@ -44,14 +45,14 @@ class GameActivity : AppCompatActivity() {
             startActivity(intent);
         }
 
-        val menuButton = findViewById<ImageView>(R.id.menuButton);
+        val menuButton = findViewById<FrameLayout>(R.id.menuButton);
         menuButton.setOnClickListener {
             gameView.stopMusic()
             val intent = Intent(this, MainActivity::class.java);
             startActivity(intent);
         }
 
-        val levelsButton = findViewById<ImageView>(R.id.levelsButton);
+        val levelsButton = findViewById<FrameLayout>(R.id.levelsButton);
         levelsButton.setOnClickListener {
             gameView.stopMusic()
             val intent = Intent(this, LevelMenuActivity::class.java);
