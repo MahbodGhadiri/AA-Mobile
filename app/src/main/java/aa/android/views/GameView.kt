@@ -23,8 +23,6 @@ import android.media.MediaPlayer
 import android.util.AttributeSet
 import android.view.View
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import java.util.Timer
-import java.util.TimerTask
 
 public class GameView(context: Context, attrs: AttributeSet) :
     View(context, attrs) {
@@ -41,7 +39,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private val loseSoundPlayer: MediaPlayer;
     private val popSoundFile: Int;
 
-    val preferences =
+    private val preferences =
         context.applicationContext.getSharedPreferences(
             resources.getString(
                 R.string.preferences
@@ -133,7 +131,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
                 val ball = executionContext.getSpawnedBall();
                 if (ball != null) {
                     if (AppConfig.hasSoundEffects()) {
-                        ball.playPopSound()
+                        (ball as AndroidSmallBall).playPopSound()
                     }
                     executionContext.addApproachingBall(ball);
                     executionContext.setSpawnedBall(null);
@@ -155,14 +153,6 @@ public class GameView(context: Context, attrs: AttributeSet) :
         context.startActivity(intent);
         AppConfig.setEngineStatus(EngineStatus.READY);
 
-        Timer().schedule(object : TimerTask() {
-            override fun run() {
-                engine.stop();
-                setBackgroundColor(resources.getColor(R.color.background));
-            }
-        }, 100);
-
-
         val currentLevel =
             preferences.getString(
                 resources.getString(R.string.current_level),
@@ -183,45 +173,37 @@ public class GameView(context: Context, attrs: AttributeSet) :
                     apply()
                 }
             }
-
-
         }
+
+        engine.stop();
+        setBackgroundColor(resources.getColor(R.color.background));
     }
 
     private fun generateSmallBalls(level: Level): ArrayList<SmallBall> {
         smallBalls.removeAll(smallBalls.toSet());
         for (i in 1..level.getInitialHiddenBallNum()) {
-            val sBall: AndroidSmallBall = AndroidSmallBall(number = i);
-            sBall.setPopSound(
+            smallBalls.add(AndroidSmallBall(number = i));
+        }
+        smallBalls.add(
+            AndroidSmallBall(
+                SmallBallStatus.SPAWNING,
+                number = level.getInitialHiddenBallNum() + 1
+            )
+        )
+
+        for (ball in smallBalls) {
+            ball.setPopSound(
                 MediaPlayer.create(
                     this.context,
                     this.popSoundFile
                 )
-            );
-            smallBalls.add(sBall);
+            )
         }
 
-        val sBall: AndroidSmallBall = AndroidSmallBall(
-            SmallBallStatus.SPAWNING,
-            number = level.getInitialHiddenBallNum() + 1
-        );
-        sBall.setPopSound(
-            MediaPlayer.create(
-                this.context,
-                this.popSoundFile
-            )
-        );
-
-        smallBalls.add(
-            sBall
-        )
         for (theta in level.getSpinningBallsTheta()) {
             smallBalls.add(AndroidSmallBall(SmallBallStatus.SPINNING, theta));
         }
         return smallBalls as ArrayList<SmallBall>;
-    }
-
-    public fun stopMusic() {
     }
 
     private fun handleGameOver() {
@@ -254,9 +236,10 @@ public class GameView(context: Context, attrs: AttributeSet) :
             }
 
 
-        } else if (AppConfig.getEngineStatus() == EngineStatus.READY) {
-            // do nothing
         }
+//        else if (AppConfig.getEngineStatus() == EngineStatus.READY) {
+//            // do nothing
+//        }
 
         val mainCirclePosition = mainCircle.getPosition();
         for (smallBall in this.smallBalls) {

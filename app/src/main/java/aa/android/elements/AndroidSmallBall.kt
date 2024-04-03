@@ -8,13 +8,15 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.RectF
+import android.media.MediaPlayer
+import java.util.Timer
+import java.util.TimerTask
 
 class AndroidSmallBall(
     status: SmallBallStatus = SmallBallStatus.HIDDEN,
     theta: Float = 90F,
     number: Int = 0
 ) : SmallBall(status, theta) {
-
     private var countNumber: Int = 0
     private var left: Float = 0F;
     private var top: Float = 0F;
@@ -32,6 +34,23 @@ class AndroidSmallBall(
         textSize = AppConfig.getTextSize()
         textAlign = Paint.Align.CENTER
         isFakeBoldText = true
+    }
+    private lateinit var popSound: MediaPlayer;
+
+    fun setPopSound(sound: MediaPlayer) {
+        this.popSound = sound;
+    }
+
+    fun playPopSound() {
+        this.popSound.start();
+
+        // making sure to release the Media, otherwise it will be an overflow
+        Timer().schedule(object : TimerTask() {
+            override fun run() {
+                popSound.stop();
+                popSound.release();
+            }
+        }, 500);
     }
 
 

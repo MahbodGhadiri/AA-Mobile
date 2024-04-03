@@ -40,21 +40,18 @@ class GameActivity : BaseActivity() {
 
         val retryButton = findViewById<ImageView>(R.id.retryButton);
         retryButton.setOnClickListener {
-            gameView.stopMusic()
             val intent = Intent(this, GameActivity::class.java);
             startActivity(intent);
         }
 
         val menuButton = findViewById<FrameLayout>(R.id.menuButton);
         menuButton.setOnClickListener {
-            gameView.stopMusic()
             val intent = Intent(this, MainActivity::class.java);
             startActivity(intent);
         }
 
         val levelsButton = findViewById<FrameLayout>(R.id.levelsButton);
         levelsButton.setOnClickListener {
-            gameView.stopMusic()
             val intent = Intent(this, LevelMenuActivity::class.java);
             startActivity(intent);
         }
