@@ -105,28 +105,25 @@
         android:dividerPadding="15sp"
         android:orientation="horizontal">
 
-<!--        <TextView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_marginRight="15dp"-->
-<!--            android:layout_weight="6"-->
-<!--            android:gravity="center"-->
-<!--            android:text="@string/setting_language"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textColor="@color/primary"-->
-<!--            android:textSize="30sp" />-->
         <Spinner
-            android:id="@+id/language_button"
-            android:layout_width="match_parent"
+            android:id="@+id/language_spinner"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:adjustViewBounds="true"
+            android:layout_weight="6"
             android:background="@color/background"
             android:popupBackground="@color/dark_green"
             android:spinnerMode="dialog"
-            android:src="@drawable/settings_translate"
-            android:textAlignment="center" />
+            android:textSize="30sp"
+            android:textColor="@color/primary"/>
 
+        <ImageView
+            android:id="@+id/language_button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:src="@drawable/settings_translate" />
     </LinearLayout>
 
 
