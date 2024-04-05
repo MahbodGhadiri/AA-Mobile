@@ -9,7 +9,7 @@ import aa.engine.jobs.Job
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-class CollisionJob(private val onCollisionSound: () -> Unit) : Job() {
+class CollisionJob() : Job() {
     private var rotationSpeed: Float = 0F;
     private var approachingSpeed: Float = 0F;
 
@@ -72,10 +72,6 @@ class CollisionJob(private val onCollisionSound: () -> Unit) : Job() {
                 // collision detected. stop the engine
                 AppConfig.setScreenClickable(true);
                 AppConfig.setEngineStatus(EngineStatus.GAMEOVER);
-
-//                if (AppConfig.hasSoundEffects()) {
-//                    onCollisionSound()
-//                }
 
                 break;
             }

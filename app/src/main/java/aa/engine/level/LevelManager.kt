@@ -15,16 +15,13 @@ class LevelManager(
     private var context: ExecutionContext
 ) {
     private var currentLevel: Level? = null;
-    private fun setupCriticalJobs(
-        onWinSound: () -> Unit,
-        onCollisionSound: () -> Unit
-    ) {
+    private fun setupCriticalJobs() {
         context.setApproachingSpeed(AppConfig.getApproachingSpeed());
         jobManager.addJobToMovingPeriod(OrbitingJob());
         jobManager.addJobToMovingPeriod(MoveUpJob());
         jobManager.addJobToTweakingPeriod(SpawnJob());
-        jobManager.addJobToDetectionPeriod(CollisionJob(onCollisionSound));
-        jobManager.addJobToDetectionPeriod(WinJob(onWinSound));
+        jobManager.addJobToDetectionPeriod(CollisionJob());
+        jobManager.addJobToDetectionPeriod(WinJob());
         jobManager.addJobToDetectionPeriod(OrbitDetectionJob());
     }
 
@@ -42,13 +39,11 @@ class LevelManager(
 
     public fun setup(
         level: Level,
-        onWinSound: () -> Unit,
-        onCollisionSound: () -> Unit
     ) {
         currentLevel = level;
         context.setRotationSpeed(currentLevel!!.getRotationSpeed());
         context.setSpawningSpeed(AppConfig.getSpawningSpeed());
-        this.setupCriticalJobs(onWinSound, onCollisionSound);
+        this.setupCriticalJobs();
         this.setupOptionalJobs();
     }
 

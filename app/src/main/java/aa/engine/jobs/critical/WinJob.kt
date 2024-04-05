@@ -5,7 +5,7 @@ import aa.engine.config.EngineStatus
 import aa.engine.helpers.ExecutionContext
 import aa.engine.jobs.Job
 
-class WinJob(private val onWinSound: () -> Unit) : Job() {
+class WinJob() : Job() {
     override fun run(context: ExecutionContext) {
         if ( // I know, this is not best practice.
             context.getHiddenBalls().size == 0 &&
@@ -15,10 +15,6 @@ class WinJob(private val onWinSound: () -> Unit) : Job() {
         ) {
             context.setRotationSpeed(0F);
             AppConfig.setEngineStatus(EngineStatus.WIN);
-
-            if (AppConfig.hasSoundEffects()) {
-                onWinSound
-            }
         }
     }
 }
