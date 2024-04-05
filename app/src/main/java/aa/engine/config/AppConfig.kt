@@ -39,6 +39,8 @@ object AppConfig {
 
     private var hasSoundEffects = true;
 
+    private var hasMusic = true;
+
 
     fun initialize(width: Float, height: Float) {
         screenWidth = width;
@@ -74,6 +76,7 @@ object AppConfig {
     fun getScreenClickable(): Boolean = screenClickable
     fun hasCloseCalls(): Boolean = hasCloseCalls
     fun hasSoundEffects(): Boolean = hasSoundEffects
+    fun hasMusic(): Boolean = hasMusic
 
     // setters
     fun setEngineStatus(status: EngineStatus) {
@@ -100,7 +103,9 @@ object AppConfig {
         this.hasSoundEffects = hasSoundEffects
     }
 
-
+    fun setHasMusic(hasMusic: Boolean) {
+        this.hasMusic = hasMusic;
+    }
 }
 
 

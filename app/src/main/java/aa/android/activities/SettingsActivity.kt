@@ -11,7 +11,6 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.util.Locale
 
 class SettingsActivity : BaseActivity() {
 
@@ -125,6 +124,7 @@ class SettingsActivity : BaseActivity() {
             apply()
         }
         setResources()
+        AppConfig.setHasMusic(hasMusic);
         if (hasMusic) {
             startService(Intent(this, BackgroundMusicService::class.java))
         } else {
@@ -161,5 +161,5 @@ class SettingsActivity : BaseActivity() {
         }
     }
 
-    
+
 }
