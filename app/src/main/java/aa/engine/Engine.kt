@@ -34,7 +34,7 @@ class Engine(
     ): Timer {
         timer = Timer();
         context.setSmallBalls(smallBalls);
-        levelManager.setup(level, onWinSound, onCollisionSound);
+        levelManager.setup(level);
         timer.scheduleAtFixedRate(
             timerTask { jobManager.tick(); callback(); },
             0,

@@ -207,6 +207,9 @@ public class GameView(context: Context, attrs: AttributeSet) :
     }
 
     private fun handleGameOver() {
+        if (!this.loseSoundPlayer.isPlaying && AppConfig.hasSoundEffects()) {
+            this.loseSoundPlayer.start();
+        }
         this.engine.stop();
         this.setBackgroundColor(resources.getColor(R.color.danger));
 
@@ -226,6 +229,9 @@ public class GameView(context: Context, attrs: AttributeSet) :
             AppConfig.setEngineStatus(EngineStatus.CLEANED_UP)
         };
         else if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
+            if (!this.winSoundPlayer.isPlaying && AppConfig.hasSoundEffects()) {
+                this.winSoundPlayer.start()
+            };
 
 
             if (AppConfig.getMainCircleOrbit() < AppConfig.getScrWidth()) {
@@ -255,7 +261,6 @@ public class GameView(context: Context, attrs: AttributeSet) :
         }
 
         mainCircle.draw(canvas);
-
     }
 
 }
