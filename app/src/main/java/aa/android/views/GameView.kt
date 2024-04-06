@@ -233,15 +233,14 @@ public class GameView(context: Context, attrs: AttributeSet) :
                 this.winSoundPlayer.start()
             };
 
-
             if (AppConfig.getMainCircleOrbit() < AppConfig.getScrWidth()) {
                 AppConfig.setMainCircleOrbit(AppConfig.getMainCircleOrbit() + 5);
                 this.setBackgroundColor(resources.getColor(R.color.success));
             } else {
                 handleLevelWin();
+                this.winSoundPlayer.stop();
+                this.winSoundPlayer.release();
             }
-
-
         }
 //        else if (AppConfig.getEngineStatus() == EngineStatus.READY) {
 //            // do nothing
