@@ -1,6 +1,7 @@
 package aa.android.activities
 
 import AppLifecycleService
+import LifecycleListener
 import aa.android.R
 import aa.android.sound.BackgroundMusicService
 import aa.engine.config.AppConfig
@@ -9,11 +10,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.channels.consumeEach
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.newSingleThreadContext
 import java.util.Locale
 
 open class BaseActivity : AppCompatActivity() {
@@ -34,19 +31,30 @@ open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
 
-        // initialize listener
-        val scope =
-            CoroutineScope(newSingleThreadContext("check-app-state-thread"));
-        val appListener = AppLifecycleService();
+        /*
+        *   START :: APP FOCUSED / UNFOCUSED
+        *   This part uses lifecycle Observers to check if
+        *   the app is focused or not.
+        * */
 
-        scope.launch {
-            appListener.channel.consumeEach { isForeground ->
-                if (isForeground) handleMoveToForeground()
-                else handleMoveToBackground()
+        // initializing app service
+        val lifecycleService = AppLifecycleService();
+        val appServiceListener = object : LifecycleListener {
+            override fun onAppForeground() {
+                handleMoveToForeground()
+            }
+
+            override fun onAppBackground() {
+                handleMoveToBackground()
             }
         }
 
+        // setting callbacks on class.
+        lifecycleService.setLifecycleListener(appServiceListener)
 
+        /*
+        *   END :: APP FOCUSED / UNFOCUSED
+        * */
 
         preferences = this.getSharedPreferences(
             resources.getString(

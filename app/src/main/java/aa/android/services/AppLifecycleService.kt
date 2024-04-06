@@ -2,30 +2,36 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.runBlocking
 import java.io.Closeable
 
-class AppLifecycleService() : LifecycleObserver, Closeable {
+interface LifecycleListener {
+    fun onAppForeground()
+    fun onAppBackground()
+}
 
-    val channel = Channel<Boolean>()
+class AppLifecycleService() : LifecycleObserver, Closeable {
+    private var listener: LifecycleListener? = null
+
 
     init {
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
     }
 
+    fun setLifecycleListener(listener: LifecycleListener) {
+        this.listener = listener
+    }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onMoveToForeground() {
-        runBlocking { channel.send(true) }
+        listener?.onAppForeground()
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun onMoveToBackground() {
-        runBlocking { channel.send(false) }
+        listener?.onAppBackground()
     }
 
     override fun close() {
         ProcessLifecycleOwner.get().lifecycle.removeObserver(this)
-        channel.close()
     }
 }
