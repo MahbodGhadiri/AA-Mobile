@@ -4,7 +4,6 @@ import AppLifecycleService
 import LifecycleListener
 import aa.android.R
 import aa.android.sound.BackgroundMusicService
-import aa.engine.config.AppConfig
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -85,13 +84,19 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     private fun handleMoveToForeground() {
-        if (AppConfig.hasMusic()) {
+        if (preferences.getBoolean(
+                getString(R.string.setting_music_preferences), true
+            )
+        ) {
             startService(Intent(this, BackgroundMusicService::class.java))
         }
     }
 
     private fun handleMoveToBackground() {
-        if (AppConfig.hasMusic()) {
+        if (preferences.getBoolean(
+                getString(R.string.setting_music_preferences), true
+            )
+        ) {
             stopService(Intent(this, BackgroundMusicService::class.java))
         }
     }
