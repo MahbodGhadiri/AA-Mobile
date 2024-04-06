@@ -38,6 +38,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
     private val winSoundPlayer: MediaPlayer;
     private val loseSoundPlayer: MediaPlayer;
     private val popSoundFile: Int;
+    private var winProcessStarted: Boolean = false;
 
     private val preferences =
         context.applicationContext.getSharedPreferences(
@@ -110,8 +111,6 @@ public class GameView(context: Context, attrs: AttributeSet) :
 
 
         this.engine = Engine(mainCircle);
-        engine.setWinSound { winSoundPlayer.start() }
-        engine.setCollisionSound { loseSoundPlayer.start() }
 
         val level = Class.forName("aa.engine.level.levels.Level" + currentLevel)
             .getDeclaredConstructor().newInstance() as Level;
@@ -229,8 +228,9 @@ public class GameView(context: Context, attrs: AttributeSet) :
             AppConfig.setEngineStatus(EngineStatus.CLEANED_UP)
         };
         else if (AppConfig.getEngineStatus() == EngineStatus.WIN) {
-            if (!this.winSoundPlayer.isPlaying && AppConfig.hasSoundEffects()) {
+            if (!this.winSoundPlayer.isPlaying && AppConfig.hasSoundEffects() && !this.winProcessStarted) {
                 this.winSoundPlayer.start()
+                this.winProcessStarted = true;
             };
 
             if (AppConfig.getMainCircleOrbit() < AppConfig.getScrWidth()) {
