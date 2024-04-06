@@ -4,19 +4,20 @@ package aa.android.activities
 import aa.android.R
 import aa.android.sound.BackgroundMusicService
 import aa.engine.config.AppConfig
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.util.Locale
+
 
 class SettingsActivity : BaseActivity() {
 
@@ -76,7 +77,7 @@ class SettingsActivity : BaseActivity() {
         languages.add(0,resources.getString(R.string.setting_language))
         val spinner = findViewById<Spinner>(R.id.language_spinner)
 
-        val adapter = object : ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, languages) {
+        val adapter = object : ArrayAdapter<String>(this, R.layout.my_spinner_style, languages) {
             override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getDropDownView(position, convertView, parent)
                 if (position == 0) {
@@ -86,33 +87,32 @@ class SettingsActivity : BaseActivity() {
                 }
                 return view
             }
+
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return super.getView(position, convertView, parent)
+                val v = super.getDropDownView(position, convertView, parent)
+                (v as TextView).setGravity(Gravity.CENTER)
+                return v
+            }
         }
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         spinner.adapter = adapter
         spinner.setSelection(0)
-//        val spinnerListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-//                if (position == 2) {
-//                    language = "en"
-//                }else {
-//                    language = "fa"
-//                }
-//                with(preferences.edit()) {
-//                putString(
-//                    getString(R.string.setting_language_preferences),
-//                    language
-//                )
-//                apply()
-//            }
-//                spinner.setSelection(0)
-//                }
-//                override fun onNothingSelected(parent: AdapterView<*>) {
-//                // Do nothing
-//                }
-//        }
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-
+                if (position == 1) {
+                    language = "fa"
+                }else if(position == 2) {
+                    language = "en"
+                }
+                with(preferences.edit()) {
+                    putString(
+                        getString(R.string.setting_language_preferences),
+                        language
+                    )
+                    apply()
+                }
+                spinner.setSelection(0)
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Do nothing
@@ -151,7 +151,9 @@ class SettingsActivity : BaseActivity() {
             closeCallsOnClick(it)
         }
 
-//        languageButton.listener
+        languageButton.setOnClickListener {
+            spinner.performClick()
+        }
     }
 
     private fun soundEffectOnClick(v: View) {
@@ -196,32 +198,6 @@ class SettingsActivity : BaseActivity() {
         setResources()
         AppConfig.setCloseCallsStatus(hasCloseCalls)
     }
-
-//    private fun languageOnClick(v: View) {
-//        if (language == "en") {
-//            language = "fa"
-//        } else {
-//            language = "en"
-//        }
-//
-//        with(preferences.edit()) {
-//            putString(
-//                getString(R.string.setting_language_preferences),
-//                language
-//            )
-//            apply()
-//        }
-//    }
-class SpinnerActivity : Activity(), AdapterView.OnItemSelectedListener {
-    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
-        // An item is selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos).
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>) {
-        // Another interface callback.
-    }
-}
 
     
 }

@@ -40,4 +40,8 @@
     <string name="setting_music_preferences">MUSIC_PREFERENCES</string>
     <string name="setting_close_calls_preferences">CLOSE_CALLS_PREFERENCES</string>
     <string name="setting_language_preferences">LANGUAGE</string>
+    <string-array name="languages">
+        <item>فارسی</item>
+        <item>انگلیسی</item>
+    </string-array>
 </resources>
