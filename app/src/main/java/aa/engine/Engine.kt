@@ -17,8 +17,6 @@ class Engine(
     private val jobManager: JobManager;
     private val levelManager: LevelManager;
     private val context = ExecutionContext(mainCircle);
-    private var onCollisionSound: () -> Unit = {}
-    private var onWinSound: () -> Unit = {}
     private lateinit var timer: Timer;
 
 
@@ -50,13 +48,5 @@ class Engine(
 
     public fun getContext(): ExecutionContext {
         return this.context;
-    }
-
-    public fun setCollisionSound(soundPlayer: () -> Unit) {
-        onCollisionSound = soundPlayer;
-    }
-
-    public fun setWinSound(soundPlayer: () -> Unit) {
-        onWinSound = soundPlayer;
     }
 }

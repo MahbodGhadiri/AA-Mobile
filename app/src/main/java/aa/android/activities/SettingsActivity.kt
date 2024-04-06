@@ -179,6 +179,7 @@ class SettingsActivity : BaseActivity() {
             apply()
         }
         setResources()
+        AppConfig.setHasMusic(hasMusic);
         if (hasMusic) {
             startService(Intent(this, BackgroundMusicService::class.java))
         } else {
@@ -199,5 +200,5 @@ class SettingsActivity : BaseActivity() {
         AppConfig.setCloseCallsStatus(hasCloseCalls)
     }
 
-    
+
 }
