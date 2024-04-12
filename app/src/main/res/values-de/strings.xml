@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">aa</string>
+    <string name="levels">Levels</string>
+    <string name="settings">Einstellungen</string>
+    <string name="menu">Hauptmenü</string>
+    <string name="play">Spielen</string>
+    <string name="mahbod_ghadiri_name">Mahbod Ghadiri Sani</string>
+    <string name="joseph_osanlou_name">Joseph Osanlou</string>
+    <string name="danial_azimi_name">Danial Azimi</string>
+    <string name="armin_jodat_name">Armin Jodat</string>
+    <string name="game">GAME</string>
+    <string name="over">OVER</string>
+    <string name="you">DU</string>
+    <string name="won">GEWANNST</string>
+    <string name="setting_sound_effects">Soundeffekte</string>
+    <string name="setting_music">Musik</string>
+    <string name="setting_language">Sprache</string>
+</resources>
