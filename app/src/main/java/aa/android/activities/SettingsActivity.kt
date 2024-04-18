@@ -48,9 +48,7 @@ class SettingsActivity : BaseActivity() {
         spinner = findViewById<Spinner>(R.id.language_spinner)
         getPreferences();
         loadResources();
-        System.out.println("initializing spinner")
         initializeSpinner();
-        System.out.println("setting resources")
         setResources();
 
     }
@@ -83,6 +81,8 @@ class SettingsActivity : BaseActivity() {
     private fun initializeSpinner() {
         var spinnerPosition = 0;
         for (code in languageCodes) {
+            System.out.println(language)
+            System.out.println(code)
             if (code == language)
                 break;
             spinnerPosition++;
@@ -104,7 +104,6 @@ class SettingsActivity : BaseActivity() {
                 ) {
 
                     language = languageCodes[position]
-                    System.out.println(language)
                     with(preferences.edit()) {
                         putString(
                             getString(R.string.setting_language_preferences),
@@ -224,7 +223,7 @@ class SettingsActivity : BaseActivity() {
         val mainIntent = Intent.makeRestartActivityTask(componentName)
         mainIntent.setPackage(this.packageName)
         startActivity(mainIntent)
-        Runtime.getRuntime().exit(0)
+        finish()
     }
 
 
