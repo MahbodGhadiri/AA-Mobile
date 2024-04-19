@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">aa</string>
+    <string name="app_name" translatable="false">aa</string>
     <string name="credits">Credits</string>
     <string name="levels">Levels</string>
     <string name="settings">Settings</string>
@@ -7,7 +7,7 @@
     <string name="retry">Retry</string>
     <string name="contributors">Contributors</string>
     <string name="play">Play</string>
-    <string name="game_name">aa</string>
+    <string name="game_name" translatable="false">aa</string>
     <string name="mahbod_ghadiri_name">Mahbod Ghadiri Sani</string>
     <string name="mahbod_ghadiri_bio">
       I am a web developer by profession and this app is actually my first experience with Android. I have always been interested in trying out new technologies and learning how they work. This project was also in line with this interest, to learn a new programming language and to enter the world of Android a little bit.
@@ -27,16 +27,28 @@
     <string name="over"> OVER</string>
     <string name="you"> YOU</string>
     <string name="won"> WON</string>
-    <string name="current_level"> CURRENT_LEVEL</string>
-    <string name="highest_completed_level"> HIGHEST_COMPLETED_LEVEL</string>
-    <string name="preferences">aa.android.preferences</string>
+    <string name="current_level" translatable="false"> CURRENT_LEVEL</string>
+    <string name="highest_completed_level" translatable="false"> HIGHEST_COMPLETED_LEVEL</string>
+    <string name="preferences" translatable="false">aa.android.preferences</string>
     <string name="setting_sound_effects">Sound Effects</string>
     <string name="setting_music">Music</string>
     <string name="setting_close_calls">Close Calls</string>
     <string name="setting_language">Language</string>
-    <string name="setting_sound_effects_preferences">SOUND_EFFECT_PREFERENCES</string>
-    <string name="setting_music_preferences">MUSIC_PREFERENCES</string>
-    <string name="setting_close_calls_preferences">CLOSE_CALLS_PREFERENCES</string>
-    <string name="setting_language_preferences">LANGUAGE</string>
+    <string name="setting_sound_effects_preferences" translatable="false">SOUND_EFFECT_PREFERENCES</string>
+    <string name="setting_music_preferences" translatable="false">MUSIC_PREFERENCES</string>
+    <string name="setting_close_calls_preferences" translatable="false">CLOSE_CALLS_PREFERENCES</string>
+    <string name="setting_language_preferences" translatable="false">LANGUAGE</string>
+    <string-array name="languages">
+        <item>🇬🇧 English</item>
+        <item>🇮🇷 Farsi</item>
+        <item>🇩🇪 Deutsch</item>
+    </string-array>
+    <string-array name="LANGUAGE_CODES">
+        <item>en</item>
+        <item>fa</item>
+        <item>de</item>
+    </string-array>
+
+    <string name="choose_language">Choose Language</string>
 
 </resources>

@@ -2,22 +2,29 @@ package aa.android.activities
 
 
 import aa.android.R
+import aa.android.fragments.ChooseLanguageDialogFragment
 import aa.android.sound.BackgroundMusicService
 import aa.engine.config.AppConfig
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+
 
 class SettingsActivity : BaseActivity() {
 
     private var hasSoundEffects = true
     private var hasMusic = true
     private var hasCloseCalls = true
+    public lateinit var languages: Array<String>
+    private val languageCodes = ArrayList<String>()
     private var language = "en"
+    private var dialog = ChooseLanguageDialogFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +43,8 @@ class SettingsActivity : BaseActivity() {
         }
 
         getPreferences();
+        loadResources();
         setResources();
-
     }
 
     private fun getPreferences() {
@@ -59,44 +66,79 @@ class SettingsActivity : BaseActivity() {
 
     }
 
+    private fun loadResources() {
+        languages = resources.getStringArray(R.array.languages)
+        languageCodes.addAll(resources.getStringArray(R.array.LANGUAGE_CODES))
+
+    }
+
+    private fun detectCurrentLanguageIndex() {
+        var index = 0;
+        for (code in languageCodes) {
+            if (code == language)
+                break;
+            index++;
+        }
+    }
+
+    public fun onLanguageSelect(index: Int) {
+        language = languageCodes[index]
+        with(preferences.edit()) {
+            putString(
+                getString(R.string.setting_language_preferences),
+                language
+            )
+            apply()
+        }
+        setLocale(language)
+        restartApp();
+    }
+
     private fun setResources() {
-        val soundEffectButton =
-            findViewById<ImageView>(R.id.sound_effect_button)
-        val musicButton = findViewById<ImageView>(R.id.music_button)
-        val closeCallsButton = findViewById<ImageView>(R.id.close_calls_button)
-        val languageButton = findViewById<ImageView>(R.id.language_button)
+        val soundEffectImage =
+            findViewById<ImageView>(R.id.sound_effect_image)
+        val soundEffectContainer =
+            findViewById<LinearLayout>(R.id.sound_effects_container)
+        val musicImage = findViewById<ImageView>(R.id.music_image)
+        val musicContainer = findViewById<LinearLayout>(R.id.music_container)
+        val closeCallsImage = findViewById<ImageView>(R.id.close_calls_image)
+        val closeCallsContainer =
+            findViewById<LinearLayout>(R.id.close_calls_container)
+        val languageContainer =
+            findViewById<LinearLayout>(R.id.language_container)
 
         if (hasSoundEffects) {
-            soundEffectButton.setImageResource(R.drawable.settings_sound_effect_on)
+            soundEffectImage.setImageResource(R.drawable.settings_sound_effect_on)
         } else {
-            soundEffectButton.setImageResource(R.drawable.settings_sound_effect_off)
+            soundEffectImage.setImageResource(R.drawable.settings_sound_effect_off)
         }
-        soundEffectButton.adjustViewBounds = true
-        soundEffectButton.setOnClickListener {
-            soundEffectOnClick(it)
+        soundEffectImage.adjustViewBounds = true
+        soundEffectContainer.setOnClickListener {
+            soundEffectOnClick(it);
         }
 
+
         if (hasMusic) {
-            musicButton.setImageResource(R.drawable.settings_music_on)
+            musicImage.setImageResource(R.drawable.settings_music_on)
         } else {
-            musicButton.setImageResource(R.drawable.settings_music_off)
+            musicImage.setImageResource(R.drawable.settings_music_off)
         }
-        musicButton.adjustViewBounds = true
-        musicButton.setOnClickListener {
-            musicOnClick(it)
+        musicImage.adjustViewBounds = true
+        musicContainer.setOnClickListener {
+            musicOnClick(it);
         }
 
         if (hasCloseCalls) {
-            closeCallsButton.setImageResource(R.drawable.settings_close_call_on)
+            closeCallsImage.setImageResource(R.drawable.settings_close_call_on)
         } else {
-            closeCallsButton.setImageResource(R.drawable.settings_close_call_off)
+            closeCallsImage.setImageResource(R.drawable.settings_close_call_off)
         }
-        closeCallsButton.adjustViewBounds = true
-        closeCallsButton.setOnClickListener {
-            closeCallsOnClick(it)
+        closeCallsImage.adjustViewBounds = true
+        closeCallsContainer.setOnClickListener {
+            closeCallsOnClick(it);
         }
 
-        languageButton.setOnClickListener {
+        languageContainer.setOnClickListener {
             languageOnClick(it)
         }
     }
@@ -146,19 +188,23 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun languageOnClick(v: View) {
-        if (language == "en") {
-            language = "fa"
-        } else {
-            language = "en"
-        }
+        dialog
 
-        with(preferences.edit()) {
-            putString(
-                getString(R.string.setting_language_preferences),
-                language
-            )
-            apply()
-        }
+        dialog.show(
+            supportFragmentManager,
+            "LanguageDialog"
+        )
+    }
+
+    public fun restartApp() {
+        val packageManager: PackageManager = this.packageManager
+        val intent =
+            packageManager.getLaunchIntentForPackage(this.packageName)
+        val componentName = intent!!.component
+        val mainIntent = Intent.makeRestartActivityTask(componentName)
+        mainIntent.setPackage(this.packageName)
+        startActivity(mainIntent)
+        finish()
     }
 
 

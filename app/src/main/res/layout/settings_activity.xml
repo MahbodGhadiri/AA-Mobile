@@ -6,6 +6,7 @@
 
 
     <LinearLayout
+        android:id="@+id/sound_effects_container"
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:layout_marginLeft="20dp"
@@ -28,16 +29,16 @@
             android:textSize="30sp" />
 
         <ImageView
-            android:id="@+id/sound_effect_button"
+            android:id="@+id/sound_effect_image"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:onClick="" />
+            android:adjustViewBounds="true" />
     </LinearLayout>
 
 
     <LinearLayout
+        android:id="@+id/music_container"
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:layout_marginLeft="20dp"
@@ -59,13 +60,14 @@
             android:textSize="30sp" />
 
         <ImageView
-            android:id="@+id/music_button"
+            android:id="@+id/music_image"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/close_calls_container"
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:layout_marginLeft="20dp"
@@ -88,19 +90,19 @@
             android:textSize="30sp" />
 
         <ImageView
-            android:id="@+id/close_calls_button"
+            android:id="@+id/close_calls_image"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/language_container"
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
-
         android:layout_weight="1"
         android:dividerPadding="15sp"
         android:orientation="horizontal">
@@ -117,7 +119,7 @@
             android:textSize="30sp" />
 
         <ImageView
-            android:id="@+id/language_button"
+            android:id="@+id/language_image"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="center"
