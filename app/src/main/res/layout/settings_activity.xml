@@ -107,16 +107,16 @@
         android:dividerPadding="15sp"
         android:orientation="horizontal">
 
-        <Spinner
-            android:id="@+id/language_spinner"
+        <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginRight="15dp"
             android:layout_weight="6"
             android:gravity="center"
-            android:popupBackground="@color/background"
-            android:spinnerMode="dialog"
-            android:textAlignment="center" />
+            android:text="@string/setting_language"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            android:textSize="30sp" />
 
         <ImageView
             android:id="@+id/language_image"

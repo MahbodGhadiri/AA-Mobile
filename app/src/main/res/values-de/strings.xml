@@ -16,4 +16,5 @@
     <string name="setting_sound_effects">Soundeffekte</string>
     <string name="setting_music">Musik</string>
     <string name="setting_language">Sprache</string>
+    <string name="choose_language">Sprache wählen</string>
 </resources>

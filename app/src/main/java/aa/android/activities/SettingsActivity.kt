@@ -2,17 +2,15 @@ package aa.android.activities
 
 
 import aa.android.R
+import aa.android.fragments.ChooseLanguageDialogFragment
 import aa.android.sound.BackgroundMusicService
 import aa.engine.config.AppConfig
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -23,11 +21,10 @@ class SettingsActivity : BaseActivity() {
     private var hasSoundEffects = true
     private var hasMusic = true
     private var hasCloseCalls = true
-    private val languages = ArrayList<String>()
+    public lateinit var languages: Array<String>
     private val languageCodes = ArrayList<String>()
     private var language = "en"
-    private lateinit var spinner: Spinner
-    private lateinit var adapter: ArrayAdapter<String>
+    private var dialog = ChooseLanguageDialogFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,12 +42,9 @@ class SettingsActivity : BaseActivity() {
             insets
         }
 
-        spinner = findViewById<Spinner>(R.id.language_spinner)
         getPreferences();
         loadResources();
-        initializeSpinner();
         setResources();
-
     }
 
     private fun getPreferences() {
@@ -73,53 +67,31 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun loadResources() {
-        languages.addAll(resources.getStringArray(R.array.languages))
+        languages = resources.getStringArray(R.array.languages)
         languageCodes.addAll(resources.getStringArray(R.array.LANGUAGE_CODES))
 
     }
 
-    private fun initializeSpinner() {
-        var spinnerPosition = 0;
+    private fun detectCurrentLanguageIndex() {
+        var index = 0;
         for (code in languageCodes) {
-            System.out.println(language)
-            System.out.println(code)
             if (code == language)
                 break;
-            spinnerPosition++;
+            index++;
         }
+    }
 
-
-        adapter = ArrayAdapter(this, R.layout.spinner_language)
-        adapter.addAll(languages)
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-        spinner.adapter = adapter
-        spinner.setSelection(spinnerPosition, false)
-        spinner.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>,
-                    view: View,
-                    position: Int,
-                    id: Long
-                ) {
-
-                    language = languageCodes[position]
-                    with(preferences.edit()) {
-                        putString(
-                            getString(R.string.setting_language_preferences),
-                            language
-                        )
-                        apply()
-                    }
-                    setLocale(language)
-                    restartApp();
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    // Do nothing
-                }
-            }
-
+    public fun onLanguageSelect(index: Int) {
+        language = languageCodes[index]
+        with(preferences.edit()) {
+            putString(
+                getString(R.string.setting_language_preferences),
+                language
+            )
+            apply()
+        }
+        setLocale(language)
+        restartApp();
     }
 
     private fun setResources() {
@@ -167,7 +139,7 @@ class SettingsActivity : BaseActivity() {
         }
 
         languageContainer.setOnClickListener {
-            spinner.performClick()
+            languageOnClick(it)
         }
     }
 
@@ -213,6 +185,15 @@ class SettingsActivity : BaseActivity() {
         }
         setResources()
         AppConfig.setCloseCallsStatus(hasCloseCalls)
+    }
+
+    private fun languageOnClick(v: View) {
+        dialog
+
+        dialog.show(
+            supportFragmentManager,
+            "LanguageDialog"
+        )
     }
 
     public fun restartApp() {
