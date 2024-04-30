@@ -27,7 +27,7 @@ object AppConfig {
 
     private var gamePageElementsColor: String = "#76ABAE";
 
-    private const val levelsCount = 6
+    private const val levelsCount = 12
 
     private var approachingSpeed: Float = 50F;
 

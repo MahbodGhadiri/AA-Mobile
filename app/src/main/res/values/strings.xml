@@ -29,6 +29,7 @@
     <string name="won"> WON</string>
     <string name="current_level" translatable="false"> CURRENT_LEVEL</string>
     <string name="highest_completed_level" translatable="false"> HIGHEST_COMPLETED_LEVEL</string>
+    <string name="current_page" translatable="false"> CURRENT_PAGE</string>
     <string name="preferences" translatable="false">aa.android.preferences</string>
     <string name="setting_sound_effects">Sound Effects</string>
     <string name="setting_music">Music</string>
