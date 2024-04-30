@@ -15,6 +15,8 @@ class ExecutionContext(
     private var _approachingSpeed: Float = 0F;
     private var _spawningSpeed: Float = 0F;
 
+    private var rotationSpeedLocked = false;
+
 
     private val hiddenBalls = ArrayList<SmallBall>();
     private var spawnedBall: SmallBall? = null;
@@ -65,8 +67,17 @@ class ExecutionContext(
     }
 
     fun setRotationSpeed(speed: Float, setCopy: Boolean = true) {
+        if (rotationSpeedLocked) throw Error("Rotation Speed Was locked, but something tried to change it!")
         this.rotationSpeed = speed;
         if (setCopy) this._rotationSpeed = speed;
+    }
+
+    fun isRotationSpeedLocked(): Boolean {
+        return rotationSpeedLocked;
+    }
+
+    fun setRotationSpeedLocked(bool: Boolean) {
+        rotationSpeedLocked = bool
     }
 
     fun getApproachingSpeed(): Float {
