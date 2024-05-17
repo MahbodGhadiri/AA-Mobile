@@ -45,14 +45,14 @@ open class SmallBall constructor(
                 Math.toRadians(
                     theta.toDouble()
                 )
-            ))
+            ).toFloat())
 
         val y = AppConfig.getMainCirclePos()
             .getY() + (AppConfig.getMainCircleOrbit() * cos(
             Math.toRadians(theta.toDouble())
-        ))
+        ).toFloat())
 
-        this.setPosition(x.toFloat(), y.toFloat())
+        this.setPosition(x, y)
     }
 
 

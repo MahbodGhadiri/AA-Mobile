@@ -27,7 +27,7 @@ object AppConfig {
 
     private var gamePageElementsColor: String = "#76ABAE";
 
-    private const val levelsCount = 6
+    private const val LEVELS_COUNT = 18
 
     private var approachingSpeed: Float = 50F;
 
@@ -71,7 +71,7 @@ object AppConfig {
     fun getTextSize(): Float = textSize;
     fun getEngineStatus(): EngineStatus = engineStatus;
     fun getGamePageElementsColor(): String = gamePageElementsColor;
-    fun getLevelCount(): Int = levelsCount
+    fun getLevelCount(): Int = LEVELS_COUNT
     fun getApproachingSpeed(): Float = approachingSpeed
     fun getScreenClickable(): Boolean = screenClickable
     fun hasCloseCalls(): Boolean = hasCloseCalls
