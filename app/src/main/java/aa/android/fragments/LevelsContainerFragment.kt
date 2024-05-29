@@ -71,10 +71,10 @@ class LevelsContainerFragment : Fragment() {
                 val tag = ((page - 1) * 10) + i;
                 textView = it.findViewById(textIds[i - 1])
                 if (tag <= AppConfig.getLevelCount()) {
-                    if (i.toString() == it.currentLevel) {
+                    if (tag.toString() == it.currentLevel) {
                         textView.setTextColor(it.getColor(R.color.primary_shade))
                     }
-                    if (((page - 1) * 10) + i > (it.highestCompletedLevel.toInt() + 1)) {
+                    if (tag > (it.highestCompletedLevel.toInt() + 1)) {
                         textView.background =
                             context?.let {
                                 AppCompatResources.getDrawable(
