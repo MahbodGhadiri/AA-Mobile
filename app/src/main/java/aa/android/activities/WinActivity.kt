@@ -11,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
+
 class WinActivity : BaseActivity() {
 
     override fun onCreate(
@@ -41,11 +42,22 @@ class WinActivity : BaseActivity() {
             "0"
         )
 
+        if (currentLevel.toInt() < AppConfig.getLevelCount()) {
+            with(preferences.edit()) {
+                putString(
+                    getString(R.string.current_level),
+                    (currentLevel.toInt() + 1).toString()
+                )
+                apply()
+            }
+        }
+
 
         val retryButton = findViewById<FrameLayout>(R.id.retry);
         retryButton.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java);
             startActivity(intent);
+            finish()
         }
 
 
@@ -55,14 +67,8 @@ class WinActivity : BaseActivity() {
         } else {
             nextLevelButton.setOnClickListener {
                 val intent = Intent(this, GameActivity::class.java)
-                with(preferences.edit()) {
-                    putString(
-                        getString(R.string.current_level),
-                        (currentLevel.toInt() + 1).toString()
-                    )
-                    apply()
-                }
                 startActivity(intent)
+                finish()
             }
         }
 
@@ -70,12 +76,14 @@ class WinActivity : BaseActivity() {
         homeButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         val levelsMenuButton = findViewById<FrameLayout>(R.id.levels)
         levelsMenuButton.setOnClickListener {
             val intent = Intent(this, LevelMenuActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
     }
