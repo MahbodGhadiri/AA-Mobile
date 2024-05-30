@@ -48,12 +48,14 @@ class GameActivity : BaseActivity() {
         menuButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java);
             startActivity(intent);
+            finish()
         }
 
         val levelsButton = findViewById<FrameLayout>(R.id.levelsButton);
         levelsButton.setOnClickListener {
             val intent = Intent(this, LevelMenuActivity::class.java);
             startActivity(intent);
+            finish()
         }
 
         val hasCloseCalls = preferences.getBoolean(

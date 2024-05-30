@@ -40,4 +40,16 @@
     <string name="setting_music_preferences">MUSIC_PREFERENCES</string>
     <string name="setting_close_calls_preferences">CLOSE_CALLS_PREFERENCES</string>
     <string name="setting_language_preferences">LANGUAGE</string>
+    <string-array name="languages">
+        <item>انگلیسی 🇬🇧</item>
+        <item> فارسی 🇮🇷</item>
+        <item>آلمانی 🇩🇪</item>
+    </string-array>
+    <string-array name="LANGUAGE_CODES">
+        <item>en</item>
+        <item>fa</item>
+        <item>de</item>
+    </string-array>
+
+    <string name="choose_language">انتخاب زبان</string>
 </resources>

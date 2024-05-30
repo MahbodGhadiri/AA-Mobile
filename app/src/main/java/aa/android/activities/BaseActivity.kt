@@ -72,7 +72,7 @@ open class BaseActivity : AppCompatActivity() {
 
     }
 
-    private fun setLocale(lang: String) {
+    protected fun setLocale(lang: String) {
         val locale = Locale(lang)
         Locale.setDefault(locale)
         resources.configuration.setLocale(locale)
