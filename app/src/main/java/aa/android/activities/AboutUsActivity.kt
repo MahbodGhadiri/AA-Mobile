@@ -6,7 +6,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-
+/**
+ * Activity for Contributors page
+ * Does not do much, just renders about_us layout.
+ * */
 class AboutUsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

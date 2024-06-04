@@ -11,12 +11,18 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-
+/**
+ * Activity for menu page
+ * */
 class LevelMenuActivity : BaseActivity() {
     public var currentLevel: String = "1";
     public var highestCompletedLevel: String = "0";
     public var page: Int = 1;
+
+    // x value of touch initialize
     private var x1 = 0F;
+
+    // x value of touch release
     private var x2 = 0F;
 
     override fun onCreate(
@@ -55,6 +61,10 @@ class LevelMenuActivity : BaseActivity() {
 
     }
 
+
+    /**
+     * event listener to detect page swipe
+     * */
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> x1 = event.x
@@ -71,16 +81,19 @@ class LevelMenuActivity : BaseActivity() {
         return super.onTouchEvent(event)
     }
 
+    /**
+     * single callback to handle all level button clicks
+     * */
     public fun handleClickedButton(v: View) {
         val levelNumber = v.getTag().toString()
 
         if (levelNumber.toInt() <= (highestCompletedLevel.toInt() + 1)) {
-        with(preferences.edit()) {
-            putString(getString(R.string.current_level), levelNumber)
-            apply()
-        }
-        val intent = Intent(this, GameActivity::class.java)
-        startActivity(intent)
+            with(preferences.edit()) {
+                putString(getString(R.string.current_level), levelNumber)
+                apply()
+            }
+            val intent = Intent(this, GameActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -1,7 +1,6 @@
 package aa.android.activities
 
 import aa.android.R
-import aa.android.views.GameView
 import aa.engine.config.AppConfig
 import android.content.Intent
 import android.os.Bundle
@@ -13,6 +12,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
+/**
+ * The activity which the game takes place in.
+ * The most important and currently sole component is GameView!
+ * */
 class GameActivity : BaseActivity() {
     private lateinit var gameOverButtons: LinearLayout;
 
@@ -35,8 +38,6 @@ class GameActivity : BaseActivity() {
             )
             insets
         }
-
-        val gameView = findViewById<GameView>(R.id.GameView)
 
         val retryButton = findViewById<ImageView>(R.id.retryButton);
         retryButton.setOnClickListener {

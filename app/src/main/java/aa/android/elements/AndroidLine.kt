@@ -6,6 +6,9 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 
+/**
+ * android element responsible for rendering lines in the game.
+ * */
 class AndroidLine {
     private var paint = Paint()
 

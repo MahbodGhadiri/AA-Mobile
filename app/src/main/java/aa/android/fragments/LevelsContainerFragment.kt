@@ -11,6 +11,9 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 
+/**
+ * Each page of level is a isolated fragment, holding buttons.
+ */
 class LevelsContainerFragment : Fragment() {
     lateinit var textIds: IntArray;
     private var page = 0;
@@ -51,13 +54,16 @@ class LevelsContainerFragment : Fragment() {
         return view
     }
 
+    /**
+     * without populating buttons, level numbers will not be displayed.
+     */
     override fun onResume() {
         super.onResume()
         populateButtons()
     }
 
 
-    public fun populateButtons() {
+    fun populateButtons() {
 
         var textView: TextView;
         activity?.let {
@@ -100,9 +106,5 @@ class LevelsContainerFragment : Fragment() {
             }
         }
 
-    }
-
-    public fun setPage(page: Int) {
-        this.page = page;
     }
 }

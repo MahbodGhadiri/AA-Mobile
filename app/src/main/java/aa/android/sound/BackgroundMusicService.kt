@@ -8,6 +8,9 @@ import android.os.IBinder
 import android.util.Log
 import androidx.annotation.Nullable
 
+/**
+ * Service responsible for playing background music
+ */
 class BackgroundMusicService : Service() {
     private lateinit var mediaPlayer: MediaPlayer
 
@@ -24,7 +27,11 @@ class BackgroundMusicService : Service() {
 
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+    override fun onStartCommand(
+        intent: Intent?,
+        flags: Int,
+        startId: Int
+    ): Int {
         mediaPlayer.start()
         Log.d("BackgroundMusicService", "Background music started")
         return START_STICKY

@@ -12,6 +12,9 @@ import android.media.MediaPlayer
 import java.util.Timer
 import java.util.TimerTask
 
+/**
+ * Android element responsible for rendering small balls.
+ */
 class AndroidSmallBall(
     status: SmallBallStatus = SmallBallStatus.HIDDEN,
     theta: Float = 90F,

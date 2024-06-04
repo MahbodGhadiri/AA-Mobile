@@ -5,6 +5,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 
+/**
+ * receiver to get win signal
+ */
 class ChangeActivityReceiver() :
     BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {

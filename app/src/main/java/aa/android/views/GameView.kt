@@ -24,6 +24,9 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
+/**
+ * Entire game logic happens here!
+ */
 public class GameView(context: Context, attrs: AttributeSet) :
     View(context, attrs) {
     private var originalOrbit: Float = 0F;
@@ -48,6 +51,8 @@ public class GameView(context: Context, attrs: AttributeSet) :
         )
 
     init {
+
+        // set default variables in AppConfig that need display metrics
         AppConfig.initialize(
             context.resources.displayMetrics.widthPixels.toFloat(),
             context.resources.displayMetrics.heightPixels.toFloat()
@@ -57,6 +62,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
             originalOrbit = AppConfig.getMainCircleOrbit();
         }
 
+        // receiver to get re-render signal from engine
         this.lbm = LocalBroadcastManager.getInstance(this.context);
         this.reRenderIntent = Intent().setAction("reRender");
         this.reRenderReceiver =
@@ -77,6 +83,7 @@ public class GameView(context: Context, attrs: AttributeSet) :
         this.loseSoundPlayer = MediaPlayer.create(this.context, R.raw.gameover)
         this.popSoundFile = R.raw.popsound8
 
+        // start engine
         this.initializeEngine();
         this.isFirstTime = false;
     }

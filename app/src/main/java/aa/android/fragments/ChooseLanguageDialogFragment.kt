@@ -8,7 +8,9 @@ import android.os.Bundle
 import android.view.ContextThemeWrapper
 import androidx.fragment.app.DialogFragment
 
-
+/**
+ * Fragment responsible for language dialog
+ */
 class ChooseLanguageDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {

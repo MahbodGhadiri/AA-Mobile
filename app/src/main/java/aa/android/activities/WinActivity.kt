@@ -11,7 +11,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-
+/**
+ * activity for win page after passing a level.
+ */
 class WinActivity : BaseActivity() {
 
     override fun onCreate(
@@ -36,11 +38,6 @@ class WinActivity : BaseActivity() {
         val currentLevel =
             preferences.getString(getString(R.string.current_level), "1")
                 .toString()
-
-        val highestCompletedLevel = preferences.getString(
-            getString(R.string.highest_completed_level),
-            "0"
-        )
 
         if (currentLevel.toInt() < AppConfig.getLevelCount()) {
             with(preferences.edit()) {

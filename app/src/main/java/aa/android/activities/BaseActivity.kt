@@ -9,12 +9,15 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.DelicateCoroutinesApi
 import java.util.Locale
 
+/**
+ * This class should be inherited by all other activities!
+ * loads preferences and attach a listener on language change.
+ * also handles music playing and pause.
+ * */
 open class BaseActivity : AppCompatActivity() {
     protected lateinit var preferences: SharedPreferences
-    private var counter: Number = 0;
 
     // storing a reference just to protect listener from garbage collection
     // as register api does not actually store a hard reference
@@ -26,7 +29,7 @@ open class BaseActivity : AppCompatActivity() {
             }
         }
 
-    @OptIn(DelicateCoroutinesApi::class)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
 
@@ -72,6 +75,9 @@ open class BaseActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Set language by language code
+     * */
     protected fun setLocale(lang: String) {
         val locale = Locale(lang)
         Locale.setDefault(locale)

@@ -7,6 +7,9 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
+/**
+ * android element responsible for rendering MainCircle on android.
+ */
 public class AndroidMainCircle() : MainCircle() {
     private var rectF: RectF;
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {

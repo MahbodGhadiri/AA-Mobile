@@ -15,13 +15,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-
+/**
+ * activity for settings page
+ */
 class SettingsActivity : BaseActivity() {
 
     private var hasSoundEffects = true
     private var hasMusic = true
     private var hasCloseCalls = true
-    public lateinit var languages: Array<String>
+    lateinit var languages: Array<String>
     private val languageCodes = ArrayList<String>()
     private var language = "en"
     private var dialog = ChooseLanguageDialogFragment()
@@ -66,21 +68,17 @@ class SettingsActivity : BaseActivity() {
 
     }
 
+    /**
+     * get current language and available languages
+     */
     private fun loadResources() {
         languages = resources.getStringArray(R.array.languages)
         languageCodes.addAll(resources.getStringArray(R.array.LANGUAGE_CODES))
-
     }
 
-    private fun detectCurrentLanguageIndex() {
-        var index = 0;
-        for (code in languageCodes) {
-            if (code == language)
-                break;
-            index++;
-        }
-    }
-
+    /**
+     * callback to to change language
+     */
     public fun onLanguageSelect(index: Int) {
         language = languageCodes[index]
         with(preferences.edit()) {
@@ -94,6 +92,9 @@ class SettingsActivity : BaseActivity() {
         restartApp();
     }
 
+    /**
+     * dynamically add images and icons based on current state of app
+     */
     private fun setResources() {
         val soundEffectImage =
             findViewById<ImageView>(R.id.sound_effect_image)
@@ -143,6 +144,9 @@ class SettingsActivity : BaseActivity() {
         }
     }
 
+    /**
+     * change sound effect state
+     */
     private fun soundEffectOnClick(v: View) {
         hasSoundEffects = !hasSoundEffects
         with(preferences.edit()) {
@@ -156,6 +160,10 @@ class SettingsActivity : BaseActivity() {
         AppConfig.setSoundEffectsStatus(hasSoundEffects)
     }
 
+
+    /**
+     * change music state
+     */
     private fun musicOnClick(v: View) {
         hasMusic = !hasMusic
         with(preferences.edit()) {
@@ -174,6 +182,9 @@ class SettingsActivity : BaseActivity() {
         }
     }
 
+    /**
+     * change close calls (slow mo) state
+     */
     private fun closeCallsOnClick(v: View) {
         hasCloseCalls = !hasCloseCalls
         with(preferences.edit()) {
@@ -187,6 +198,10 @@ class SettingsActivity : BaseActivity() {
         AppConfig.setCloseCallsStatus(hasCloseCalls)
     }
 
+
+    /**
+     * change language state
+     */
     private fun languageOnClick(v: View) {
         dialog
 
@@ -196,7 +211,10 @@ class SettingsActivity : BaseActivity() {
         )
     }
 
-    public fun restartApp() {
+    /**
+     * restart app after changing language
+     */
+    private fun restartApp() {
         val packageManager: PackageManager = this.packageManager
         val intent =
             packageManager.getLaunchIntentForPackage(this.packageName)

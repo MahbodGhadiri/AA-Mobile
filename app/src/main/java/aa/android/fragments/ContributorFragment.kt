@@ -13,6 +13,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
+/**
+ * Each Contributor has its own ContributorFragment
+ * It contains a quick introduction and github, linkedin and telegram links.
+ */
 class ContributorFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var contributorName: CharSequence? = null
